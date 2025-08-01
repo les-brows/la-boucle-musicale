@@ -2,9 +2,9 @@
 
 [ext_resource type="AudioStream" uid="uid://bmiw036m25nqi" path="res://Assets/You Say Run.mp3" id="1_u48bt"]
 [ext_resource type="PackedScene" uid="uid://sd570mjely02" path="res://Rythm/Metronome.tscn" id="2_aihqw"]
-[ext_resource type="Texture2D" uid="uid://c8ndkv3op4c16" path="res://icon.svg" id="3_whquc"]
+[ext_resource type="Texture2D" uid="uid://bqyrux3e3tys5" path="res://icon.svg" id="3_whquc"]
 [ext_resource type="AudioStream" uid="uid://ke43hdpgbybw" path="res://Assets/Collide 1.wav" id="4_taj5w"]
-[ext_resource type="Script" uid="uid://c3tbooyhqh8ok" path="res://Rythm/test_sound.gd" id="5_v7kc7"]
+[ext_resource type="Script" uid="uid://cq83cg13sg4kf" path="res://Rythm/test_sound.gd" id="5_v7kc7"]
 
 [node name="MusicManager" type="Node"]
 

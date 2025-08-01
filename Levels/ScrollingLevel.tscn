@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://c0xi81rtw0j1x"]
 
-[ext_resource type="Script" uid="uid://dcsblj63e8pkg" path="res://Levels/scrolling_level.gd" id="1_fh0lb"]
+[ext_resource type="Script" uid="uid://d1ooygpg6226j" path="res://Levels/scrolling_level.gd" id="1_fh0lb"]
 [ext_resource type="PackedScene" uid="uid://b221e60ap4jq7" path="res://Objects/Player/Player.tscn" id="2_6wcv4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fh0lb"]
