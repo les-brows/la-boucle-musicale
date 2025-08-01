@@ -1,9 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://bne5gfgl17hng"]
+[gd_scene load_steps=6 format=3 uid="uid://bne5gfgl17hng"]
 
 [ext_resource type="AudioStream" uid="uid://bmiw036m25nqi" path="res://Assets/You Say Run.mp3" id="1_u48bt"]
+[ext_resource type="PackedScene" uid="uid://sd570mjely02" path="res://Rythm/Metronome.tscn" id="2_aihqw"]
+[ext_resource type="Texture2D" uid="uid://c8ndkv3op4c16" path="res://icon.svg" id="3_whquc"]
+[ext_resource type="AudioStream" uid="uid://ke43hdpgbybw" path="res://Assets/Collide 1.wav" id="4_taj5w"]
+[ext_resource type="Script" uid="uid://c3tbooyhqh8ok" path="res://Rythm/test_sound.gd" id="5_v7kc7"]
 
 [node name="MusicManager" type="Node"]
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_u48bt")
 autoplay = true
+
+[node name="Metronome" parent="." instance=ExtResource("2_aihqw")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_whquc")
+
+[node name="TestSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_taj5w")
+script = ExtResource("5_v7kc7")
+
+[connection signal="beat_launched" from="Metronome" to="TestSound" method="_on_metronome_beat_launched"]
