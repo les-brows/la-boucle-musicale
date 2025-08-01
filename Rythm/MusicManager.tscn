@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bne5gfgl17hng"]
+
+[ext_resource type="AudioStream" uid="uid://bmiw036m25nqi" path="res://Assets/You Say Run.mp3" id="1_u48bt"]
+
+[node name="MusicManager" type="Node"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_u48bt")
+autoplay = true
