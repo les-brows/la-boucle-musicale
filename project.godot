@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="La boucle musicale"
+run/main_scene="uid://c0xi81rtw0j1x"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Globals="*res://globals.gd"
 
 [rendering]
 
