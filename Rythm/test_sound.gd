@@ -1,6 +1,6 @@
-extends AudioStreamPlayer2D
+extends AudioStreamPlayer
 
 
-func _on_metronome_beat_launched(num_beat: int) -> void:
+func _on_music_manager_beat_launched(num_beat: int) -> void:
 	play()
-	print(num_beat)
+ 
