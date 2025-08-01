@@ -9,5 +9,9 @@ func _process(delta):
 	move_camera()
 
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
+func _on_end_line_body_entered(body: Node2D) -> void:
 	print("Player hit the middle of the level !")
+
+
+func _on_middle_line_body_entered(body: Node2D) -> void:
+	print("Player hit the end of the level !")
