@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://c0xi81rtw0j1x"]
+[gd_scene load_steps=11 format=3 uid="uid://c0xi81rtw0j1x"]
 
 [ext_resource type="Script" uid="uid://dcsblj63e8pkg" path="res://Levels/scrolling_level.gd" id="1_fh0lb"]
 [ext_resource type="PackedScene" uid="uid://b221e60ap4jq7" path="res://Objects/Player/Player.tscn" id="2_6wcv4"]
-[ext_resource type="Texture2D" uid="uid://bqyrux3e3tys5" path="res://icon.svg" id="2_0352d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fh0lb"]
 size = Vector2(76.1049, 61.3333)
@@ -25,6 +24,8 @@ colors = PackedColorArray(0.572549, 0.862745, 0.898039, 1)
 gradient = SubResource("Gradient_0352d")
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_0352d"]
+a = Vector2(1000, 0)
+b = Vector2(1000, 633)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_fh0lb"]
 a = Vector2(5000, 642)
@@ -38,11 +39,6 @@ position = Vector2(730, 320)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(580, 320)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(254, 324)
-scale = Vector2(5, 5.014)
-texture = ExtResource("2_0352d")
 
 [node name="TopWall" type="Area2D" parent="."]
 

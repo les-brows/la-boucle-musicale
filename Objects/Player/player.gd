@@ -1,6 +1,10 @@
 extends CharacterBody2D
 
 @export var speed = 200.0
+@export var size: Vector2 
+
+func _ready():
+	size = $CollisionShape2D.shape.size
 
 func _physics_process(delta):
 	var direction = Vector2.ZERO
