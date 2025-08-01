@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bmiw036m25nqi"
+path="res://.godot/imported/You Say Run.mp3-4d28f7582c5e47208504e2ce1dc582f3.mp3str"
+
+[deps]
+
+source_file="res://Assets/You Say Run.mp3"
+dest_files=["res://.godot/imported/You Say Run.mp3-4d28f7582c5e47208504e2ce1dc582f3.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

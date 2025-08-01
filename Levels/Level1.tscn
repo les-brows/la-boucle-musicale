@@ -1,3 +1,7 @@
-[gd_scene format=3 uid="uid://rt4snxmqrbnp"]
+[gd_scene load_steps=2 format=3 uid="uid://rt4snxmqrbnp"]
+
+[ext_resource type="PackedScene" uid="uid://bne5gfgl17hng" path="res://Rythm/MusicManager.tscn" id="1_w77jt"]
 
 [node name="Level1" type="Node2D"]
+
+[node name="MusicManager" parent="." instance=ExtResource("1_w77jt")]
