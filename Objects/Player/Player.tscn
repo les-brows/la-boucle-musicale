@@ -1,15 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0shuf6p7l2tj"]
+[gd_scene load_steps=5 format=3 uid="uid://c0shuf6p7l2tj"]
 
 [ext_resource type="Texture2D" uid="uid://dmuvkbvepgv56" path="res://Assets/Aseprite/Character_Green.png" id="1_62nw6"]
+[ext_resource type="Script" uid="uid://d3ibtxqvdvhgh" path="res://Objects/Player/player.gd" id="1_oansn"]
+[ext_resource type="PackedScene" uid="uid://bnuo1lcfyjr8k" path="res://Objects/InputManager.tscn" id="3_cac6a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_62nw6"]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("inputManagerNode")]
+script = ExtResource("1_oansn")
+inputManagerNode = NodePath("InputManager")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_62nw6")
 hframes = 4
 vframes = 3
+
+[node name="InputManager" parent="." instance=ExtResource("3_cac6a")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_62nw6")

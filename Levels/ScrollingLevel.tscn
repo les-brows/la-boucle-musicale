@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://c0xi81rtw0j1x"]
+[gd_scene load_steps=11 format=3 uid="uid://fhtbdj85ckat"]
 
-[ext_resource type="Script" uid="uid://dcsblj63e8pkg" path="res://Levels/scrolling_level.gd" id="1_fh0lb"]
-[ext_resource type="Texture2D" uid="uid://c8ndkv3op4c16" path="res://icon.svg" id="2_0352d"]
+[ext_resource type="Script" uid="uid://b0jgckug204cq" path="res://Levels/scrolling_level.gd" id="1_fh0lb"]
+[ext_resource type="Texture2D" uid="uid://c8ndkv3op4c16" path="res://Assets/Aseprite/icon.svg" id="2_0352d"]
+[ext_resource type="PackedScene" uid="uid://c0shuf6p7l2tj" path="res://Objects/Player/Player.tscn" id="3_r8m34"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fh0lb"]
 size = Vector2(76.1049, 61.3333)
@@ -32,6 +33,9 @@ script = ExtResource("1_fh0lb")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(580, 320)
+
+[node name="Player" parent="." instance=ExtResource("3_r8m34")]
+position = Vector2(584, 99)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(254, 324)

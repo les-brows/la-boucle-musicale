@@ -2,10 +2,7 @@ extends CharacterBody2D
 
 class_name Player
 
-
-signal press_action(playerIndex: int, player: Player)
-
-@onready var playerAnimation = $AnimationPlayer
+#@onready var playerAnimation = $AnimationPlayer
 
 @export var move_factor : float = 0.2
 @export var speed : int = 500
@@ -27,7 +24,7 @@ var can_ping : bool = true
 var push_force = 80.0
 var launch_force = 1500.0
 
-
+@export var inputManagerNode: Node
 
 
 var nb_prop_connected: int = 0
@@ -35,8 +32,10 @@ var prop_drop_distance: float = 40
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$KeyAnimationPlayer.play("default")
-
+#	$KeyAnimationPlayer.play("default")
+	inputManager= inputManagerNode
+	inputManagerNode.move_update.connect(_on_player_move)
+	inputManagerNode.shoot_update.connect(_on_player_shoot)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -60,33 +59,32 @@ func _process(delta: float) -> void:
 	else:
 		real_velocity = velocity
 	
-	$KeySprite.visible =  press_action.get_connections().size() > 0
+	#$KeySprite.visible =  press_action.get_connections().size() > 0
 
 
-func _on_player_move(move_x : Array[float], move_y : Array[float]) -> void:
-	targetDir.x = move_x[playerIndex]
+func _on_player_move(move_x :float, move_y : float) -> void:
+	targetDir.x = move_x
 	if targetDir.length() > 1:
 		targetDir = targetDir.normalized()
 		
-		
-	targetDir.y = move_y[playerIndex]
+	targetDir.y = move_y
 	if targetDir.length() > 1:
 		targetDir = targetDir.normalized()
 		
-	if targetDir.y < 0:
-		playerAnimation.play("Up")
+	#if targetDir.y < 0:
+	#	playerAnimation.play("Up")
 		
-	if targetDir.y > 0:
-		playerAnimation.play("Down")
+	#if targetDir.y > 0:
+	#	playerAnimation.play("Down")
 		
-	if targetDir.x < 0 && targetDir.y == 0:
-		playerAnimation.play("Left")
+	#if targetDir.x < 0 && targetDir.y == 0:
+	#	playerAnimation.play("Left")
 		
-	if targetDir.x > 0 && targetDir.y == 0:
-		playerAnimation.play("Right")
+	#if targetDir.x > 0 && targetDir.y == 0:
+	#	playerAnimation.play("Right")
 	
-	if targetDir.x == 0 && targetDir.y == 0:
-		playerAnimation.stop()
+	#if targetDir.x == 0 && targetDir.y == 0:
+	#	playerAnimation.stop()
 
 
 
