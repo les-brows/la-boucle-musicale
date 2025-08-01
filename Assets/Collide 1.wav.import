@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ke43hdpgbybw"
+path="res://.godot/imported/Collide 1.wav-59405a5a9563076dc30c92511b7c7955.sample"
+
+[deps]
+
+source_file="res://Assets/Collide 1.wav"
+dest_files=["res://.godot/imported/Collide 1.wav-59405a5a9563076dc30c92511b7c7955.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
