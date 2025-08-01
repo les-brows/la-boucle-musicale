@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5w0jynn6mkxk"]
+
+[ext_resource type="Script" uid="uid://biu7hkvefgm4s" path="res://Objects/Enemies/shooter.gd" id="1_8c5hv"]
+[ext_resource type="Texture2D" uid="uid://bqyrux3e3tys5" path="res://icon.svg" id="2_bweyu"]
+
+[node name="Shooter" type="Node2D"]
+script = ExtResource("1_8c5hv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_bweyu")
