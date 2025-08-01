@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0shuf6p7l2tj"]
+
+[ext_resource type="Texture2D" uid="uid://dmuvkbvepgv56" path="res://Assets/Aseprite/Character_Green.png" id="1_62nw6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_62nw6"]
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_62nw6")
+hframes = 4
+vframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_62nw6")
