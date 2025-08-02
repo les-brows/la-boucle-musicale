@@ -13,5 +13,3 @@ volume_db = -14.991
 autoplay = true
 
 [node name="Metronome" parent="." instance=ExtResource("2_aihqw")]
-
-[connection signal="beat_launched" from="Metronome" to="." method="_on_metronome_beat_launched"]
