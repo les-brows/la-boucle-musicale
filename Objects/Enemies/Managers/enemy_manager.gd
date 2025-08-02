@@ -3,7 +3,8 @@ extends Node2D
 var enemy_level_portion_preload = preload("res://Objects/Enemies/Managers/EnemyLevelPortion.tscn");
 
 var list_enemy_level_portions: Array[EnemyLevelPortion]
-var currently_moving_level: bool = false
+var currently_moving_level_middle: bool = false
+var currently_moving_level_end: bool = false
 
 
 func _init() -> void:
@@ -20,7 +21,11 @@ func _init() -> void:
 	Globals.end_level_reached.connect(_on_end_level_reached)
 
 func _on_middle_level_reached() -> void:
-	currently_moving_level = false
+	currently_moving_level_end = false
+	
+	if(currently_moving_level_middle):
+		return
+	currently_moving_level_middle = true
 	
 	var next_enemy_level_portion: EnemyLevelPortion = enemy_level_portion_preload.instantiate()
 	next_enemy_level_portion.position = Vector2(Globals.LEVEL_SIZE, 0)
@@ -36,9 +41,11 @@ func _on_middle_level_reached() -> void:
 
 
 func _on_end_level_reached() -> void:
-	if(currently_moving_level):
+	currently_moving_level_middle = false
+	
+	if(currently_moving_level_end):
 		return
-	currently_moving_level = true
+	currently_moving_level_end = true
 	
 	for enemy_level_portion in list_enemy_level_portions:
 		enemy_level_portion.position -= Vector2(Globals.LEVEL_SIZE, 0)
