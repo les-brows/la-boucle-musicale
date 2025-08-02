@@ -41,7 +41,7 @@ func _ready():
 	
 func _physics_process(delta):
 	if(TimeEndDash>0):
-		print(TimeEndDash)
+		
 		velocity = targetDir * dashSpeed
 		dashSpeed-= delta*(Globals.DASH_TIME-TimeEndDash)
 		TimeEndDash-=delta
