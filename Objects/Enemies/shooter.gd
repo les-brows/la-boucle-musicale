@@ -10,6 +10,8 @@ const MAX_HEIGHT_BOING: float = 0.1
 var boing_state: float = 0
 
 var shoot_partition: Partition
+var on_screen: bool = false
+
 
 func _init() -> void:
 	super()
@@ -36,12 +38,18 @@ func _process(delta: float) -> void:
 
 
 func _on_beat_launched(num_beat: int) -> void:
+	if(!on_screen):
+		return
 	if(num_beat == shoot_partition.get_next_beat(num_beat)):
 		boing_state = NB_SECONDS_BOING_RECOVER + NB_SECONDS_BOING_JUMP
 		var note = shoot_partition.get_curr_note()
 		$InstrumentPlayer.pitch_scale = pow(2, note.pitch/12.0)
 		$InstrumentPlayer.play()
-		shoot_projectile(Vector2(-1, 0))
+		if(player == null):
+			shoot_projectile(Vector2(-1, 0))
+		else :
+			shoot_projectile(player.global_position - global_position)
+
 
 func shoot_projectile(target_direction: Vector2):
 	var shooter_projectile = shooter_projectile_preload.instantiate()
@@ -51,4 +59,9 @@ func shoot_projectile(target_direction: Vector2):
 	shooter_projectile.set_velocity(linear_velocity + target_direction.normalized() * shooter_projectile_speed )
 	get_parent().add_child(shooter_projectile)
 
-	pass
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	on_screen = true
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	on_screen = false

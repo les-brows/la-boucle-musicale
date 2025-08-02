@@ -1,11 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0xi81rtw0j1x"]
+[gd_scene load_steps=5 format=3 uid="uid://c0xi81rtw0j1x"]
 
 [ext_resource type="Script" uid="uid://bx25j7k87mjg6" path="res://Levels/scrolling_level.gd" id="1_fh0lb"]
 [ext_resource type="PackedScene" uid="uid://b221e60ap4jq7" path="res://Objects/Player/Player.tscn" id="2_6wcv4"]
+[ext_resource type="PackedScene" uid="uid://do4qvuyj8k0m6" path="res://Objects/Enemies/Managers/EnemyManager.tscn" id="2_r8m34"]
 [ext_resource type="PackedScene" uid="uid://b4kkgf7hiq23o" path="res://Levels/LevelPortion.tscn" id="3_0352d"]
 
 [node name="ScrollingLevel" type="Node2D"]
 script = ExtResource("1_fh0lb")
+
+[node name="EnemyManager" parent="." instance=ExtResource("2_r8m34")]
 
 [node name="Player" parent="." instance=ExtResource("2_6wcv4")]
 position = Vector2(730, 320)
