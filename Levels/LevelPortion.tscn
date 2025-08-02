@@ -23,12 +23,12 @@ colors = PackedColorArray(0.572549, 0.862745, 0.898039, 1)
 gradient = SubResource("Gradient_0352d")
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_f2jbj"]
-a = Vector2(1000, 0)
-b = Vector2(1000, 633)
+a = Vector2(2500, 0)
+b = Vector2(2500, 700)
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_ibhb6"]
-a = Vector2(5000, 642)
-b = Vector2(5000, 9)
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_c5xfk"]
+a = Vector2(5000, 0)
+b = Vector2(5000, 700)
 
 [node name="LevelPortion" type="Node2D"]
 script = ExtResource("1_c5xfk")
@@ -73,7 +73,7 @@ shape = SubResource("SegmentShape2D_f2jbj")
 [node name="EndLine" type="Area2D" parent="Ground"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/EndLine"]
-shape = SubResource("SegmentShape2D_ibhb6")
+shape = SubResource("SegmentShape2D_c5xfk")
 
 [connection signal="body_entered" from="Ground/MiddleLine" to="." method="_on_middle_line_body_entered"]
 [connection signal="body_entered" from="Ground/EndLine" to="." method="_on_end_line_body_entered"]
