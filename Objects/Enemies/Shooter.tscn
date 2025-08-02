@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5w0jynn6mkxk"]
+[gd_scene load_steps=5 format=3 uid="uid://b5w0jynn6mkxk"]
 
 [ext_resource type="Script" uid="uid://c5c2bebshnq4c" path="res://Objects/Enemies/shooter.gd" id="1_8c5hv"]
 [ext_resource type="Texture2D" uid="uid://bqyrux3e3tys5" path="res://icon.svg" id="2_bweyu"]
