@@ -7,6 +7,8 @@ extends Node2D
 @onready var level_portion_current = $LevelPortions/LevelPortionCurrent
 @onready var level_portion_next = $LevelPortions/LevelPortionNext
 
+var currently_moving_level = false
+
 var LevelPortionScene = preload("res://Levels/LevelPortion.tscn")
 
 @onready var CAMERA_SIZE = get_viewport_rect().size
@@ -34,14 +36,34 @@ func _ready():
 	
 
 func _on_middle_level_reached() -> void:
+	# Add level a level to next position
 	var level_portion_scene_instance = LevelPortionScene.instantiate()
-	level_portion_scene_instance.position = Vector2(Globals.LEVEL_SIZE, 0)
-	level_portions.add_child(level_portion_scene_instance)
+	level_portions.call_deferred("add_child", level_portion_scene_instance)
+	level_portion_scene_instance.position = Vector2(Globals.LEVEL_SIZE * 2, 0)
 	
-	
+	# Remove previous level portion
 	for level_portion in level_portions.get_children():
-		level_portion.position = level_portion.position - Vector2(500,0)
+		if level_portion.position == -Vector2(Globals.LEVEL_SIZE, 0):
+			level_portion.queue_free()
+			
+	currently_moving_level = false
+			
 	print("Player hit the middle of the level !")
 	
 func _on_end_level_reached() -> void:
+	if(currently_moving_level):
+		return
+		
+	currently_moving_level = true
+	
+	# Shift all level portions to the left
+	for level_portion in level_portions.get_children():
+		level_portion.position = level_portion.position - Vector2(Globals.LEVEL_SIZE, 0)
+	
+	# Shift character to the left
+	player.position = player.position - Vector2(Globals.LEVEL_SIZE, 0)
+		
+	# Shift camera to the left
+	camera.position = camera.position - Vector2(Globals.LEVEL_SIZE, 0)
+		
 	print("Player hit the end of the level !")
