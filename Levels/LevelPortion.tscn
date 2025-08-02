@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://b4kkgf7hiq23o"]
 
-[ext_resource type="Script" uid="uid://bbing3mmiavan" path="res://Levels/level_portion.gd" id="1_c5xfk"]
+[ext_resource type="Script" uid="uid://cw5jmm5fg3u41" path="res://Levels/level_portion.gd" id="1_c5xfk"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4jlm8"]
-size = Vector2(76.1049, 61.3333)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c5xfk"]
+size = Vector2(5008, 47)
 
 [sub_resource type="Gradient" id="Gradient_fh0lb"]
 offsets = PackedFloat32Array(1)
@@ -33,28 +33,30 @@ b = Vector2(5000, 700)
 [node name="LevelPortion" type="Node2D"]
 script = ExtResource("1_c5xfk")
 
-[node name="TopWall" type="Area2D" parent="."]
+[node name="TopWall2" type="StaticBody2D" parent="."]
+collision_mask = 6
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall"]
-position = Vector2(2509.25, 20)
-scale = Vector2(65.551, 0.75)
-shape = SubResource("RectangleShape2D_4jlm8")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall2"]
+position = Vector2(2506, 19.5)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_c5xfk")
 
-[node name="Sprite2D" type="Sprite2D" parent="TopWall"]
-position = Vector2(2505.18, 20)
+[node name="Sprite2D" type="Sprite2D" parent="TopWall2/CollisionShape2D"]
+position = Vector2(-0.820068, 0.500004)
 scale = Vector2(78.338, 0.75)
 texture = SubResource("GradientTexture2D_c5xfk")
 
-[node name="BottomWall" type="Area2D" parent="."]
+[node name="BottomWall2" type="StaticBody2D" parent="."]
+collision_mask = 6
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall2"]
 position = Vector2(2502.5, 623)
 scale = Vector2(65.551, 0.75)
 shape = SubResource("RectangleShape2D_krkaj")
 
-[node name="Sprite2D" type="Sprite2D" parent="BottomWall"]
-position = Vector2(2500.66, 623)
-scale = Vector2(78.2292, 0.749999)
+[node name="Sprite2D" type="Sprite2D" parent="BottomWall2/CollisionShape2D"]
+position = Vector2(-0.0280685, 0)
+scale = Vector2(1.19341, 0.999999)
 texture = SubResource("GradientTexture2D_c5xfk")
 
 [node name="Ground" type="Node2D" parent="."]
@@ -66,11 +68,13 @@ scale = Vector2(78.2449, 9.46875)
 texture = SubResource("GradientTexture2D_insk8")
 
 [node name="MiddleLine" type="Area2D" parent="Ground"]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/MiddleLine"]
 shape = SubResource("SegmentShape2D_f2jbj")
 
 [node name="EndLine" type="Area2D" parent="Ground"]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/EndLine"]
 shape = SubResource("SegmentShape2D_c5xfk")

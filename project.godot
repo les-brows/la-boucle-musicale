@@ -52,6 +52,12 @@ player1_shoot={
 ]
 }
 
+[layer_names]
+
+2d_render/layer_1="wall"
+2d_render/layer_2="player"
+2d_render/layer_3="enemies"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
