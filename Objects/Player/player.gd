@@ -4,13 +4,15 @@ class_name Player
 
 @export var speed = 200.0
 @export var size: Vector2 
-@export var move_factor : float = 0.2
+@export var move_factor : float = 0.5
 
 var targetDir : Vector2 = Vector2(0, 0)
 @export var inputManagerNode  :Node 
 @export var TimerInvincibilityNode  :Node 
 @export var TimerColorNode  :Node 
 @export var spritePlayer  :Sprite2D 
+@export var ShootManagerNode  :Node 
+
 
 var curr_look : float = 0 
 var real_velocity : Vector2
@@ -24,9 +26,11 @@ func _ready():
 	old_modulate= spritePlayer.self_modulate
 	size = $CollisionShape2D.shape.size
 	inputManagerNode.move_update.connect(_on_player_move)
-	inputManagerNode.shoot_update.connect(_on_player_shoot)
-
-
+	inputManagerNode.shoot_update.connect(ShootManagerNode._on_player_shoot)
+	inputManagerNode.shoot_direction_update.connect(ShootManagerNode._on_player_direction_shoot)
+	ShootManagerNode.positionPlayer=position
+	print("testposition %f", position)
+	
 func _physics_process(delta):
 	velocity = targetDir * speed
 	if(targetDir.length() > 0.01):
@@ -60,7 +64,7 @@ func _on_player_move(move_x :float, move_y : float) -> void:
 		targetDir = targetDir.normalized()
 
 
-func _on_player_shoot() -> void:
+func _on_player_shoot(shoot_x:float , shoot_y:float) -> void:
 	#TODO
 	pass 
 
@@ -134,3 +138,5 @@ func _on_timerColor_timeout() -> void:
 	
 	if !invincible && spritePlayer.visible==true:
 		TimerColorNode.stop()
+		
+		
