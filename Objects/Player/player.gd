@@ -80,9 +80,9 @@ func take_hit():
 	if curr_hp <= 0:
 		if not finito:
 			finito = true
-			print("-----Player Dead---------") 
-			spritePlayer.self_modulate = Color.BLACK
-			#TODO Game Over
+			print("-----Player Dead---------")
+			spritePlayer.texture = load('res://Assets/main_char_damage.png')
+			Globals.player_death.emit()
 			
 	else :
 		print("take Hit ") 
