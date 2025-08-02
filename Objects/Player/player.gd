@@ -51,4 +51,4 @@ func _on_player_move(move_x :float, move_y : float) -> void:
 
 func _on_player_shoot() -> void:
 	#TODO
-	var i=0 
+	pass 
