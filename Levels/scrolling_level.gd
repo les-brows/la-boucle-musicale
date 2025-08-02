@@ -33,6 +33,7 @@ func _ready():
 	Globals.end_level_reached.connect(_on_end_level_reached)
 	
 	level_portion_previous.position = -Vector2(Globals.LEVEL_SIZE, 0)
+	Globals.LOOP_COUNT = 0
 	
 	
 
@@ -64,6 +65,9 @@ func _on_end_level_reached() -> void:
 		return
 		
 	currently_moving_level_end = true
+	
+	# Increment loop counter
+	Globals.LOOP_COUNT += 1
 	
 	# Shift all level portions to the left
 	for level_portion in level_portions.get_children():

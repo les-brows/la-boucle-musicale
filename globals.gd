@@ -15,12 +15,15 @@ signal middle_level_reached()
 signal end_level_reached()
 @warning_ignore("unused_signal")
 signal player_death()
- 
-
-var MAX_HP: float = 10
-var INVINCIBILITY_TIMER: float= 1
+@warning_ignore("unused_signal")
+signal player_damage()
 
 var BOUNDARY_LOW: int = 45
 var BOUNDARY_UP: int = 600
 
-var ENEMY_MAXHP :float =3
+var ENEMY_MAXHP: int = 3
+
+var INVINCIBILITY_TIMER: float = 1
+var MAX_HP: int = 10
+ 
+var LOOP_COUNT: int = 0
