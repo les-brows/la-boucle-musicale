@@ -5,6 +5,7 @@ func _ready() -> void:
 	Globals.player_death.connect(_on_player_death)
 	
 func _on_player_death():
+	Globals.LOOP_COUNT = 0
 	print("displaying error")
 	var main_menu = load("res://Levels/MainMenu/MainMenu.tscn")
 	visible = true
