@@ -17,6 +17,8 @@ signal end_level_reached()
 signal player_death()
 @warning_ignore("unused_signal")
 signal player_damage()
+@warning_ignore("unused_signal")
+signal enemy_damage()
 
 var BOUNDARY_LOW: int = 45
 var BOUNDARY_UP: int = 600
