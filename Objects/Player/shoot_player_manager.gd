@@ -21,12 +21,11 @@ func _on_player_shoot():
 	print("shoot")
 	
 func _on_player_direction_shoot (shoot_x:float , shoot_y:float):
-	if(shoot_x !=0):
-		shootDir.x = shoot_x 
+	shootDir.x = shoot_x 
 	if shootDir.length() > 1:
 		shootDir = shootDir.normalized()
-	if(shoot_y !=0):	
-		shootDir.y = shoot_y
+	
+	shootDir.y = shoot_y
 	if shootDir.length() > 1:
 		shootDir = shootDir.normalized()
 
@@ -52,7 +51,7 @@ func _process(delta: float) -> void:
 
 
 func _on_beat_launched(num_beat: int) -> void:
-	if(num_beat == shoot_partition.get_next_beat(num_beat)&& wantShoot>0 ):
+	if(num_beat == shoot_partition.get_next_beat(num_beat)):
 		
 		wantShoot-=1
 		boing_state = NB_SECONDS_BOING_RECOVER + NB_SECONDS_BOING_JUMP
@@ -60,7 +59,7 @@ func _on_beat_launched(num_beat: int) -> void:
 		shoot_projectile(shootDir)
 
 func shoot_projectile(target_direction: Vector2):
-	if(target_direction !=Vector2.ZERO):
+	if(target_direction!=Vector2.ZERO ):
 		var player_projectile = shooter_projectile_preload.instantiate()
 		var copyposition=get_parent().position
 		# May be used when ennemies move
