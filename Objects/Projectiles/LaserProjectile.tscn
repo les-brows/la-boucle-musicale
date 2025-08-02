@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bo0eyt3gw082v"]
+[gd_scene load_steps=4 format=3 uid="uid://bo0eyt3gw082v"]
 
-[ext_resource type="Script" uid="uid://b1n7cx6ya48ah" path="res://Objects/Projectiles/laser_projectile.gd" id="1_3areb"]
-[ext_resource type="Texture2D" uid="uid://ghnr73nl41l3" path="res://Assets/buller_laser_ray.png" id="1_e7x7r"]
+[ext_resource type="Script" uid="uid://bp24vrtuchnir" path="res://Objects/Projectiles/laser_projectile.gd" id="1_3areb"]
+[ext_resource type="Texture2D" uid="uid://mb5edepxmuv3" path="res://Assets/buller_laser_ray.png" id="1_e7x7r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3areb"]
+size = Vector2(45, 250)
 
 [node name="LaserProjectile" type="Node2D"]
 script = ExtResource("1_3areb")
@@ -9,6 +12,15 @@ script = ExtResource("1_3areb")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2
 autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(125, -0.499999)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_3areb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(125, 0)
