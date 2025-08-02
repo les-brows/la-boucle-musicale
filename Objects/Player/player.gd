@@ -27,10 +27,11 @@ var real_velocity : Vector2
 var push_force = 80.0
 var old_modulate :Color 
 
-
+var try_play_dash_sound: bool = false
 var curr_hp: float = Globals.MAX_HP
 
 func _ready():
+	Globals.beat_launched.connect(_on_beat_launched)
 	old_modulate= spritePlayer.self_modulate
 	size = $CollisionShape2D.shape.size
 	inputManagerNode.move_update.connect(_on_player_move)
@@ -159,17 +160,22 @@ func _on_timerColor_timeout() -> void:
 
 func _on_activate_dash() -> void:
 	if !dashCooldown  :
-		#$DashSound.play()
 		TimeEndDash=Globals.DASH_TIME
 		dashSpeed=Globals.SPEED_DASH_MAX
 		dashDir = targetDir.normalized()
-		
+		try_play_dash_sound = true
 		invincible=true 
 		TimerInvincibilityNode.set_one_shot (true)
 		TimerInvincibilityNode.start(Globals.DASH_TIME)
 		dashCooldown=true
 		DashCooldownTimer.set_one_shot(true)
 		DashCooldownTimer.start(Globals.COOLDOWN_DASH)
-		
+
+func _on_beat_launched(_beat: int):
+	if(try_play_dash_sound):
+		try_play_dash_sound = false
+		$PlayerDashSfx.play()
+
+
 func DashCooldownTimer_timeOut()->void:
 	dashCooldown=false
