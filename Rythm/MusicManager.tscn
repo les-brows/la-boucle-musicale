@@ -1,15 +1,15 @@
 [gd_scene load_steps=4 format=3 uid="uid://bne5gfgl17hng"]
 
 [ext_resource type="Script" uid="uid://b8r8cndyu1hxk" path="res://Rythm/music_manager.gd" id="1_npbc1"]
-[ext_resource type="AudioStream" uid="uid://bmiw036m25nqi" path="res://Assets/You Say Run.mp3" id="1_u48bt"]
 [ext_resource type="PackedScene" uid="uid://sd570mjely02" path="res://Rythm/Metronome.tscn" id="2_aihqw"]
+[ext_resource type="AudioStream" uid="uid://dfps8fk00jtly" path="res://Assets/Instruments/LayerBase.wav" id="2_whquc"]
 
 [node name="MusicManager" type="Node"]
 script = ExtResource("1_npbc1")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("1_u48bt")
-volume_db = -14.991
+stream = ExtResource("2_whquc")
+volume_db = 3.747
 autoplay = true
 
 [node name="Metronome" parent="." instance=ExtResource("2_aihqw")]
