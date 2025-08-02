@@ -22,3 +22,5 @@ var INVINCIBILITY_TIMER: float= 1
 
 var BOUNDARY_LOW: int = 45
 var BOUNDARY_UP: int = 600
+
+var ENEMY_MAXHP :float =3
