@@ -1,5 +1,7 @@
 extends Enemy
 
+
+
 var shooter_projectile_preload = preload("res://Objects/Projectiles/ShooterProjectile.tscn");
 var shooter_projectile_speed: float = 1000
 
@@ -15,6 +17,7 @@ var on_screen: bool = false
 
 func _init() -> void:
 	super()
+	
 	var list_notes: Array[Note] = [Note.new(0, 0, 3), Note.new(3, 0, -2), Note.new(5, 0, -2), 
 								   Note.new(7, 0, -2), Note.new(8, 0, 3), Note.new(11, 0, -2),
 								   Note.new(13, 0, -2), Note.new(14, 0, 4), Note.new(16, 0, 3),

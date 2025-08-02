@@ -3,6 +3,7 @@ extends Node
 
 var shooter_projectile_preload = preload("res://Objects/Projectiles/PlayerProjectile.tscn");
 var shooter_projectile_speed: float = 1000
+var isDead=false 
 
 const NB_SECONDS_BOING_JUMP: float = 0.05
 const NB_SECONDS_BOING_RECOVER: float = 0.15
@@ -18,7 +19,7 @@ var nb_shoot :int
 
 func _on_player_shoot():
 	wantShoot=nb_shoot
-	print("shoot")
+	
 	
 func _on_player_direction_shoot (shoot_x:float , shoot_y:float):
 	shootDir.x = shoot_x 
@@ -59,7 +60,7 @@ func _on_beat_launched(num_beat: int) -> void:
 		shoot_projectile(shootDir)
 
 func shoot_projectile(target_direction: Vector2):
-	if(target_direction!=Vector2.ZERO ):
+	if(target_direction!=Vector2.ZERO && !isDead ):
 		var player_projectile = shooter_projectile_preload.instantiate()
 		var copyposition=get_parent().position
 		# May be used when ennemies move

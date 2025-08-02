@@ -64,9 +64,7 @@ func _on_player_move(move_x :float, move_y : float) -> void:
 		targetDir = targetDir.normalized()
 
 
-func _on_player_shoot(shoot_x:float , shoot_y:float) -> void:
-	#TODO
-	pass 
+
 
 
 
@@ -80,7 +78,7 @@ func _process(_delta: float):
 var finito = false
 var insideEnemy  : int = 0
 var invincible : bool = false
-
+var alphaColor =0
 func take_hit():
 	curr_hp -= 1
 	if curr_hp <= 0:
@@ -88,18 +86,21 @@ func take_hit():
 			finito = true
 			print("-----Player Dead---------")
 			spritePlayer.texture = load('res://Assets/main_char_damage.png')
+			ShootManagerNode.isDead=true
 			Globals.player_death.emit()
 			
 	else :
-		print("take Hit ") 
+		
 		
 		invincible=true
 		old_modulate=spritePlayer.self_modulate
+		
 		TimerInvincibilityNode.set_one_shot (true)
 		TimerInvincibilityNode.start(Globals.INVINCIBILITY_TIMER)
 		spritePlayer.hide()
-		
-		TimerColorNode.start(0.10)
+		alphaColor =0.5
+		spritePlayer.self_modulate= Color (0.5,1,0,alphaColor)
+		TimerColorNode.start(0.05)
 		#$/root/GameRoom/EnemyHurtSound.play()
 		pass
 	
@@ -110,9 +111,8 @@ func _on_detection_dmg_area_entered(area: Area2D) -> void:
 	if enemy is Enemy:
 		insideEnemy+=1
 	if enemy is Projectile   :
-		take_hit() 
 		if(!invincible):
-			print("projectile to kill"+enemy.to_string())
+			take_hit() 
 		enemy.queue_free()
 
 func _on_detection_dmg_area_exited(area: Area2D) -> void:
@@ -126,17 +126,21 @@ func _on_detection_dmg_area_exited(area: Area2D) -> void:
 
 
 func _on_timerInvincibility_timeout() -> void:
-	print("end of invisible")
+	
 	invincible=false # Replace with function body.
 
 
 func _on_timerColor_timeout() -> void:
+	
 	if spritePlayer.visible==false:
 		spritePlayer.show()
 	else :
 		spritePlayer.hide()
 	
-	if !invincible && spritePlayer.visible==true:
-		TimerColorNode.stop()
-		
-		
+	if !invincible :
+		spritePlayer.self_modulate=old_modulate
+		if spritePlayer.visible==true:
+			TimerColorNode.stop()
+	else :  	
+		alphaColor+=0.1
+		spritePlayer.self_modulate= Color (0.5,alphaColor,1,alphaColor)

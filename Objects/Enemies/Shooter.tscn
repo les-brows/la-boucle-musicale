@@ -7,12 +7,14 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bweyu"]
 size = Vector2(128, 125)
 
-[node name="Shooter" type="Node2D"]
+[node name="Shooter" type="Node2D" node_paths=PackedStringArray("spriteEnemy", "TimerBlinkNode")]
 script = ExtResource("1_8c5hv")
+spriteEnemy = NodePath("ShooterCollisionArea2D/Sprite2D")
+TimerBlinkNode = NodePath("TimerBlink")
 
 [node name="ShooterCollisionArea2D" type="Area2D" parent="."]
 collision_layer = 4
-collision_mask = 2
+collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShooterCollisionArea2D"]
 position = Vector2(1, 0.5)
@@ -33,5 +35,9 @@ attenuation = 0.460596
 position = Vector2(0.499999, 0.249996)
 scale = Vector2(6.25, 6.075)
 
+[node name="TimerBlink" type="Timer" parent="."]
+
+[connection signal="area_entered" from="ShooterCollisionArea2D" to="." method="_on_shooter_collision_area_2d_area_entered"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="TimerBlink" to="." method="_on_timer_blink_timeout"]
