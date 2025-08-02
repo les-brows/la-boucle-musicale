@@ -22,7 +22,7 @@ SceneTransition="*res://Levels/MainMenu/SceneTransition.tscn"
 
 [display]
 
-window/size/mode=3
+window/size/mode=2
 window/stretch/mode="canvas_items"
 
 [input]
