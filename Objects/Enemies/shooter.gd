@@ -20,7 +20,7 @@ func _init() -> void:
 								   Note.new(16 + 8, 0, 3), Note.new(16 + 11, 0, 6), Note.new(16 + 13, 0, 4),
 								   Note.new(16 + 14, 0, 1)]
 	shoot_partition = Partition.new(4, 32, list_notes)
-
+	shoot_partition.remove_random_notes(0.7)
 
 func _process(delta: float) -> void:
 	if(boing_state > 0):

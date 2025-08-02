@@ -1,6 +1,5 @@
-[gd_scene load_steps=7 format=3 uid="uid://cfix7mjnn6u0n"]
+[gd_scene load_steps=6 format=3 uid="uid://cfix7mjnn6u0n"]
 
-[ext_resource type="PackedScene" uid="uid://b5w0jynn6mkxk" path="res://Objects/Enemies/Shooter.tscn" id="1_rpqi1"]
 [ext_resource type="PackedScene" uid="uid://c0xi81rtw0j1x" path="res://Levels/ScrollingLevel.tscn" id="1_x4av3"]
 [ext_resource type="PackedScene" uid="uid://bne5gfgl17hng" path="res://Rythm/MusicManager.tscn" id="2_rpqi1"]
 [ext_resource type="PackedScene" uid="uid://do4qvuyj8k0m6" path="res://Objects/Enemies/Managers/EnemyManager.tscn" id="3_a814b"]
@@ -14,9 +13,6 @@
 [node name="ScrollingLevel" parent="." instance=ExtResource("1_x4av3")]
 
 [node name="EnemyManager" parent="." instance=ExtResource("3_a814b")]
-
-[node name="Shooter" parent="." instance=ExtResource("1_rpqi1")]
-position = Vector2(892, 323)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_rf2cd")

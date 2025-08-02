@@ -1,6 +1,6 @@
 extends Node
 
-var CAMERA_SPEED = 5
+var CAMERA_SPEED = 0.5
 var LEVEL_SIZE = 5000
 
 const BPM_SUBDIVISION : int = 8
