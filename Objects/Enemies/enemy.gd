@@ -3,6 +3,7 @@ extends Node2D
 
 var player: Player = null
 var hp_enemy:int= Globals.ENEMY_MAXHP
+
 @export var spriteEnemy :Node 
 @export var TimerBlinkNode : Node 
 var nbBlink :int  =0
