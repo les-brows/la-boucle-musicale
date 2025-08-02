@@ -19,3 +19,6 @@ signal player_death()
 
 var MAX_HP: float = 10
 var INVINCIBILITY_TIMER: float= 1
+
+var BOUNDARY_LOW: int = 45
+var BOUNDARY_UP: int = 600
