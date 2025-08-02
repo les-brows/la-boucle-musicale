@@ -36,3 +36,8 @@ func get_next_beat(beat: int) -> int:
 
 func get_curr_note() -> Note:
 	return list_note[curr_beat_index]
+	
+func remove_random_notes(percent_removed: float):
+	for note in list_note:
+		if randf() < percent_removed:
+			list_note.erase(note)
