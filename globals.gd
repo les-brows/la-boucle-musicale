@@ -13,3 +13,6 @@ signal beat_launched(num_beat: int)
 signal middle_level_reached()
 signal end_level_reached()
  
+
+var MAX_HP: float = 10
+var INVINCIBILITY_TIMER: float= 1
