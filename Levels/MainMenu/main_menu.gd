@@ -1,6 +1,7 @@
 extends MarginContainer
 
 const game_scene = preload("res://MainScene.tscn")
+var is_transitionning = false
 
 @onready var selector_one = $CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer/HBoxContainer/Selector
 @onready var selector_two = $CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer2/HBoxContainer/Selector
@@ -12,6 +13,9 @@ func _ready() -> void:
 	set_current_selection(current_selection)
 	
 func _process(_delta: float) -> void:
+	if is_transitionning:
+		return
+		
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
 		
@@ -43,11 +47,14 @@ func set_current_selection(_current_selection):
 
 func handle_selection(_current_selection):
 	if _current_selection == 0:
+		is_transitionning = true
 		await SceneTransition.close_circle()
 		get_parent().add_child(game_scene.instantiate())
 		queue_free()
 		await SceneTransition.open_circle()
+		is_transitionning = false
 		
 	if _current_selection == 1:
+		is_transitionning = true
 		await SceneTransition.close_circle()
 		get_tree().quit()
