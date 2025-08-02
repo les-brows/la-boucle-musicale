@@ -19,6 +19,3 @@ position = Vector2(892, 323)
 stream = ExtResource("4_rf2cd")
 volume_db = -10.306
 script = ExtResource("4_uxrcv")
-
-[connection signal="beat_launched" from="MusicManager" to="Shooter" method="_on_music_manager_beat_launched"]
-[connection signal="beat_launched" from="MusicManager" to="AudioStreamPlayer" method="_on_music_manager_beat_launched"]
