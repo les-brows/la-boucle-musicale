@@ -55,6 +55,17 @@ func _physics_process(delta):
 	#$KeySprite.visible =  press_action.get_connections().size() > 0
 	
 func _on_player_move(move_x :float, move_y : float) -> void:
+	
+	var tween = get_tree().create_tween()
+	if(move_x == 0 && move_y == 0):
+		tween.tween_property(spritePlayer, "scale", Vector2(0.20, 0.20), 0.2)
+	if(move_x != 0 && move_y == 0):
+		tween.tween_property(spritePlayer, "scale", Vector2(0.3, 0.12), 0.2)
+	if(move_x == 0 && move_y != 0):
+		tween.tween_property(spritePlayer, "scale", Vector2(0.12, 0.3), 0.2)
+	if(move_x != 0 && move_y != 0):
+		tween.tween_property(spritePlayer, "scale", Vector2(0.15, 0.15), 0.2)
+	
 	targetDir.x = move_x
 	if targetDir.length() > 1:
 		targetDir = targetDir.normalized()
