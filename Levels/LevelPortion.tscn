@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ccnuqmw807wve" path="res://Levels/level_portion.gd" id="1_c5xfk"]
 [ext_resource type="Texture2D" uid="uid://56x1kx5cumyh" path="res://Assets/background_top.png" id="2_insk8"]
 [ext_resource type="Texture2D" uid="uid://b6xtt8mlagovq" path="res://Assets/finish_line.png" id="2_krkaj"]
-[ext_resource type="Texture2D" uid="uid://c7ybx33s7h0ru" path="res://Assets/background_bottom.png" id="3_f2jbj"]
+[ext_resource type="Texture2D" uid="uid://c7ybx33s7h0ru" path="res://Assets/background_bottom.png" id="3_ibhb6"]
 [ext_resource type="Texture2D" uid="uid://cdagc4gt055pm" path="res://Assets/bg_rainbow.png" id="4_ibhb6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c5xfk"]
@@ -26,26 +26,25 @@ script = ExtResource("1_c5xfk")
 [node name="TopWall2" type="StaticBody2D" parent="."]
 collision_mask = 6
 
+[node name="Sprite2D" type="Sprite2D" parent="TopWall2"]
+position = Vector2(2500, 20)
+texture = ExtResource("2_insk8")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall2"]
 position = Vector2(2506, 19.5)
 shape = SubResource("RectangleShape2D_c5xfk")
 
-[node name="Sprite2D" type="Sprite2D" parent="TopWall2/CollisionShape2D"]
-position = Vector2(-0.820068, 0.500004)
-position = Vector2(2505.18, 19)
-texture = ExtResource("2_insk8")
-
 [node name="BottomWall2" type="StaticBody2D" parent="."]
 collision_mask = 6
+
+[node name="Sprite2D" type="Sprite2D" parent="BottomWall2"]
+position = Vector2(2500.66, 623)
+texture = ExtResource("3_ibhb6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall2"]
 position = Vector2(2502.5, 623)
 scale = Vector2(65.551, 0.75)
 shape = SubResource("RectangleShape2D_krkaj")
-
-[node name="Sprite2D" type="Sprite2D" parent="BottomWall2/CollisionShape2D"]
-position = Vector2(-0.0280685, 0)
-scale = Vector2(1.19341, 0.999999)
 
 [node name="Ground" type="Node2D" parent="."]
 
