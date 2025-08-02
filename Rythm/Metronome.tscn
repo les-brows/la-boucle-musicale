@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://sd570mjely02"]
 
-[ext_resource type="Script" uid="uid://6ypb48r6j7gu" path="res://Rythm/metronome.gd" id="1_3dhjg"]
+[ext_resource type="Script" uid="uid://db11g5hdeiya2" path="res://Rythm/metronome.gd" id="1_3dhjg"]
 
 [node name="Metronome" type="Node"]
 script = ExtResource("1_3dhjg")
