@@ -12,7 +12,7 @@ func _init() -> void:
 
 func set_loop(_loop: int):
 	loop = _loop
-
+ 
 func set_player(player: Player):
 	for enemy in get_children():
 		if enemy is Enemy:
@@ -23,8 +23,8 @@ func enemy_generation():
 		0:
 			#Cut the map in eight, with at least one enemy in each trunk
 			for index in range(8):
-				add_enemy(Vector2(randi_range(60, Globals.LEVEL_SIZE / 10 - 60) + (index + 2) * Globals.LEVEL_SIZE / 10, randi_range(Globals.BOUNDARY_LOW + 60, Globals.BOUNDARY_UP - 60)), EnemyType.SHOOTER)
-				add_enemy(Vector2(randi_range(60, Globals.LEVEL_SIZE / 10 - 60) + (index + 2) * Globals.LEVEL_SIZE / 10, randi_range(Globals.BOUNDARY_LOW + 60, Globals.BOUNDARY_UP - 60)), EnemyType.LASER)
+				add_enemy(Vector2(randi_range(60, Globals.LEVEL_SIZE / 10.0 - 60) + (index + 2) * Globals.LEVEL_SIZE / 10.0, randi_range(Globals.BOUNDARY_LOW + 60, Globals.BOUNDARY_UP - 60)), EnemyType.SHOOTER)
+				add_enemy(Vector2(randi_range(60, Globals.LEVEL_SIZE / 10.0 - 60) + (index + 2) * Globals.LEVEL_SIZE / 10.0, randi_range(Globals.BOUNDARY_LOW + 200, Globals.BOUNDARY_UP - 200)), EnemyType.LASER)
 			pass
 		_:
 			for index in range(500):

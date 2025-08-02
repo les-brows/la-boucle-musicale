@@ -48,17 +48,14 @@ func force_minimal_time_between_notes(nb_beats_minimal: int):
 		my_range.append(n.beat_number)
 
 
-	print("Starting note list: ", my_range)
 	var last_beat = -nb_beats_minimal;
 
 	var tmp_list: Array[Note] = []
 	for note in list_note:
 		if(note.beat_number - last_beat < nb_beats_minimal):
-			print("Erased: ", note.beat_number)
+			pass
 		else:
 			tmp_list.append(note)
-			print("Kept: ", note.beat_number, ", Last Beat: ", last_beat, ", Nb Beats Minimal: ", nb_beats_minimal)
 			last_beat = note.beat_number
 	list_note = tmp_list
-	print("Ending note list: ", list_note)
 	
