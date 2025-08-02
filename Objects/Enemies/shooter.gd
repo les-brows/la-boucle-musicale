@@ -17,15 +17,26 @@ var on_screen: bool = false
 
 func _init() -> void:
 	super()
-	
-	var list_notes: Array[Note] = [Note.new(0, 0, 3), Note.new(3, 0, -2), Note.new(5, 0, -2), 
-								   Note.new(7, 0, -2), Note.new(8, 0, 3), Note.new(11, 0, -2),
-								   Note.new(13, 0, -2), Note.new(14, 0, 4), Note.new(16, 0, 3),
-								   Note.new(16 + 3, 0, -2), Note.new(16 + 5, 0, -2), Note.new(16 + 7, 0, -2),
-								   Note.new(16 + 8, 0, 3), Note.new(16 + 11, 0, 6), Note.new(16 + 13, 0, 4),
-								   Note.new(16 + 14, 0, 1)]
-	shoot_partition = Partition.new(4, 32, list_notes)
-	shoot_partition.remove_random_notes(0.7)
+	generate_partition(Globals.LOOP_COUNT)
+
+
+func generate_partition(loop_count: int):
+	match loop_count:
+		0:
+			var list_notes: Array[Note] = [Note.new(0, 0, 3), Note.new(3, 0, -2), Note.new(4, 0, 3)]
+			shoot_partition = Partition.new(8, 8, list_notes)
+		_:
+			var list_notes: Array[Note] = [Note.new(0, 0, 3), Note.new(3, 0, -2), Note.new(5, 0, -2), 
+										   Note.new(7, 0, -2), Note.new(8, 0, 3), Note.new(11, 0, -2),
+										   Note.new(13, 0, -2), Note.new(14, 0, 4), Note.new(16, 0, 3),
+										   Note.new(16 + 3, 0, -2), Note.new(16 + 5, 0, -2), Note.new(16 + 7, 0, -2),
+										   Note.new(16 + 8, 0, 3), Note.new(16 + 11, 0, 6), Note.new(16 + 13, 0, 4),
+										   Note.new(16 + 14, 0, 1)]
+			shoot_partition = Partition.new(4, 32, list_notes)
+			shoot_partition.remove_random_notes(0.7)
+			pass
+
+
 
 func _process(delta: float) -> void:
 	if(boing_state > 0):

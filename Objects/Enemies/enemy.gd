@@ -49,4 +49,6 @@ func _on_timer_blink_timeout() -> void:
 	nbBlink-=1
 	if nbBlink<=0:
 		TimerBlinkNode.stop()
-		
+
+func generate_partition(loop_count: int):
+	pass
