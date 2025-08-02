@@ -53,17 +53,25 @@ func choose_movement_pattern():
 	match random_num:
 		EnemyMovementPattern.HORIZONTAL:
 			movement_pattern = EnemyMovementPattern.HORIZONTAL
+			spriteEnemy = $HorizontalPath/PathFollow2D/Sprite2D
 			path_follow = horizontal_path
+			
 			vertical_path.queue_free()
 			diamond_path.queue_free()
 		EnemyMovementPattern.VERTICAL:
 			movement_pattern = EnemyMovementPattern.VERTICAL
+			spriteEnemy = $VerticalPath/PathFollow2D/Sprite2D
 			path_follow = vertical_path
+			position.y = 300
+			
 			horizontal_path.queue_free()
 			diamond_path.queue_free()
 		EnemyMovementPattern.DIAMOND:
 			movement_pattern = EnemyMovementPattern.DIAMOND
+			spriteEnemy = $DiamondPath/PathFollow2D/Sprite2D
 			path_follow = diamond_path
+			position.y = clamp(position.y, 300, 400)
+			
 			horizontal_path.queue_free()
 			vertical_path.queue_free()
 			
