@@ -42,11 +42,10 @@ func _on_beat_launched(num_beat: int) -> void:
 		$InstrumentPlayer.pitch_scale = pow(2, note.pitch/12.0)
 		$InstrumentPlayer.play()
 		shoot_projectile(Vector2(-1, 0))
-		print("Boing ", note.beat_number, " ", note.pitch)
 
 func shoot_projectile(target_direction: Vector2):
 	var shooter_projectile = shooter_projectile_preload.instantiate()
-	shooter_projectile.set_global_position(global_position)
+	shooter_projectile.set_position(position)
 	# May be used when ennemies move
 	var linear_velocity = Vector2.ZERO 
 	shooter_projectile.set_velocity(linear_velocity + target_direction.normalized() * shooter_projectile_speed )
