@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c0xi81rtw0j1x" path="res://Levels/ScrollingLevel.tscn" id="1_x4av3"]
 [ext_resource type="PackedScene" uid="uid://bne5gfgl17hng" path="res://Rythm/MusicManager.tscn" id="2_rpqi1"]
 [ext_resource type="AudioStream" uid="uid://ke43hdpgbybw" path="res://Assets/Collide 1.wav" id="4_rf2cd"]
-[ext_resource type="Script" uid="uid://bgtguf64kkvoc" path="res://Rythm/test_sound.gd" id="4_uxrcv"]
+[ext_resource type="Script" uid="uid://cescciukyyad" path="res://Rythm/test_sound.gd" id="4_uxrcv"]
 
 [node name="MainScene" type="Node2D"]
 

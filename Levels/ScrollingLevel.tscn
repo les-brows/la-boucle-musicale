@@ -18,5 +18,3 @@ position = Vector2(580, 320)
 [node name="LevelPortionPrevious" parent="LevelPortions" instance=ExtResource("3_0352d")]
 
 [node name="LevelPortionCurrent" parent="LevelPortions" instance=ExtResource("3_0352d")]
-
-[node name="LevelPortionNext" parent="LevelPortions" instance=ExtResource("3_0352d")]

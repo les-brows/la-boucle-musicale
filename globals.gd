@@ -9,8 +9,9 @@ const BPM: int = BPM_SUBDIVISION * BASE_BPM
 
 @warning_ignore("unused_signal")
 signal beat_launched(num_beat: int)
-
+@warning_ignore("unused_signal")
 signal middle_level_reached()
+@warning_ignore("unused_signal")
 signal end_level_reached()
  
 
