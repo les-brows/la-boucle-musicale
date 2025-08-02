@@ -29,7 +29,6 @@ func _ready():
 	inputManagerNode.shoot_update.connect(ShootManagerNode._on_player_shoot)
 	inputManagerNode.shoot_direction_update.connect(ShootManagerNode._on_player_direction_shoot)
 	ShootManagerNode.positionPlayer=position
-	print("testposition %f", position)
 	
 func _physics_process(delta):
 	velocity = targetDir * speed
