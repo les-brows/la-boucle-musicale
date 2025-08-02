@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=3 uid="uid://dwk14x0nx2c3o"]
+
+[ext_resource type="Script" uid="uid://b6y77gb8aahmh" path="res://Levels/MainMenu/scene_transition.gd" id="1_18qep"]
+[ext_resource type="Shader" uid="uid://drwy0iyayvrc5" path="res://Levels/MainMenu/SceneTransition.gdshader" id="2_6uy47"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cpkaw"]
+shader = ExtResource("2_6uy47")
+shader_parameter/circle_size = 0.0
+shader_parameter/screen_width = 1920.0
+shader_parameter/screen_height = 1080.0
+
+[sub_resource type="Animation" id="Animation_mrh5o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_6uy47"]
+resource_name = "close"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.05, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_cpkaw"]
+resource_name = "open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.05]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bbe20"]
+_data = {
+&"RESET": SubResource("Animation_mrh5o"),
+&"close": SubResource("Animation_6uy47"),
+&"open": SubResource("Animation_cpkaw")
+}
+
+[node name="SceneTransition" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_18qep")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_cpkaw")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect"]
+libraries = {
+&"": SubResource("AnimationLibrary_bbe20")
+}
