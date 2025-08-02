@@ -1,28 +1,34 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5w0jynn6mkxk"]
+[gd_scene load_steps=8 format=3 uid="uid://b5w0jynn6mkxk"]
 
 [ext_resource type="Script" uid="uid://biu7hkvefgm4s" path="res://Objects/Enemies/shooter.gd" id="1_8c5hv"]
 [ext_resource type="Texture2D" uid="uid://d3dq34i68t3iw" path="res://Assets/base_enemy.png" id="2_qpsbd"]
 [ext_resource type="AudioStream" uid="uid://c312tfe2javtd" path="res://Assets/Instruments/KSHMR_Bass_Pluck_02_A#.wav" id="3_qpsbd"]
 
+[sub_resource type="Curve2D" id="Curve2D_txwwr"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 400, 0, 0, 0, 0, 0, -400, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 4
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bweyu"]
 size = Vector2(128, 125)
 
+[sub_resource type="Curve2D" id="Curve2D_4u4qj"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 400, 0, 0, 0, 0, 0, -400, 0, 0, 0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_qpsbd"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -200, 0, 0, 0, 0, 200, 0, 0, 0, 0, 0, 0, 200, 0, 0, 0, 0, -200, 0, 0, 0, 0, 0, 0, -200)
+}
+point_count = 5
+
 [node name="Shooter" type="Node2D" node_paths=PackedStringArray("spriteEnemy", "TimerBlinkNode")]
 script = ExtResource("1_8c5hv")
-spriteEnemy = NodePath("Sprite2D")
+spriteEnemy = NodePath("HorizontalPath/PathFollow2D/Sprite2D")
 TimerBlinkNode = NodePath("TimerBlink")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.427586, 0.427586)
-texture = ExtResource("2_qpsbd")
-
-[node name="ShooterCollisionArea2D" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 16
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ShooterCollisionArea2D"]
-position = Vector2(1, 0.5)
-shape = SubResource("RectangleShape2D_bweyu")
 
 [node name="InstrumentPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_qpsbd")
@@ -37,7 +43,69 @@ scale = Vector2(6.25, 6.075)
 
 [node name="TimerBlink" type="Timer" parent="."]
 
-[connection signal="area_entered" from="ShooterCollisionArea2D" to="." method="_on_shooter_collision_area_2d_area_entered"]
+[node name="HorizontalPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_txwwr")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="HorizontalPath"]
+position = Vector2(400.035, 0)
+progress = 400.32
+rotates = false
+
+[node name="Sprite2D" type="Sprite2D" parent="HorizontalPath/PathFollow2D"]
+scale = Vector2(0.427586, 0.427586)
+texture = ExtResource("2_qpsbd")
+
+[node name="ShooterCollisionArea2D" type="Area2D" parent="HorizontalPath/PathFollow2D"]
+collision_layer = 4
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HorizontalPath/PathFollow2D/ShooterCollisionArea2D"]
+position = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_bweyu")
+
+[node name="VerticalPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_4u4qj")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="VerticalPath"]
+position = Vector2(0, 400.035)
+progress = 400.32
+rotates = false
+
+[node name="Sprite2D" type="Sprite2D" parent="VerticalPath/PathFollow2D"]
+scale = Vector2(0.427586, 0.427586)
+texture = ExtResource("2_qpsbd")
+
+[node name="ShooterCollisionArea2D" type="Area2D" parent="VerticalPath/PathFollow2D"]
+collision_layer = 4
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VerticalPath/PathFollow2D/ShooterCollisionArea2D"]
+position = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_bweyu")
+
+[node name="DiamondPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_qpsbd")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="DiamondPath"]
+position = Vector2(116.932, 83.0683)
+progress = 400.32
+rotates = false
+
+[node name="Sprite2D" type="Sprite2D" parent="DiamondPath/PathFollow2D"]
+scale = Vector2(0.427586, 0.427586)
+texture = ExtResource("2_qpsbd")
+
+[node name="ShooterCollisionArea2D" type="Area2D" parent="DiamondPath/PathFollow2D"]
+collision_layer = 4
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DiamondPath/PathFollow2D/ShooterCollisionArea2D"]
+position = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_bweyu")
+
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="TimerBlink" to="." method="_on_timer_blink_timeout"]
+[connection signal="area_entered" from="HorizontalPath/PathFollow2D/ShooterCollisionArea2D" to="." method="_on_shooter_collision_area_2d_area_entered"]
+[connection signal="area_entered" from="VerticalPath/PathFollow2D/ShooterCollisionArea2D" to="." method="_on_shooter_collision_area_2d_area_entered"]
+[connection signal="area_entered" from="DiamondPath/PathFollow2D/ShooterCollisionArea2D" to="." method="_on_shooter_collision_area_2d_area_entered"]

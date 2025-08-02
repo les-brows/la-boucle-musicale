@@ -24,6 +24,7 @@ var BOUNDARY_LOW: int = 45
 var BOUNDARY_UP: int = 600
 
 var ENEMY_MAXHP: int = 3
+var ENEMY_MOVEMENT_SPEED: float = 0.0005
 
 var INVINCIBILITY_TIMER: float = 1
 var MAX_HP: int = 10
