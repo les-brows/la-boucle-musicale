@@ -1,5 +1,8 @@
 extends Enemy
 
+var shooter_projectile_preload = preload("res://Objects/Projectiles/ShooterProjectile.tscn");
+var shooter_projectile_speed: float = 1000
+
 const NB_SECONDS_BOING_JUMP: float = 0.05
 const NB_SECONDS_BOING_RECOVER: float = 0.15
 const MAX_HEIGHT_BOING: float = 0.1
@@ -38,4 +41,15 @@ func _on_beat_launched(num_beat: int) -> void:
 		var note = shoot_partition.get_curr_note()
 		$InstrumentPlayer.pitch_scale = 1.0 + note.pitch
 		$InstrumentPlayer.play()
+		shoot_projectile(Vector2(-1, 0))
 		print("Boing ", note.beat_number, " ", note.pitch)
+
+func shoot_projectile(target_direction: Vector2):
+	var shooter_projectile = shooter_projectile_preload.instantiate()
+	shooter_projectile.set_global_position(global_position)
+	# May be used when ennemies move
+	var linear_velocity = Vector2.ZERO 
+	shooter_projectile.set_velocity(linear_velocity + target_direction.normalized() * shooter_projectile_speed )
+	get_parent().add_child(shooter_projectile)
+
+	pass
