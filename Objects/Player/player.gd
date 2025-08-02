@@ -65,27 +65,9 @@ func _on_player_shoot() -> void:
 
 
 func _process(_delta: float):
-	
 	if insideEnemy >0 && !invincible  :
-		curr_hp -= 1
 		
-		if curr_hp <= 0:
-			if not finito:
-				finito = true
-				print("-----Player Dead---------") 
-				spritePlayer.self_modulate = Color.BLACK
-				#$/root/GameRoom/EnemyDeathSound.play()
-				
-		else :
-			print("take Hit ") 
-			invincible=true
-			old_modulate=spritePlayer.self_modulate
-			TimerInvincibilityNode.start(Globals.INVINCIBILITY_TIMER)
-			
-			spritePlayer.hide()
-			TimerColorNode.start(0.10)
-			#$/root/GameRoom/EnemyHurtSound.play()
-			pass
+		take_hit()
 			
 	
 		
@@ -93,18 +75,42 @@ var finito = false
 var insideEnemy  : int = 0
 var invincible : bool = false
 
+func take_hit():
+	curr_hp -= 1
+	if curr_hp <= 0:
+		if not finito:
+			finito = true
+			print("-----Player Dead---------") 
+			spritePlayer.self_modulate = Color.BLACK
+			#TODO Game Over
+			
+	else :
+		print("take Hit ") 
+		
+		invincible=true
+		old_modulate=spritePlayer.self_modulate
+		TimerInvincibilityNode.set_one_shot (true)
+		TimerInvincibilityNode.start(Globals.INVINCIBILITY_TIMER)
+		spritePlayer.hide()
+		
+		TimerColorNode.start(0.10)
+		#$/root/GameRoom/EnemyHurtSound.play()
+		pass
+	
 
 func _on_detection_dmg_area_entered(area: Area2D) -> void:
-	var eneny= area.get_parent()
-	print("Enterbody area") 
-	if eneny is Enemy:
-		insideEnemy+=1
-	pass # Replace with function body.
+	var enemy= area.get_parent()
 	
+	if enemy is Enemy:
+		insideEnemy+=1
+	if enemy is Projectile   :
+		take_hit() 
+		if(!invincible):
+			print("projectile to kill"+enemy.to_string())
+		enemy.queue_free()
 
 func _on_detection_dmg_area_exited(area: Area2D) -> void:
 	var eneny= area.get_parent()
-	print("Exited bodys area") 
 	if eneny is Enemy:
 		if(insideEnemy >0):
 			insideEnemy-=1
@@ -114,8 +120,15 @@ func _on_detection_dmg_area_exited(area: Area2D) -> void:
 
 
 func _on_timerInvincibility_timeout() -> void:
+	print("end of invisible")
 	invincible=false # Replace with function body.
 
 
 func _on_timerColor_timeout() -> void:
-	spritePlayer.show()
+	if spritePlayer.visible==false:
+		spritePlayer.show()
+	else :
+		spritePlayer.hide()
+	
+	if !invincible && spritePlayer.visible==true:
+		TimerColorNode.stop()

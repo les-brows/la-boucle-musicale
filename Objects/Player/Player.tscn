@@ -12,7 +12,6 @@ size = Vector2(133, 133)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("inputManagerNode", "TimerInvincibilityNode", "TimerColorNode", "spritePlayer")]
 collision_layer = 2
-collision_mask = 5
 script = ExtResource("1_we6tp")
 inputManagerNode = NodePath("InputManager")
 TimerInvincibilityNode = NodePath("DetectionDMG/TimerInvincibility")
@@ -30,7 +29,7 @@ texture = ExtResource("2_oansn")
 
 [node name="DetectionDMG" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 4
+collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionDMG"]
 position = Vector2(2.5, 0.5)

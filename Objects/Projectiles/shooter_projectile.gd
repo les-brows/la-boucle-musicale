@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Projectile
+
 var curr_velocity = Vector2(0,0)
 
 
