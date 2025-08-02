@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b5w0jynn6mkxk"]
 
 [ext_resource type="Script" uid="uid://83fb1cip5bqp" path="res://Objects/Enemies/shooter.gd" id="1_8c5hv"]
-[ext_resource type="Texture2D" uid="uid://bqyrux3e3tys5" path="res://icon.svg" id="2_bweyu"]
+[ext_resource type="Texture2D" uid="uid://cp85vq3wxfloq" path="res://Assets/base_enemy.png" id="2_qpsbd"]
 [ext_resource type="AudioStream" uid="uid://c312tfe2javtd" path="res://Assets/Instruments/KSHMR_Bass_Pluck_02_A#.wav" id="3_qpsbd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bweyu"]

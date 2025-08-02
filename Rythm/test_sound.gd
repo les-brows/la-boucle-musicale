@@ -9,7 +9,7 @@ func _init() -> void:
 	Globals.beat_launched.connect(_on_beat_launched)
 	initial_volume_db = volume_db
 
-func _on_beat_launched(num_beat: int) -> void:
+func _on_beat_launched(_num_beat: int) -> void:
 	return
 	#if(num_beat % Globals.BPM_SUBDIVISION == 0):
 		#if(int(num_beat / float(Globals.BPM_SUBDIVISION)) % 4 ==0):
