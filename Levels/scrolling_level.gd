@@ -6,7 +6,8 @@ extends Node2D
 @onready var level_portion_previous = $LevelPortions/LevelPortionPrevious
 @onready var level_portion_current = $LevelPortions/LevelPortionCurrent
 
-var currently_moving_level = false
+var currently_moving_level_middle: bool = false
+var currently_moving_level_end: bool = false
 
 var LevelPortionScene = preload("res://Levels/LevelPortion.tscn")
 
@@ -34,6 +35,13 @@ func _ready():
 	
 
 func _on_middle_level_reached() -> void:
+	currently_moving_level_end = false
+	
+	if(currently_moving_level_middle):
+		return
+		
+	currently_moving_level_middle = true
+	
 	# Add level a level to next position
 	var level_portion_scene_instance = LevelPortionScene.instantiate()
 	level_portions.call_deferred("add_child", level_portion_scene_instance)
@@ -44,15 +52,16 @@ func _on_middle_level_reached() -> void:
 		if level_portion.position == -Vector2(Globals.LEVEL_SIZE, 0):
 			level_portion.queue_free()
 			
-	currently_moving_level = false
 			
 	print("Player hit the middle of the level !")
 	
 func _on_end_level_reached() -> void:
-	if(currently_moving_level):
+	currently_moving_level_middle = false
+	
+	if(currently_moving_level_end):
 		return
 		
-	currently_moving_level = true
+	currently_moving_level_end = true
 	
 	# Shift all level portions to the left
 	for level_portion in level_portions.get_children():
