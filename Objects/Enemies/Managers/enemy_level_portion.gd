@@ -3,6 +3,7 @@ extends Node2D
 class_name EnemyLevelPortion
 
 var shooter_preload = preload("res://Objects/Enemies/Shooter.tscn");
+var laser_preload = preload("res://Objects/Enemies/Laser.tscn");
 
 var loop: int = 0
 
@@ -23,6 +24,7 @@ func enemy_generation():
 			#Cut the map in eight, with at least one enemy in each trunk
 			for index in range(8):
 				add_enemy(Vector2(randi_range(60, Globals.LEVEL_SIZE / 10 - 60) + (index + 2) * Globals.LEVEL_SIZE / 10, randi_range(Globals.BOUNDARY_LOW + 60, Globals.BOUNDARY_UP - 60)), EnemyType.SHOOTER)
+				add_enemy(Vector2(randi_range(60, Globals.LEVEL_SIZE / 10 - 60) + (index + 2) * Globals.LEVEL_SIZE / 10, randi_range(Globals.BOUNDARY_LOW + 60, Globals.BOUNDARY_UP - 60)), EnemyType.LASER)
 			pass
 		_:
 			for index in range(500):
@@ -37,6 +39,8 @@ func add_enemy(pos: Vector2, enemy_type: int):
 	match enemy_type:
 		EnemyType.SHOOTER:
 			curr_enemy = shooter_preload.instantiate()
+		EnemyType.LASER:
+			curr_enemy = laser_preload.instantiate()
 	
 	
 	curr_enemy.position = pos

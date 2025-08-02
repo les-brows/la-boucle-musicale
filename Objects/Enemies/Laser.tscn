@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://cisvl2m5qemr"]
+
+[ext_resource type="Script" uid="uid://14hwsshw6gpk" path="res://Objects/Enemies/laser.gd" id="1_e1rkk"]
+[ext_resource type="Texture2D" uid="uid://bubf283u72qhe" path="res://Assets/base_enemy_LASER.png" id="1_nvvy2"]
+[ext_resource type="AudioStream" uid="uid://cu6xd02r7p38t" path="res://Assets/Instruments/KSHMR_Thump_Kick_05.wav" id="3_0wytt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nvvy2"]
+size = Vector2(80, 58)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e1rkk"]
+size = Vector2(31, 24.5)
+
+[node name="Laser" type="Node2D"]
+script = ExtResource("1_e1rkk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.296552, 0.296552)
+texture = ExtResource("1_nvvy2")
+
+[node name="LaserArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LaserArea2D"]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_nvvy2")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LaserArea2D"]
+position = Vector2(1.5, -28.25)
+shape = SubResource("RectangleShape2D_e1rkk")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0.500004, 0.500002)
+scale = Vector2(3.95, 3.85)
+
+[node name="InstrumentPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_0wytt")
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
