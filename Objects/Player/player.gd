@@ -81,6 +81,8 @@ var invincible : bool = false
 var alphaColor =0
 func take_hit():
 	curr_hp -= 1
+	Globals.player_damage.emit(curr_hp)
+	
 	if curr_hp <= 0:
 		if not finito:
 			finito = true
@@ -88,7 +90,6 @@ func take_hit():
 			spritePlayer.texture = load('res://Assets/main_char_damage.png')
 			ShootManagerNode.isDead=true
 			Globals.player_death.emit()
-			
 	else :
 		
 		
