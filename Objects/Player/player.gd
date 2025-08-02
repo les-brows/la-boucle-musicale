@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 class_name Player
 
-@export var speed = 200.0
 @export var size: Vector2 
 @export var move_factor : float = 0.5
 
@@ -11,10 +10,19 @@ var targetDir : Vector2 = Vector2(0, 0)
 @export var TimerInvincibilityNode  :Node 
 @export var TimerColorNode  :Node 
 @export var spritePlayer  :Sprite2D 
-@export var ShootManagerNode  :Node 
+@export var ShootManagerNode  :Node
+
+ 
 
 
-var curr_look : float = 0 
+# Dash
+var dashCooldown :bool= false 
+@export var DashCooldownTimer :Node
+
+var dashSpeed=Globals.SPEED_DASH_MAX
+var TimeEndDash=0
+
+
 var real_velocity : Vector2
 var push_force = 80.0
 var old_modulate :Color 
@@ -26,31 +34,23 @@ func _ready():
 	old_modulate= spritePlayer.self_modulate
 	size = $CollisionShape2D.shape.size
 	inputManagerNode.move_update.connect(_on_player_move)
+	inputManagerNode.dash_update.connect(_on_activate_dash)
 	inputManagerNode.shoot_update.connect(ShootManagerNode._on_player_shoot)
 	inputManagerNode.shoot_direction_update.connect(ShootManagerNode._on_player_direction_shoot)
 	ShootManagerNode.positionPlayer=position
 	
 func _physics_process(delta):
-	velocity = targetDir * speed
-	if(targetDir.length() > 0.01):
-		curr_look = targetDir.angle()
-
-	var collided_entity: KinematicCollision2D = move_and_collide(velocity * delta);
-	if(collided_entity != null):
-		var collider : Node2D = collided_entity.get_collider()
-		real_velocity = collided_entity.get_remainder()
-		if (collider is CharacterBody2D):
-			collider.move_and_collide(velocity.length() * move_factor * delta * (collider.global_position - global_position).normalized())
-		else:
-			if collider is RigidBody2D:
-				collider.apply_central_impulse(-collided_entity.get_normal() * push_force)
-			else:
-				collided_entity = move_and_collide(velocity.project(collided_entity.get_normal().orthogonal()) * delta);
-				if(collided_entity != null):
-					real_velocity = collided_entity.get_remainder()
+	if(TimeEndDash>0):
+		print(TimeEndDash)
+		velocity = targetDir * dashSpeed
+		dashSpeed-= delta*(Globals.DASH_TIME-TimeEndDash)
+		TimeEndDash-=delta
+		
 	else:
-		real_velocity = velocity
-	
+		velocity = targetDir * Globals.NORMAL_SPEED_PLAYER
+		
+	if velocity.length() > 0:
+		move_and_slide()
 	#$KeySprite.visible =  press_action.get_connections().size() > 0
 	
 func _on_player_move(move_x :float, move_y : float) -> void:
@@ -138,7 +138,6 @@ func _on_detection_dmg_area_exited(area: Area2D) -> void:
 
 
 func _on_timerInvincibility_timeout() -> void:
-	
 	invincible=false # Replace with function body.
 
 
@@ -156,3 +155,20 @@ func _on_timerColor_timeout() -> void:
 	else :  	
 		alphaColor+=0.1
 		spritePlayer.self_modulate= Color (0.5,alphaColor,1,alphaColor)
+		
+
+func _on_activate_dash() -> void:
+	if !dashCooldown  :
+		#$DashSound.play()
+		TimeEndDash=Globals.DASH_TIME
+		dashSpeed=Globals.SPEED_DASH_MAX
+		
+		invincible=true 
+		TimerInvincibilityNode.set_one_shot (true)
+		TimerInvincibilityNode.start(Globals.DASH_TIME)
+		dashCooldown=true
+		DashCooldownTimer.set_one_shot(true)
+		DashCooldownTimer.start(Globals.COOLDOWN_DASH)
+		
+func DashCooldownTimer_timeOut()->void:
+	dashCooldown=false
