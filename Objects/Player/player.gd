@@ -6,11 +6,20 @@ extends CharacterBody2D
 
 var targetDir : Vector2 = Vector2(0, 0)
 @export var inputManagerNode  :Node 
+@export var TimerInvincibilityNode  :Node 
+@export var TimerColorNode  :Node 
+@export var spritePlayer  :Sprite2D 
+
 var curr_look : float = 0 
 var real_velocity : Vector2
 var push_force = 80.0
+var old_modulate :Color 
+
+
+var curr_hp: float = Globals.MAX_HP
 
 func _ready():
+	old_modulate= spritePlayer.self_modulate
 	size = $CollisionShape2D.shape.size
 	inputManagerNode.move_update.connect(_on_player_move)
 	inputManagerNode.shoot_update.connect(_on_player_shoot)
@@ -52,3 +61,61 @@ func _on_player_move(move_x :float, move_y : float) -> void:
 func _on_player_shoot() -> void:
 	#TODO
 	pass 
+
+
+
+func _process(_delta: float):
+	
+	if insideEnemy >0 && !invincible  :
+		curr_hp -= 1
+		
+		if curr_hp <= 0:
+			if not finito:
+				finito = true
+				print("-----Player Dead---------") 
+				spritePlayer.self_modulate = Color.BLACK
+				#$/root/GameRoom/EnemyDeathSound.play()
+				
+		else :
+			print("take Hit ") 
+			invincible=true
+			old_modulate=spritePlayer.self_modulate
+			TimerInvincibilityNode.start(Globals.INVINCIBILITY_TIMER)
+			
+			spritePlayer.hide()
+			TimerColorNode.start(0.10)
+			#$/root/GameRoom/EnemyHurtSound.play()
+			pass
+			
+	
+		
+var finito = false
+var insideEnemy  : int = 0
+var invincible : bool = false
+
+
+func _on_detection_dmg_area_entered(area: Area2D) -> void:
+	var eneny= area.get_parent()
+	print("Enterbody area") 
+	if eneny is Enemy:
+		insideEnemy+=1
+	pass # Replace with function body.
+	
+
+func _on_detection_dmg_area_exited(area: Area2D) -> void:
+	var eneny= area.get_parent()
+	print("Exited bodys area") 
+	if eneny is Enemy:
+		if(insideEnemy >0):
+			insideEnemy-=1
+		else :
+			print("Error exited more exited more node than entered ")
+	 # Replace with f
+
+
+func _on_timerInvincibility_timeout() -> void:
+	invincible=false # Replace with function body.
+
+
+func _on_timerColor_timeout() -> void:
+	spritePlayer.show()
