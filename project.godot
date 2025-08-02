@@ -20,6 +20,11 @@ config/icon="res://icon.svg"
 Globals="*res://globals.gd"
 SceneTransition="*res://Levels/MainMenu/SceneTransition.tscn"
 
+[display]
+
+window/size/mode=3
+window/stretch/mode="canvas_items"
+
 [input]
 
 ui_accept={
