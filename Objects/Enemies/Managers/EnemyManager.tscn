@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://do4qvuyj8k0m6"]
 
-[ext_resource type="Script" uid="uid://c2orfjvve6o4r" path="res://Objects/Enemies/Managers/enemy_manager.gd" id="1_pnffi"]
-[ext_resource type="AudioStream" uid="uid://wlksltdk3ngl" path="res://Assets/Sfx/FIGHT_BODY_HITS_FOLEY_SFX (104).wav" id="2_32p0g"]
-[ext_resource type="Script" uid="uid://bh7ibiubx60mn" path="res://Objects/Enemies/Managers/enemy_damage_sfx.gd" id="3_qkocr"]
+[ext_resource type="Script" uid="uid://dxqbouiwd62k5" path="res://Objects/Enemies/Managers/enemy_manager.gd" id="1_pnffi"]
+[ext_resource type="AudioStream" uid="uid://cxe26l2maasmw" path="res://Assets/Sfx/FIGHT_BODY_HITS_FOLEY_SFX (104).wav" id="2_32p0g"]
+[ext_resource type="Script" uid="uid://cqdpefn6oh107" path="res://Objects/Enemies/Managers/enemy_damage_sfx.gd" id="3_qkocr"]
 
 [node name="EnemyManager" type="Node2D"]
 script = ExtResource("1_pnffi")

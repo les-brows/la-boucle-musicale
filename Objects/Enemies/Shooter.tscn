@@ -15,7 +15,7 @@ size = Vector2(128, 125)
 
 [sub_resource type="Curve2D" id="Curve2D_4u4qj"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 400, 0, 0, 0, 0, 0, -400, 0, 0, 0, 0, 0, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, -100, 0, 0, 0, 0, 0, 0)
 }
 point_count = 4
 
@@ -25,9 +25,8 @@ _data = {
 }
 point_count = 5
 
-[node name="Shooter" type="Node2D" node_paths=PackedStringArray("spriteEnemy", "TimerBlinkNode")]
+[node name="Shooter" type="Node2D" node_paths=PackedStringArray("TimerBlinkNode")]
 script = ExtResource("1_8c5hv")
-spriteEnemy = NodePath("HorizontalPath/PathFollow2D/Sprite2D")
 TimerBlinkNode = NodePath("TimerBlink")
 
 [node name="InstrumentPlayer" type="AudioStreamPlayer2D" parent="."]
@@ -67,7 +66,6 @@ shape = SubResource("RectangleShape2D_bweyu")
 curve = SubResource("Curve2D_4u4qj")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="VerticalPath"]
-position = Vector2(0, 400.035)
 progress = 400.32
 rotates = false
 
