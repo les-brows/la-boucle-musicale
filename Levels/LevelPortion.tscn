@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://b4kkgf7hiq23o"]
+[gd_scene load_steps=11 format=3 uid="uid://b4kkgf7hiq23o"]
 
-[ext_resource type="Script" uid="uid://cw5jmm5fg3u41" path="res://Levels/level_portion.gd" id="1_c5xfk"]
+[ext_resource type="Script" uid="uid://ccnuqmw807wve" path="res://Levels/level_portion.gd" id="1_c5xfk"]
+[ext_resource type="Texture2D" uid="uid://b6xtt8mlagovq" path="res://Assets/finish_line.png" id="2_krkaj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c5xfk"]
 size = Vector2(5008, 47)
@@ -40,8 +41,14 @@ collision_mask = 6
 position = Vector2(2506, 19.5)
 shape = SubResource("RectangleShape2D_c5xfk")
 
+<<<<<<< HEAD
 [node name="Sprite2D" type="Sprite2D" parent="TopWall2/CollisionShape2D"]
 position = Vector2(-0.820068, 0.500004)
+=======
+[node name="Sprite2D" type="Sprite2D" parent="TopWall"]
+z_index = 1
+position = Vector2(2505.18, 20)
+>>>>>>> 5a515f3 (feat: add sprite for finish line)
 scale = Vector2(78.338, 0.75)
 texture = SubResource("GradientTexture2D_c5xfk")
 
@@ -53,9 +60,16 @@ position = Vector2(2502.5, 623)
 scale = Vector2(65.551, 0.75)
 shape = SubResource("RectangleShape2D_krkaj")
 
+<<<<<<< HEAD
 [node name="Sprite2D" type="Sprite2D" parent="BottomWall2/CollisionShape2D"]
 position = Vector2(-0.0280685, 0)
 scale = Vector2(1.19341, 0.999999)
+=======
+[node name="Sprite2D" type="Sprite2D" parent="BottomWall"]
+z_index = 1
+position = Vector2(2500.66, 623)
+scale = Vector2(78.2292, 0.749999)
+>>>>>>> 5a515f3 (feat: add sprite for finish line)
 texture = SubResource("GradientTexture2D_c5xfk")
 
 [node name="Ground" type="Node2D" parent="."]
@@ -74,6 +88,10 @@ shape = SubResource("SegmentShape2D_f2jbj")
 
 [node name="EndLine" type="Area2D" parent="Ground"]
 collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground/EndLine"]
+position = Vector2(4986, 336)
+texture = ExtResource("2_krkaj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/EndLine"]
 shape = SubResource("SegmentShape2D_c5xfk")
