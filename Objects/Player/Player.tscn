@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b221e60ap4jq7"]
+[gd_scene load_steps=7 format=3 uid="uid://b221e60ap4jq7"]
 
-[ext_resource type="Script" uid="uid://cwtcx1brv0mfl" path="res://Objects/Player/player.gd" id="1_we6tp"]
-[ext_resource type="Texture2D" uid="uid://bjvp7l5yd6dp1" path="res://Assets/main_char.png" id="2_cac6a"]
+[ext_resource type="Script" uid="uid://dm1pr1a0sq6kn" path="res://Objects/Player/player.gd" id="1_we6tp"]
+[ext_resource type="Texture2D" uid="uid://bqyrux3e3tys5" path="res://icon.svg" id="2_oansn"]
+[ext_resource type="PackedScene" uid="uid://xsysjhvgb06h" path="res://Objects/Player/ShootPlayerManager.tscn" id="3_b0me6"]
 [ext_resource type="PackedScene" uid="uid://dj2odukkrva8h" path="res://Objects/InputManager.tscn" id="3_cac6a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cac6a"]
@@ -10,7 +11,7 @@ size = Vector2(39, 39)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b0me6"]
 size = Vector2(38, 38)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("inputManagerNode", "TimerInvincibilityNode", "TimerColorNode", "spritePlayer")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("inputManagerNode", "TimerInvincibilityNode", "TimerColorNode", "spritePlayer", "ShootManagerNode")]
 collision_layer = 2
 script = ExtResource("1_we6tp")
 speed = 800.0
@@ -19,6 +20,7 @@ inputManagerNode = NodePath("InputManager")
 TimerInvincibilityNode = NodePath("DetectionDMG/TimerInvincibility")
 TimerColorNode = NodePath("DetectionDMG/TimerColor")
 spritePlayer = NodePath("Sprite2D")
+ShootManagerNode = NodePath("ShootPlayerManager")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0.5)
@@ -27,6 +29,8 @@ shape = SubResource("RectangleShape2D_cac6a")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_cac6a")
+
+[node name="ShootPlayerManager" parent="." instance=ExtResource("3_b0me6")]
 
 [node name="InputManager" parent="." instance=ExtResource("3_cac6a")]
 
