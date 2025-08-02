@@ -9,7 +9,7 @@ size = Vector2(128, 125)
 
 [node name="Shooter" type="Node2D" node_paths=PackedStringArray("spriteEnemy", "TimerBlinkNode")]
 script = ExtResource("1_8c5hv")
-spriteEnemy = NodePath("ShooterCollisionArea2D/Sprite2D")
+spriteEnemy = NodePath("Sprite2D")
 TimerBlinkNode = NodePath("TimerBlink")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
