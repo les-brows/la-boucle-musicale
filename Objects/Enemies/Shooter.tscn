@@ -28,3 +28,10 @@ volume_db = -11.243
 pitch_scale = 0.49
 max_distance = 750.0
 attenuation = 0.460596
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0.499999, 0.249996)
+scale = Vector2(6.25, 6.075)
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

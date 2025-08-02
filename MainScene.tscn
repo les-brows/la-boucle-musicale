@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfix7mjnn6u0n"]
+[gd_scene load_steps=5 format=3 uid="uid://cfix7mjnn6u0n"]
 
 [ext_resource type="PackedScene" uid="uid://c0xi81rtw0j1x" path="res://Levels/ScrollingLevel.tscn" id="1_x4av3"]
 [ext_resource type="PackedScene" uid="uid://bne5gfgl17hng" path="res://Rythm/MusicManager.tscn" id="2_rpqi1"]
-[ext_resource type="PackedScene" uid="uid://do4qvuyj8k0m6" path="res://Objects/Enemies/Managers/EnemyManager.tscn" id="3_a814b"]
 [ext_resource type="AudioStream" uid="uid://ke43hdpgbybw" path="res://Assets/Collide 1.wav" id="4_rf2cd"]
 [ext_resource type="Script" uid="uid://c3tbooyhqh8ok" path="res://Rythm/test_sound.gd" id="4_uxrcv"]
 
@@ -11,8 +10,6 @@
 [node name="MusicManager" parent="." instance=ExtResource("2_rpqi1")]
 
 [node name="ScrollingLevel" parent="." instance=ExtResource("1_x4av3")]
-
-[node name="EnemyManager" parent="." instance=ExtResource("3_a814b")]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_rf2cd")

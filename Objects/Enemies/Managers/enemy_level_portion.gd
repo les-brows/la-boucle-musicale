@@ -8,4 +8,10 @@ func _init() -> void:
 	for index in range(5):
 		var curr_shooter: Enemy = shooter_preload.instantiate()
 		curr_shooter.position = Vector2(randi_range(500, 4500), randi_range(100, 600))
-		call_deferred("add_child", curr_shooter)
+		add_child(curr_shooter)
+
+
+func set_player(player: Player):
+	for enemy in get_children():
+		if enemy is Enemy:
+			enemy.set_player(player)

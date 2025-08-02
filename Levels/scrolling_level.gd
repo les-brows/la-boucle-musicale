@@ -27,6 +27,8 @@ func _process(_delta):
 	clamp_player_inside_camera()
 	
 func _ready():
+	$EnemyManager.set_player($Player)
+	
 	Globals.middle_level_reached.connect(_on_middle_level_reached)
 	Globals.end_level_reached.connect(_on_end_level_reached)
 	
