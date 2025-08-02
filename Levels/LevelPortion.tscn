@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://b4kkgf7hiq23o"]
 
-[ext_resource type="Script" uid="uid://7r460nwtq6" path="res://Levels/level_portion.gd" id="1_c5xfk"]
-[ext_resource type="Texture2D" uid="uid://bua58lrxckmtg" path="res://Assets/background_top.png" id="2_insk8"]
-[ext_resource type="Texture2D" uid="uid://foqqec6ci08l" path="res://Assets/finish_line.png" id="2_krkaj"]
-[ext_resource type="Texture2D" uid="uid://bltlccqcri440" path="res://Assets/background_bottom.png" id="3_ibhb6"]
-[ext_resource type="Texture2D" uid="uid://bvxijrch3drw1" path="res://Assets/bg_rainbow.png" id="4_ibhb6"]
+[ext_resource type="Script" uid="uid://ccnuqmw807wve" path="res://Levels/level_portion.gd" id="1_c5xfk"]
+[ext_resource type="Texture2D" uid="uid://56x1kx5cumyh" path="res://Assets/background_top.png" id="2_insk8"]
+[ext_resource type="Texture2D" uid="uid://b6xtt8mlagovq" path="res://Assets/finish_line.png" id="2_krkaj"]
+[ext_resource type="Texture2D" uid="uid://c7ybx33s7h0ru" path="res://Assets/background_bottom.png" id="3_ibhb6"]
+[ext_resource type="Texture2D" uid="uid://bbmsd03d1ac1q" path="res://Assets/bg_rainbow.png" id="4_ibhb6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c5xfk"]
 size = Vector2(5008, 47)

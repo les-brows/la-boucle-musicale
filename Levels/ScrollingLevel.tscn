@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://kqev23ha0sgh" path="res://Levels/GameOver/GameOver.tscn" id="3_6wcv4"]
 [ext_resource type="PackedScene" uid="uid://b4kkgf7hiq23o" path="res://Levels/LevelPortion.tscn" id="3_0352d"]
 [ext_resource type="PackedScene" uid="uid://d3u223217q5fg" path="res://Objects/GameUI/GameUI.tscn" id="4_ppgid"]
-[ext_resource type="AudioStream" uid="uid://ccroldk5osd3h" path="res://Assets/Sfx/VOXReac_Female Adult Death Gut Hit Singular Grunt Short 03_ESM.wav" id="7_wfsic"]
-[ext_resource type="Script" uid="uid://chlyfo2qef3c7" path="res://Objects/Player/player_damage_sfx.gd" id="8_87ybl"]
+[ext_resource type="AudioStream" uid="uid://d02qpl235f6qj" path="res://Assets/Sfx/VOXReac_Female Adult Death Gut Hit Singular Grunt Short 03_ESM.wav" id="7_wfsic"]
+[ext_resource type="Script" uid="uid://cveubk8ainva8" path="res://Objects/Player/player_damage_sfx.gd" id="8_87ybl"]
 
 [node name="ScrollingLevel" type="Node2D"]
 script = ExtResource("1_fh0lb")
