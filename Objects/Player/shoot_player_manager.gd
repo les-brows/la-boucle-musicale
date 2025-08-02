@@ -32,10 +32,10 @@ func _on_player_direction_shoot (shoot_x:float , shoot_y:float):
 
 func _init() -> void:
 	Globals.beat_launched.connect(_on_beat_launched)
-	var list_notes: Array[Note] = [Note.new(0, 0, 3),Note.new(1, 0, 3),Note.new(2, 0, 3), Note.new(3, 0, -2), Note.new(5, 0, -2), 
+	var list_notes: Array[Note] = [Note.new(0, 0, 3),Note.new(4, 0, -2), 
 								   Note.new(7, 0, -2), Note.new(8, 0, 3)]
 	nb_shoot= list_notes.size()
-	shoot_partition = Partition.new(4, 8, list_notes)
+	shoot_partition = Partition.new(8, 8, list_notes)
 
 func _process(delta: float) -> void:
 	if(boing_state > 0):
@@ -53,14 +53,16 @@ func _process(delta: float) -> void:
 
 func _on_beat_launched(num_beat: int) -> void:
 	if(num_beat == shoot_partition.get_next_beat(num_beat)):
+		if(shootDir!=Vector2.ZERO && !isDead ):
 		
-		wantShoot-=1
-		boing_state = NB_SECONDS_BOING_RECOVER + NB_SECONDS_BOING_JUMP
-		var note = shoot_partition.get_curr_note()
-		shoot_projectile(shootDir)
+			wantShoot-=1
+			boing_state = NB_SECONDS_BOING_RECOVER + NB_SECONDS_BOING_JUMP
+			var note = shoot_partition.get_curr_note()
+			$InstrumentPlayer.pitch_scale = pow(2, note.pitch/12.0)
+			$InstrumentPlayer.play()
+			shoot_projectile(shootDir)
 
 func shoot_projectile(target_direction: Vector2):
-	if(target_direction!=Vector2.ZERO && !isDead ):
 		var player_projectile = shooter_projectile_preload.instantiate()
 		var copyposition=get_parent().position
 		# May be used when ennemies move
