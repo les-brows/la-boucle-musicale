@@ -9,7 +9,7 @@ func _init() -> void:
 	time_start = Time.get_unix_time_from_system()
 	last_beat = 0
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	seconds_elapsed = Time.get_unix_time_from_system() - time_start
 	while(next_beat_position < seconds_elapsed):
 		print("ON EST AU BEAT %d à %f secondes" % [last_beat, seconds_elapsed])
