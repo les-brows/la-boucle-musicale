@@ -2,7 +2,7 @@ extends Enemy
 
 var laser_projectile_preload = preload("res://Objects/Projectiles/LaserProjectile.tscn");
 var laser_projectile_speed: float = 1000
-var laser_angular_speed: float = 1.5
+var laser_angular_speed: float = 5
 
 var shoot_partition: Partition
 var on_screen: bool = false
