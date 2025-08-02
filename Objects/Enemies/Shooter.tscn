@@ -1,10 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5w0jynn6mkxk"]
+[gd_scene load_steps=4 format=3 uid="uid://b5w0jynn6mkxk"]
 
-[ext_resource type="Script" uid="uid://xuedu7nokxvq" path="res://Objects/Enemies/shooter.gd" id="1_8c5hv"]
+[ext_resource type="Script" uid="uid://c5c2bebshnq4c" path="res://Objects/Enemies/shooter.gd" id="1_8c5hv"]
 [ext_resource type="Texture2D" uid="uid://bqyrux3e3tys5" path="res://icon.svg" id="2_bweyu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bweyu"]
+size = Vector2(128, 125)
 
 [node name="Shooter" type="Node2D"]
 script = ExtResource("1_8c5hv")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Shooter Collision" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shooter Collision"]
+position = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_bweyu")
+
+[node name="Sprite2D" type="Sprite2D" parent="Shooter Collision"]
 texture = ExtResource("2_bweyu")
