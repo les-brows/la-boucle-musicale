@@ -12,7 +12,13 @@ const MAX_HEIGHT_BOING: float = 0.1
 var boing_state: float = 0
 
 var shoot_partition: Partition
+var movement_pattern: int #EnemyMovementPattern
 var on_screen: bool = false
+var path_follow: PathFollow2D
+
+@onready var horizontal_path: PathFollow2D = $HorizontalPath/PathFollow2D
+@onready var vertical_path: PathFollow2D = $VerticalPath/PathFollow2D
+@onready var diamond_path: PathFollow2D = $DiamondPath/PathFollow2D
 
 
 func _init() -> void:
@@ -36,9 +42,36 @@ func generate_partition(loop_count: int):
 			shoot_partition.remove_random_notes(0.7)
 			pass
 
+	
+func _ready() -> void:
+	choose_movement_pattern()
 
+func choose_movement_pattern():
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	var random_num: int = rng.randi_range(0, EnemyMovementPattern.SIZE - 1)
+	match random_num:
+		EnemyMovementPattern.HORIZONTAL:
+			movement_pattern = EnemyMovementPattern.HORIZONTAL
+			path_follow = horizontal_path
+			vertical_path.queue_free()
+			diamond_path.queue_free()
+		EnemyMovementPattern.VERTICAL:
+			movement_pattern = EnemyMovementPattern.VERTICAL
+			path_follow = vertical_path
+			horizontal_path.queue_free()
+			diamond_path.queue_free()
+		EnemyMovementPattern.DIAMOND:
+			movement_pattern = EnemyMovementPattern.DIAMOND
+			path_follow = diamond_path
+			horizontal_path.queue_free()
+			vertical_path.queue_free()
 
 func _process(delta: float) -> void:
+	path_follow.progress_ratio += Globals.ENEMY_MOVEMENT_SPEED
+	if(path_follow.progress_ratio >= 1):
+		path_follow.progress_ratio = 0
+
 	if(boing_state > 0):
 		if(boing_state < NB_SECONDS_BOING_RECOVER):
 			scale -= Vector2.ONE * delta / NB_SECONDS_BOING_RECOVER * MAX_HEIGHT_BOING
@@ -67,7 +100,7 @@ func _on_beat_launched(num_beat: int) -> void:
 
 func shoot_projectile(target_direction: Vector2):
 	var shooter_projectile = shooter_projectile_preload.instantiate()
-	shooter_projectile.set_position(position)
+	shooter_projectile.set_position(position + path_follow.position)
 	# May be used when ennemies move
 	var linear_velocity = Vector2.ZERO 
 	shooter_projectile.set_velocity(linear_velocity + target_direction.normalized() * shooter_projectile_speed )
