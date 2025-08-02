@@ -16,8 +16,10 @@ size = Vector2(80, 58)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e1rkk"]
 size = Vector2(31, 24.5)
 
-[node name="Laser" type="Node2D"]
+[node name="Laser" type="Node2D" node_paths=PackedStringArray("spriteEnemy", "TimerBlinkNode")]
 script = ExtResource("1_e1rkk")
+spriteEnemy = NodePath("Sprite2D")
+TimerBlinkNode = NodePath("TimerBlink")
 
 [node name="Preshot" type="Sprite2D" parent="."]
 position = Vector2(7.27596e-12, 0)
@@ -47,6 +49,8 @@ scale = Vector2(3.95, 3.85)
 [node name="InstrumentPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_0wytt")
 volume_db = -5.621
+
+[node name="TimerBlink" type="Timer" parent="."]
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
