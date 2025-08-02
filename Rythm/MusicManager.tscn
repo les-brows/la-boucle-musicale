@@ -7,8 +7,9 @@
 [node name="MusicManager" type="Node"]
 script = ExtResource("1_npbc1")
 
-[node name="Music" type="AudioStreamPlayer2D" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_u48bt")
+volume_db = -14.991
 autoplay = true
 
 [node name="Metronome" parent="." instance=ExtResource("2_aihqw")]

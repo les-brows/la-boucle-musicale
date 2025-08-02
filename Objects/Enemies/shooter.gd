@@ -21,6 +21,6 @@ func _process(delta: float) -> void:
 
 
 func _on_music_manager_beat_launched(num_beat: int) -> void:
-	if(num_beat % 4 == 0):
+	if(num_beat % Globals.BPM_SUBDIVISION == 0 && (num_beat / Globals.BPM_SUBDIVISION) % 4 == 0):
 		boing_state = NB_SECONDS_BOING_RECOVER + NB_SECONDS_BOING_JUMP
 		print("Boing")
