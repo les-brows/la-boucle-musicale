@@ -26,6 +26,7 @@ func _on_shooter_collision_area_2d_area_entered(area: Area2D) -> void:
 var finito=false
 
 func take_hit():
+	Globals.enemy_damage.emit()
 	hp_enemy -= 1
 	if hp_enemy <= 0:
 		if not finito:
