@@ -122,7 +122,7 @@ func _on_detection_dmg_area_entered(area: Area2D) -> void:
 	
 	if enemy is Enemy:
 		insideEnemy+=1
-	if enemy is Projectile   :
+	if enemy is Projectile:
 		if(!invincible):
 			take_hit() 
 		enemy.queue_free()

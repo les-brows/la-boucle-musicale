@@ -13,13 +13,23 @@ var charge_state: float = 0
 
 func _init() -> void:
 	super()
-	var list_notes: Array[Note] = [Note.new(0, 0, 0), Note.new(2, 0, 0), Note.new(5, 0, 0),
-								   Note.new(8, 0, 0), Note.new(16, 0, 0), Note.new(18, 0, 0),
-								   Note.new(21, 0, 0), Note.new(23, 0, 0), Note.new(24, 0, 0),
-								   Note.new(28, 0, 0)]
-	shoot_partition = Partition.new(4, 32, list_notes)
-	shoot_partition.remove_random_notes(0.6)
-	shoot_partition.force_minimal_time_between_notes(8)
+	generate_partition(Globals.LOOP_COUNT)
+
+func generate_partition(loop_count: int):
+	match loop_count:
+		0:
+			var list_notes: Array[Note] = [Note.new(2, 0, 3), Note.new(6, 0, -2)]
+			shoot_partition = Partition.new(8, 8, list_notes)
+			laser_angular_speed = 4
+		_:
+			var list_notes: Array[Note] = [Note.new(0, 0, 0), Note.new(2, 0, 0), Note.new(5, 0, 0),
+										   Note.new(8, 0, 0), Note.new(16, 0, 0), Note.new(18, 0, 0),
+										   Note.new(21, 0, 0), Note.new(23, 0, 0), Note.new(24, 0, 0),
+										   Note.new(28, 0, 0)]
+			shoot_partition = Partition.new(4, 32, list_notes)
+			shoot_partition.remove_random_notes(0.6)
+			shoot_partition.force_minimal_time_between_notes(8)
+			pass
 
 func _ready() -> void:
 	$Preshot.rotation = randf_range(0, 2 * PI)

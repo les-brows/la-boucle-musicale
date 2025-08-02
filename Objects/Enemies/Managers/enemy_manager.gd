@@ -29,6 +29,7 @@ func _on_middle_level_reached() -> void:
 	currently_moving_level_middle = true
 	
 	var next_enemy_level_portion: EnemyLevelPortion = enemy_level_portion_preload.instantiate()
+	next_enemy_level_portion.generate_partition(Globals.LOOP_COUNT + 1)
 	next_enemy_level_portion.set_player(player)
 	next_enemy_level_portion.position = Vector2(Globals.LEVEL_SIZE, 0)
 	list_enemy_level_portions.append(next_enemy_level_portion)

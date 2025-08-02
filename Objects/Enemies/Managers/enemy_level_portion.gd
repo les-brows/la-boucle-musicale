@@ -17,6 +17,11 @@ func set_player(player: Player):
 	for enemy in get_children():
 		if enemy is Enemy:
 			enemy.set_player(player)
+ 
+func generate_partition(partition: int):
+	for enemy in get_children():
+		if enemy is Enemy:
+			enemy.generate_partition(partition)
 			
 func enemy_generation():
 	match loop:
@@ -41,7 +46,6 @@ func add_enemy(pos: Vector2, enemy_type: int):
 			curr_enemy = shooter_preload.instantiate()
 		EnemyType.LASER:
 			curr_enemy = laser_preload.instantiate()
-	
 	
 	curr_enemy.position = pos
 	add_child(curr_enemy)
