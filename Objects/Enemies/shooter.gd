@@ -66,6 +66,8 @@ func choose_movement_pattern():
 			path_follow = diamond_path
 			horizontal_path.queue_free()
 			vertical_path.queue_free()
+			
+	path_follow.progress_ratio = rng.randf_range(0, 1)
 
 func _process(delta: float) -> void:
 	path_follow.progress_ratio += Globals.ENEMY_MOVEMENT_SPEED
