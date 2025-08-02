@@ -21,7 +21,7 @@ var dashCooldown :bool= false
 
 var dashSpeed=Globals.SPEED_DASH_MAX
 var TimeEndDash=0
-
+var dashDir : Vector2= Vector2(0, 0)
 
 var real_velocity : Vector2
 var push_force = 80.0
@@ -42,7 +42,7 @@ func _ready():
 func _physics_process(delta):
 	if(TimeEndDash>0):
 		
-		velocity = targetDir * dashSpeed
+		velocity = dashDir * dashSpeed
 		dashSpeed-= delta*(Globals.DASH_TIME-TimeEndDash)
 		TimeEndDash-=delta
 		
@@ -162,6 +162,7 @@ func _on_activate_dash() -> void:
 		#$DashSound.play()
 		TimeEndDash=Globals.DASH_TIME
 		dashSpeed=Globals.SPEED_DASH_MAX
+		dashDir = targetDir.normalized()
 		
 		invincible=true 
 		TimerInvincibilityNode.set_one_shot (true)
