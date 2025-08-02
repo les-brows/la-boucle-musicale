@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/You Say Run.mp3-4d28f7582c5e47208504e2ce1dc58
 [params]
 
 loop=false
-loop_offset=0
-bpm=0
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4
