@@ -5,7 +5,6 @@ extends Node2D
 @onready var level_portions = $LevelPortions
 @onready var level_portion_previous = $LevelPortions/LevelPortionPrevious
 @onready var level_portion_current = $LevelPortions/LevelPortionCurrent
-@onready var level_portion_next = $LevelPortions/LevelPortionNext
 
 var currently_moving_level = false
 
@@ -22,7 +21,7 @@ func clamp_player_inside_camera():
 		camera.position.x - CAMERA_SIZE.x/2 + player.size.x/2, 
 		camera.position.x + CAMERA_SIZE.x/2 - player.size.x/2)
 
-func _process(delta):
+func _process(_delta):
 	move_camera()
 	clamp_player_inside_camera()
 	
@@ -31,7 +30,6 @@ func _ready():
 	Globals.end_level_reached.connect(_on_end_level_reached)
 	
 	level_portion_previous.position = -Vector2(Globals.LEVEL_SIZE, 0)
-	level_portion_next.position = Vector2(Globals.LEVEL_SIZE, 0)
 	
 	
 
@@ -39,7 +37,7 @@ func _on_middle_level_reached() -> void:
 	# Add level a level to next position
 	var level_portion_scene_instance = LevelPortionScene.instantiate()
 	level_portions.call_deferred("add_child", level_portion_scene_instance)
-	level_portion_scene_instance.position = Vector2(Globals.LEVEL_SIZE * 2, 0)
+	level_portion_scene_instance.position = Vector2(Globals.LEVEL_SIZE, 0)
 	
 	# Remove previous level portion
 	for level_portion in level_portions.get_children():
