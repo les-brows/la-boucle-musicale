@@ -6,6 +6,7 @@ signal shoot_update()
 
 static var move_directions_x:float = 0
 static var move_directions_y:float = 0
+static var player_dead: bool = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -13,8 +14,19 @@ func _process(_delta: float) -> void:
 	update_input()
 	update_shoot_input()
 	
-
+func _init() -> void:
+	Globals.player_death.connect(_on_player_death)
+	player_dead = false
+	
+func _on_player_death():
+	player_dead = true
+	
 func update_input():
+	# Block inputs if player is dead
+	if player_dead:
+		move_update.emit(0, 0)
+		return
+		
 	# Horizontal input
 	if Input.is_action_pressed("player1_left"):
 		move_directions_x = -Input.get_action_strength("player1_left")

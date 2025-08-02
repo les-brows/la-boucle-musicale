@@ -13,6 +13,8 @@ signal beat_launched(num_beat: int)
 signal middle_level_reached()
 @warning_ignore("unused_signal")
 signal end_level_reached()
+@warning_ignore("unused_signal")
+signal player_death()
  
 
 var MAX_HP: float = 10
