@@ -12,6 +12,7 @@ script = ExtResource("1_pnovf")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_wa8aj")
+volume_db = -6.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
