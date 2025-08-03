@@ -203,11 +203,6 @@ func are_augments_valid(augment_1_generated: int, augment_2_generated: int, augm
 		(augment_1_generated == Augment.PLAYER_DODGE or augment_2_generated == Augment.PLAYER_DODGE or augment_3_generated == Augment.PLAYER_DODGE)):
 		return false
 		
-	# If bullet spread is already at its max level
-	if(Globals.NB_BULLET_PLAYER == Globals.BULLET_SPREAD_MAX_LEVEL && 
-		(augment_1_generated == Augment.PLAYER_BULLET_SPREAD or augment_2_generated == Augment.PLAYER_BULLET_SPREAD or augment_3_generated == Augment.PLAYER_BULLET_SPREAD)):
-		return false
-		
 	# If melody is already at its max level
 	if(Globals.MELODY_LEVEL == Globals.MELODY_MAX_LEVEL && 
 		(augment_1_generated == Augment.PLAYER_MELODY or augment_2_generated == Augment.PLAYER_MELODY or augment_3_generated == Augment.PLAYER_MELODY)):

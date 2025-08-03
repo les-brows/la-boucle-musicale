@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bgdpmp1gh6en6"]
 
-[ext_resource type="Script" uid="uid://bjvaxthoift3a" path="res://Levels/MainMenu/infos.gd" id="1_7dbdi"]
-[ext_resource type="FontFile" uid="uid://b2x0u6lilgwm3" path="res://Assets/ThaleahFat.ttf" id="2_7dbdi"]
+[ext_resource type="Script" uid="uid://c7g0mxq6ergwr" path="res://Levels/MainMenu/infos.gd" id="1_7dbdi"]
+[ext_resource type="FontFile" uid="uid://dutr1gb421wvd" path="res://Assets/ThaleahFat.ttf" id="2_7dbdi"]
 
 [node name="Infos" type="MarginContainer"]
 anchors_preset = 15
@@ -42,7 +42,8 @@ theme_override_fonts/font = ExtResource("2_7dbdi")
 theme_override_font_sizes/font_size = 40
 text = "The goal of the game is to do as much loops as possible. Your
 projectiles and those of the enemy are synchronized with the
-melody."
+melody. You get upgrades to change your playstyle every loop."
+horizontal_alignment = 1
 
 [node name="Controls" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
@@ -59,7 +60,7 @@ text = "Controls"
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/separation = 200
+theme_override_constants/separation = 100
 
 [node name="Controller" type="VBoxContainer" parent="CenterContainer/VBoxContainer/Controls/HBoxContainer"]
 layout_mode = 2
@@ -80,7 +81,9 @@ theme_override_font_sizes/font_size = 40
 text = "movement : Left joystick
 shoot : Right joystick
 dash : A
+Slow down : Left button or trigger
 Exit menu : B"
+horizontal_alignment = 1
 
 [node name="Keyboard" type="VBoxContainer" parent="CenterContainer/VBoxContainer/Controls/HBoxContainer"]
 layout_mode = 2
@@ -102,4 +105,6 @@ theme_override_font_sizes/font_size = 40
 text = "movement : WASD
 shoot : Arrows
 Dash : SHIFT
+SLOW DOwN : CTRL
 Exit menu : ESC"
+horizontal_alignment = 1
