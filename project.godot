@@ -13,7 +13,9 @@ config_version=5
 config/name="La boucle musicale"
 run/main_scene="uid://kf8tcogy2w07"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.204247, 0.0233616, 0.311808, 1)
+boot_splash/image="uid://ceeg143qf5qt4"
+config/icon="uid://b6wcp2ui1plw6"
 
 [autoload]
 
@@ -24,6 +26,7 @@ SceneTransition="*res://Levels/MainMenu/SceneTransition.tscn"
 
 window/size/mode=2
 window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [input]
 
