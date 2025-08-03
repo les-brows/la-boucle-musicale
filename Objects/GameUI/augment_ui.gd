@@ -1,0 +1,162 @@
+extends CanvasLayer
+
+var currently_selected_augment = 1
+var is_in_augment_menu = false
+
+@onready var augment_1_texture = $Augments/VBoxContainer/HBoxContainer/Augment_1
+@onready var augment_2_texture = $Augments/VBoxContainer/HBoxContainer/Augment_2
+@onready var augment_3_texture = $Augments/VBoxContainer/HBoxContainer/Augment_3
+var shader_material = ShaderMaterial.new()
+
+var augment_1: int = -1
+var augment_2: int = -1
+var augment_3: int = -1
+
+var ENEMY_BULLET_SIZE_TEXTURE = preload("res://Assets/augment_card_enemy_bullet_size.png")
+var PLAYER_BULLET_SIZE_TEXTURE = preload("res://Assets/augment_card_player_bullet_size.png")
+var ENEMY_BULLET_SPEED_TEXTURE = preload("res://Assets/augment_card_enemy_bullet_speed.png")
+var PLAYER_BULLET_SPEED_TEXTURE = preload("res://Assets/augment_card_player_bullet_speed.png")
+var ENEMY_MOVEMENT_SPEED_TEXTURE = preload("res://Assets/augment_card_enemy_speed.png")
+var PLAYER_MOVEMENT_SPEED_TEXTURE = preload("res://Assets/augment_card_player_speed.png")
+var PLAYER_HEAL_TEXTURE = preload("res://Assets/augment_card_heart.png")
+var PLAYER_MELODY_TEXTURE = preload("res://Assets/augment_card_melody.png")
+var PLAYER_STRENGTH_TEXTURE = preload("res://Assets/augment_card_player_damage.png")
+var PLAYER_DODGE_TEXTURE = preload("res://Assets/augment_card_player_dodge.png")
+var PLAYER_BULLET_SPREAD_TEXTURE_1 = preload("res://Assets/augment_card_player_spread_2.png")
+var PLAYER_BULLET_SPREAD_TEXTURE_2 = preload("res://Assets/augment_card_player_spread_3.png")
+
+enum Augment {
+	ENEMY_BULLET_SIZE,
+	PLAYER_BULLET_SIZE,
+	ENEMY_BULLET_SPEED,
+	PLAYER_BULLET_SPEED,
+	ENEMY_MOVEMENT_SPEED,
+	PLAYER_MOVEMENT_SPEED,
+	PLAYER_HEAL,
+	PLAYER_MELODY,
+	PLAYER_STRENGTH,
+	PLAYER_DODGE,
+	PLAYER_BULLET_SPREAD,
+	NUM_OF_AUGMENT
+}
+	
+
+func _ready():
+	_on_end_level_reached()
+	Globals.end_level_reached.connect(_on_end_level_reached)
+	
+	var shader = load("res://Objects/GameUI/AugmentUI.gdshader")
+	shader_material.shader = shader
+	
+func _on_end_level_reached() -> void:
+	generate_augments()
+	visible = true
+	is_in_augment_menu = true
+	pass
+	
+func _process(_delta: float) -> void:
+	if not is_in_augment_menu:
+		return
+		
+	var new_currently_selected_augment = currently_selected_augment
+		
+	if Input.is_action_pressed("player1_left"):
+		new_currently_selected_augment = clamp(currently_selected_augment, 0, currently_selected_augment - 1)
+	if Input.is_action_pressed("player1_right"):
+		new_currently_selected_augment = clamp(currently_selected_augment, currently_selected_augment + 1, 2)
+	if Input.is_action_pressed("ui_accept"):
+		select_augment(currently_selected_augment)
+		
+	if new_currently_selected_augment != currently_selected_augment:
+		currently_selected_augment = new_currently_selected_augment
+		update_augment_display(currently_selected_augment)
+		
+		
+func select_augment(augment_selected) -> void:
+	pass
+	
+func generate_augments() -> void:
+	var valid_augments: bool = false
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	
+	while(not valid_augments):
+		augment_1 = rng.randi_range(0, Augment.NUM_OF_AUGMENT - 1)
+		augment_2 = rng.randi_range(0, Augment.NUM_OF_AUGMENT - 1)
+		augment_3 = rng.randi_range(0, Augment.NUM_OF_AUGMENT - 1)
+		valid_augments = are_augments_valid(augment_1, augment_2, augment_3)
+		
+	set_augment_texture(augment_1_texture, augment_1)
+	set_augment_texture(augment_2_texture, augment_2)
+	set_augment_texture(augment_3_texture, augment_3)
+	
+func set_augment_texture(augment_texture, augment) -> void:
+	if augment == Augment.ENEMY_BULLET_SIZE:
+		augment_texture.texture = ENEMY_BULLET_SIZE_TEXTURE
+	if augment == Augment.PLAYER_BULLET_SIZE:
+		augment_texture.texture = PLAYER_BULLET_SIZE_TEXTURE
+	if augment == Augment.ENEMY_BULLET_SPEED:
+		augment_texture.texture = ENEMY_BULLET_SPEED_TEXTURE
+	if augment == Augment.PLAYER_BULLET_SPEED:
+		augment_texture.texture = PLAYER_BULLET_SPEED_TEXTURE
+	if augment == Augment.ENEMY_MOVEMENT_SPEED:
+		augment_texture.texture = ENEMY_MOVEMENT_SPEED_TEXTURE
+	if augment == Augment.PLAYER_MOVEMENT_SPEED:
+		augment_texture.texture = PLAYER_MOVEMENT_SPEED_TEXTURE
+	if augment == Augment.PLAYER_HEAL:
+		augment_texture.texture = PLAYER_HEAL_TEXTURE
+	if augment == Augment.PLAYER_MELODY:
+		augment_texture.texture = PLAYER_MELODY_TEXTURE
+	if augment == Augment.PLAYER_STRENGTH:
+		augment_texture.texture = PLAYER_STRENGTH_TEXTURE
+	if augment == Augment.PLAYER_DODGE:
+		augment_texture.texture = PLAYER_DODGE_TEXTURE
+	if augment == Augment.PLAYER_BULLET_SPREAD:
+		if Globals.NB_BULLET_PLAYER == 1:
+			augment_texture.texture = PLAYER_BULLET_SPREAD_TEXTURE_1
+		else:
+			augment_texture.texture = PLAYER_BULLET_SPREAD_TEXTURE_2
+	
+		
+func are_augments_valid(augment_1_generated: int, augment_2_generated: int, augment_3_generated: int) -> bool:
+	# Are there multiple times the same augment
+	if(augment_1_generated == augment_2_generated or augment_1_generated == augment_3 or augment_2_generated == augment_3_generated):
+		return false
+		
+	# If dodge is already at its max level
+	if(Globals.LUCK_DODGE >= Globals.DODGE_MAX_PERCENT && 
+		(augment_1_generated == Augment.PLAYER_DODGE or augment_2_generated == Augment.PLAYER_DODGE or augment_3_generated == Augment.PLAYER_DODGE)):
+		return false
+		
+	# If bullet spread is already at its max level
+	if(Globals.NB_BULLET_PLAYER == Globals.BULLET_SPREAD_MAX_LEVEL && 
+		(augment_1_generated == Augment.PLAYER_BULLET_SPREAD or augment_2_generated == Augment.PLAYER_BULLET_SPREAD or augment_3_generated == Augment.PLAYER_BULLET_SPREAD)):
+		return false
+		
+	# If melody is already at its max level
+	if(Globals.MELODY_LEVEL == Globals.MELODY_MAX_LEVEL && 
+		(augment_1_generated == Augment.PLAYER_MELODY or augment_2_generated == Augment.PLAYER_MELODY or augment_3_generated == Augment.PLAYER_MELODY)):
+		return false
+		
+	# If heal when at full HP
+	if(Globals.CURRENT_HP_PLAYER == Globals.MAX_HP && 
+		(augment_1_generated == Augment.PLAYER_HEAL or augment_2_generated == Augment.PLAYER_HEAL or augment_3_generated == Augment.PLAYER_HEAL)):
+		return false
+		
+	return true
+
+func update_augment_display(selected_augment: int) -> void:
+	if selected_augment == 1:
+		augment_1_texture.material = shader_material
+		augment_2_texture.material = null
+		augment_3_texture.material = null
+		
+	if selected_augment == 2:
+		augment_1_texture.material = null
+		augment_2_texture.material = shader_material
+		augment_3_texture.material = null
+		
+	if selected_augment == 3:
+		augment_1_texture.material = null
+		augment_2_texture.material = null
+		augment_3_texture.material = shader_material
