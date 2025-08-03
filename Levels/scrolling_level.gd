@@ -47,6 +47,7 @@ func _on_middle_level_reached() -> void:
 	
 	# Add level a level to next position
 	var level_portion_scene_instance = LevelPortionScene.instantiate()
+	level_portion_scene_instance.z_index = -(Globals.LOOP_COUNT + 1)
 	level_portions.call_deferred("add_child", level_portion_scene_instance)
 	level_portion_scene_instance.position = Vector2(Globals.LEVEL_SIZE, 0)
 	
