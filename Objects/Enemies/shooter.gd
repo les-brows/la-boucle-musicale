@@ -117,7 +117,10 @@ func _on_beat_launched(num_beat: int) -> void:
 		if(player == null):
 			shoot_projectile(Vector2(-1, 0))
 		else :
-			shoot_projectile(player.global_position - global_position)
+			var curr_pos = global_position
+			if(path_follow):
+				curr_pos += path_follow.position
+			shoot_projectile(player.global_position - curr_pos)
 
 
 func shoot_projectile(target_direction: Vector2):
