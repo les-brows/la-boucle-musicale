@@ -80,8 +80,6 @@ func _on_end_level_reached() -> void:
 	for level_portion in level_portions.get_children():
 		level_portion.position = level_portion.position - Vector2(Globals.LEVEL_SIZE, 0)
 	
-	player.generate_partition(Globals.LOOP_COUNT)
-	
 	# Shift character to the left
 	player.position = player.position - Vector2(Globals.LEVEL_SIZE, 0)
 		
