@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dwk14x0nx2c3o"]
 
-[ext_resource type="Script" uid="uid://4qbuspvfr7fg" path="res://Levels/MainMenu/scene_transition.gd" id="1_18qep"]
-[ext_resource type="Shader" uid="uid://cnmmas10jmgg0" path="res://Levels/MainMenu/SceneTransition.gdshader" id="2_6uy47"]
+[ext_resource type="Script" uid="uid://casxe4bxxfop7" path="res://Levels/MainMenu/scene_transition.gd" id="1_18qep"]
+[ext_resource type="Shader" uid="uid://x4yovhlqycbq" path="res://Levels/MainMenu/SceneTransition.gdshader" id="2_6uy47"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cpkaw"]
 shader = ExtResource("2_6uy47")
@@ -36,7 +36,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [1.05, 0.0]
+"values": [1.1, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_cpkaw"]
@@ -51,7 +51,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 1.05]
+"values": [0.0, 1.1]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bbe20"]
