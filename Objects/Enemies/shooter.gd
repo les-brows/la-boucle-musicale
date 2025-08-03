@@ -102,7 +102,7 @@ func _process(delta: float) -> void:
 	if(finito):
 		return
 	if(path_follow):
-		path_follow.progress_ratio += Globals.ENEMY_MOVEMENT_SPEED
+		path_follow.progress_ratio += Globals.ENEMY_MOVEMENT_SPEED*Globals.MOVE_SPEED_MULT_PLAYER
 		if(path_follow.progress_ratio >= 1):
 			path_follow.progress_ratio = 0
 
@@ -138,15 +138,21 @@ func _on_beat_launched(num_beat: int) -> void:
 
 func shoot_projectile(target_direction: Vector2):
 	var shooter_projectile = shooter_projectile_preload.instantiate()
-	var final_position = position
+	var sprite_bullet = shooter_projectile.find_child("Sprite2D")
+	sprite_bullet.scale= Vector2(Globals.BULLET_SIZE_MULT_ENEMY,Globals.BULLET_SIZE_MULT_ENEMY)
+	var collision_shape_bullet =shooter_projectile.find_child("ShooterProjectileCollision")
+	collision_shape_bullet.scale=  Vector2(Globals.BULLET_SIZE_MULT_ENEMY,Globals.BULLET_SIZE_MULT_ENEMY)
 	
+	
+	
+	var final_position = position
 	if(path_follow):
 		final_position += path_follow.position
 	
 	shooter_projectile.set_position(final_position)
 	# May be used when ennemies move
 	var linear_velocity = Vector2.ZERO 
-	shooter_projectile.set_velocity(linear_velocity + target_direction.normalized() * shooter_projectile_speed )
+	shooter_projectile.set_velocity(linear_velocity + target_direction.normalized() * shooter_projectile_speed*Globals.BULLET_TRAVEL_MULT_ENEMY )
 	get_parent().add_child(shooter_projectile)
 	
 

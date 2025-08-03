@@ -79,10 +79,16 @@ func _on_beat_launched(num_beat: int) -> void:
 
 func shoot_projectile(target_direction: Vector2):
 		var player_projectile = shooter_projectile_preload.instantiate()
+		var sprite_bullet =player_projectile.find_child("Sprite2D")
+		sprite_bullet.scale=  Vector2(Globals.BULLET_SIZE_MULT_PLAYER,Globals.BULLET_SIZE_MULT_PLAYER)
+		var collision_shape_bullet =player_projectile.find_child("PlayerProjectileCollision")
+		collision_shape_bullet.scale= Vector2(Globals.BULLET_SIZE_MULT_PLAYER,Globals.BULLET_SIZE_MULT_PLAYER)
+		
+		
 		var copyposition=get_parent().position
 		# May be used when ennemies move
 		var linear_velocity = Vector2.ZERO 
 		
 		get_parent().get_parent().add_child(player_projectile)
 		player_projectile.set_position( copyposition)
-		player_projectile.set_velocity(linear_velocity + target_direction.normalized() * shooter_projectile_speed )
+		player_projectile.set_velocity(linear_velocity + target_direction.normalized() * shooter_projectile_speed *Globals.BULLET_TRAVEL_MULT_PLAYER)

@@ -98,10 +98,15 @@ func shoot_multiple_projectiles():
 func shoot_projectile(target_direction: Vector2 ,position_offset: Vector2 ):
 	
 	var shooter_projectile = shooter_projectile_preload.instantiate()
+	var sprite_bullet = shooter_projectile.find_child("Sprite2D")
+	sprite_bullet.scale= Vector2(Globals.BULLET_SIZE_MULT_ENEMY,Globals.BULLET_SIZE_MULT_ENEMY)
+	var collision_shape_bullet =shooter_projectile.find_child("TurretProjectileCollision")
+	collision_shape_bullet.scale=  Vector2(Globals.BULLET_SIZE_MULT_ENEMY,Globals.BULLET_SIZE_MULT_ENEMY)
+	
 	shooter_projectile.set_position(position + position_offset )
 	# May be used when ennemies move
 	var linear_velocity = Vector2.ZERO 
-	shooter_projectile.set_velocity(linear_velocity + target_direction.normalized() * shooter_projectile_speed )
+	shooter_projectile.set_velocity(linear_velocity + target_direction.normalized() * shooter_projectile_speed*Globals.BULLET_TRAVEL_MULT_ENEMY )
 	get_parent().add_child(shooter_projectile)
 
 
