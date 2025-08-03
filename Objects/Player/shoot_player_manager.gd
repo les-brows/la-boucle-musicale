@@ -120,7 +120,7 @@ func shoot_projectile(target_direction: Vector2):
 					decalage=Vector2((i+1)/2*40,30*((i+1)/2))
 				else :
 					decalage=Vector2((i+1)/2*40,-30*((i+1)/2))
-		print(decalage)
+		
 		var copyposition=get_parent().position + decalage
 		# May be used when ennemies move
 		var linear_velocity = Vector2.ZERO 
