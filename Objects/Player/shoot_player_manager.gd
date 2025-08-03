@@ -32,10 +32,23 @@ func _on_player_direction_shoot (shoot_x:float , shoot_y:float):
 
 func _init() -> void:
 	Globals.beat_launched.connect(_on_beat_launched)
-	var list_notes: Array[Note] = [Note.new(0, 0, 3),Note.new(4, 0, -2), 
-								   Note.new(7, 0, -2), Note.new(8, 0, 3)]
+	var list_notes: Array[Note] = [Note.new(0, 0, 3),Note.new(4, 0, -2)]
 	nb_shoot= list_notes.size()
 	shoot_partition = Partition.new(8, 8, list_notes)
+
+func generate_partition(loop_count: int):
+	match loop_count:
+		0:
+			var list_notes: Array[Note] = [Note.new(0, 0, 3),Note.new(4, 0, -2), 
+										   Note.new(7, 0, -2)]
+			nb_shoot= list_notes.size()
+			shoot_partition = Partition.new(8, 8, list_notes)
+		_:
+			var list_notes: Array[Note] = [Note.new(0, 0, 3),Note.new(4, 0, -2), 
+										   Note.new(7, 0, -2), Note.new(8, 0, 3)]
+			nb_shoot= list_notes.size()
+			shoot_partition = Partition.new(8, 8, list_notes)
+			pass
 
 func _process(delta: float) -> void:
 	if(boing_state > 0):

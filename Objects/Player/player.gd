@@ -176,6 +176,9 @@ func _on_beat_launched(_beat: int):
 		try_play_dash_sound = false
 		$PlayerDashSfx.play()
 
+func generate_partition(loop_count: int):
+	$ShootPlayerManager.generate_partition(loop_count)
+
 
 func DashCooldownTimer_timeOut()->void:
 	dashCooldown=false

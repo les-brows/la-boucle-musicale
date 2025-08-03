@@ -25,12 +25,11 @@ var health_bar: TextureProgressBar
 
 func _init() -> void:
 	super()
-	generate_partition(Globals.LOOP_COUNT)
+	generate_partition(Globals.LOOP_COUNT, 0)
 
-
-func generate_partition(loop_count: int):
+func generate_partition(loop_count: int, _pattern_variant: int):
 	match loop_count:
-		0:
+		0, 1, 2:
 			var list_notes: Array[Note] = [Note.new(0, 0, 3), Note.new(3, 0, -2), Note.new(4, 0, 3)]
 			shoot_partition = Partition.new(8, 8, list_notes)
 		_:
@@ -45,16 +44,15 @@ func generate_partition(loop_count: int):
 			pass
 
 	
-func _ready() -> void:
-	choose_movement_pattern()
-
-func choose_movement_pattern():
+func choose_movement_pattern(pattern: int):
+	if(horizontal_path == null or vertical_path == null or diamond_path == null):
+		await ready
 	var rng = RandomNumberGenerator.new()
-	rng.randomize()
-	var random_num: int = rng.randi_range(0, EnemyMovementPattern.SIZE - 1)
-	match random_num:
+	if(pattern == EnemyMovementPattern.RANDOM):
+		rng.randomize()
+		pattern = rng.randi_range(0, EnemyMovementPattern.SIZE - 1)
+	match pattern:
 		EnemyMovementPattern.HORIZONTAL:
-			movement_pattern = EnemyMovementPattern.HORIZONTAL
 			spriteEnemy = $HorizontalPath/PathFollow2D/Subgroup/Sprite2D
 			health_bar = $HorizontalPath/PathFollow2D/HealthBar
 			path_follow = horizontal_path
@@ -62,7 +60,6 @@ func choose_movement_pattern():
 			vertical_path.queue_free()
 			diamond_path.queue_free()
 		EnemyMovementPattern.VERTICAL:
-			movement_pattern = EnemyMovementPattern.VERTICAL
 			spriteEnemy = $VerticalPath/PathFollow2D/Subgroup/Sprite2D
 			health_bar = $VerticalPath/PathFollow2D/HealthBar
 			path_follow = vertical_path
@@ -71,7 +68,6 @@ func choose_movement_pattern():
 			horizontal_path.queue_free()
 			diamond_path.queue_free()
 		EnemyMovementPattern.DIAMOND:
-			movement_pattern = EnemyMovementPattern.DIAMOND
 			spriteEnemy = $DiamondPath/PathFollow2D/Subgroup/Sprite2D
 			health_bar = $DiamondPath/PathFollow2D/HealthBar
 			path_follow = diamond_path
@@ -79,25 +75,33 @@ func choose_movement_pattern():
 			
 			horizontal_path.queue_free()
 			vertical_path.queue_free()
+		_:
+			spriteEnemy = $VerticalPath/PathFollow2D/Subgroup/Sprite2D
+			horizontal_path.queue_free()
+			diamond_path.queue_free()
 			
-	path_follow.progress_ratio = rng.randf_range(0, 1)
+	
+	if(path_follow):
+		path_follow.progress_ratio = rng.randf_range(0, 1)
 
 func _process(delta: float) -> void:
 	if(finito):
 		return
-	path_follow.progress_ratio += Globals.ENEMY_MOVEMENT_SPEED
-	if(path_follow.progress_ratio >= 1):
-		path_follow.progress_ratio = 0
+	if(path_follow):
+		path_follow.progress_ratio += Globals.ENEMY_MOVEMENT_SPEED
+		if(path_follow.progress_ratio >= 1):
+			path_follow.progress_ratio = 0
 
-	if(boing_state > 0):
-		if(boing_state < NB_SECONDS_BOING_RECOVER):
-			spriteEnemy.get_parent().scale -= Vector2.ONE * delta / NB_SECONDS_BOING_RECOVER * MAX_HEIGHT_BOING
-			pass
+	if(spriteEnemy):
+		if(boing_state > 0):
+			if(boing_state < NB_SECONDS_BOING_RECOVER):
+				spriteEnemy.get_parent().scale -= Vector2.ONE * delta / NB_SECONDS_BOING_RECOVER * MAX_HEIGHT_BOING
+				pass
+			else:
+				spriteEnemy.get_parent().scale += Vector2.ONE * delta / NB_SECONDS_BOING_JUMP * MAX_HEIGHT_BOING
+				pass
 		else:
-			spriteEnemy.get_parent().scale += Vector2.ONE * delta / NB_SECONDS_BOING_JUMP * MAX_HEIGHT_BOING
-			pass
-	else:
-		spriteEnemy.get_parent().scale =  Vector2.ONE
+			spriteEnemy.get_parent().scale =  Vector2.ONE
 	boing_state -= delta
 
 
@@ -117,7 +121,12 @@ func _on_beat_launched(num_beat: int) -> void:
 
 func shoot_projectile(target_direction: Vector2):
 	var shooter_projectile = shooter_projectile_preload.instantiate()
-	shooter_projectile.set_position(position + path_follow.position)
+	var final_position = position
+	
+	if(path_follow):
+		final_position += path_follow.position
+	
+	shooter_projectile.set_position(final_position)
 	# May be used when ennemies move
 	var linear_velocity = Vector2.ZERO 
 	shooter_projectile.set_velocity(linear_velocity + target_direction.normalized() * shooter_projectile_speed )

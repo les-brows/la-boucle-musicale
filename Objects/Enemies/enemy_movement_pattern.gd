@@ -6,5 +6,7 @@ enum {
   HORIZONTAL,
   VERTICAL,
   DIAMOND,
-  SIZE
+  SIZE,
+  UNMOVABLE,
+  RANDOM,
 }
