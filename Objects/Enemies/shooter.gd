@@ -77,6 +77,7 @@ func choose_movement_pattern(pattern: int):
 			vertical_path.queue_free()
 		_:
 			spriteEnemy = $VerticalPath/PathFollow2D/Subgroup/Sprite2D
+			health_bar = $VerticalPath/PathFollow2D/HealthBar
 			horizontal_path.queue_free()
 			diamond_path.queue_free()
 			
