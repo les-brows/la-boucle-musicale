@@ -92,6 +92,8 @@ var invincible : bool = false
 var alphaColor =0
 
 func take_hit():
+	if(finito):
+		return
 	curr_hp -= 1
 	Globals.player_damage.emit(curr_hp)
 	

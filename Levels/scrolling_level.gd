@@ -33,7 +33,7 @@ func _ready():
 	Globals.end_level_reached.connect(_on_end_level_reached)
 	
 	level_portion_previous.position = -Vector2(Globals.LEVEL_SIZE, 0)
-	Globals.LOOP_COUNT = 0
+	Globals.LOOP_COUNT = Globals.INITIAL_LOOP_COUNT
 	
 	
 

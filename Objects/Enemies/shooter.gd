@@ -29,9 +29,17 @@ func _init() -> void:
 
 func generate_partition(loop_count: int, _pattern_variant: int):
 	match loop_count:
-		0, 1, 2:
+		0, 2:
 			var list_notes: Array[Note] = [Note.new(0, 0, 3), Note.new(3, 0, -2), Note.new(4, 0, 3)]
 			shoot_partition = Partition.new(8, 8, list_notes)
+		1:
+			match _pattern_variant:
+				0:
+					var list_notes: Array[Note] = [Note.new(0, 0, 3), Note.new(4, 0, 3)]
+					shoot_partition = Partition.new(8, 8, list_notes)
+				1:
+					var list_notes: Array[Note] = [Note.new(3, 0, -2)]
+					shoot_partition = Partition.new(8, 8, list_notes)
 		_:
 			var list_notes: Array[Note] = [Note.new(0, 0, 3), Note.new(3, 0, -2), Note.new(5, 0, -2), 
 										   Note.new(7, 0, -2), Note.new(8, 0, 3), Note.new(11, 0, -2),
