@@ -4,6 +4,7 @@ class_name EnemyLevelPortion
 
 var shooter_preload = preload("res://Objects/Enemies/Shooter.tscn");
 var laser_preload = preload("res://Objects/Enemies/Laser.tscn");
+var turret_preload = preload("res://Objects/Enemies/Turret.tscn");
 
 var loop: int = 0
 
@@ -52,6 +53,9 @@ func enemy_generation(player: Player, loop: int):
 				add_enemy(Vector2(randi_range(60, Globals.LEVEL_SIZE / 10.0 - 60) + index * Globals.LEVEL_SIZE / 10.0, 
 								  randi_range(Globals.BOUNDARY_LOW + 200, Globals.BOUNDARY_UP - 200)), 
 						  EnemyType.LASER, EnemyMovementPattern.UNMOVABLE, 0, player, loop)
+				add_enemy(Vector2(randi_range(60, Globals.LEVEL_SIZE / 10.0 - 60) + index * Globals.LEVEL_SIZE / 10.0, 
+								  randi_range(Globals.BOUNDARY_LOW + 200, Globals.BOUNDARY_UP - 200)), 
+						  EnemyType.TURRET, EnemyMovementPattern.UNMOVABLE, 0, player, loop)
 			pass
 		_:
 			for index in range(500):
@@ -69,6 +73,8 @@ func add_enemy(pos: Vector2, enemy_type: int, movement_type: int, pattern_varian
 			curr_enemy.choose_movement_pattern(movement_type)
 		EnemyType.LASER:
 			curr_enemy = laser_preload.instantiate()
+		EnemyType.TURRET:
+			curr_enemy = turret_preload.instantiate()
 	
 	curr_enemy.position = pos
 	curr_enemy.set_player(player)

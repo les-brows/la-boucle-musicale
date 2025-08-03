@@ -44,6 +44,7 @@ func take_hit():
 		queue_free()
 		
 func _on_timer_blink_timeout() -> void:
+	
 	if spriteEnemy.visible==false:
 		spriteEnemy.show()
 	else :
