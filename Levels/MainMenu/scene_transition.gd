@@ -5,7 +5,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	blackRect.material.set_shader_parameter("circle_size", 1.05)
+	blackRect.material.set_shader_parameter("circle_size", 1.1)
 	blackRect.material.set_shader_parameter("screen_width", blackRect.size.x)
 	blackRect.material.set_shader_parameter("screen_height", blackRect.size.y)
 
