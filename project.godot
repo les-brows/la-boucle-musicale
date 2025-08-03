@@ -17,6 +17,10 @@ boot_splash/bg_color=Color(0.204247, 0.0233616, 0.311808, 1)
 boot_splash/image="uid://ceeg143qf5qt4"
 config/icon="uid://b6wcp2ui1plw6"
 
+[audio]
+
+general/default_playback_type.web=0
+
 [autoload]
 
 Globals="*res://globals.gd"
@@ -120,8 +124,3 @@ player1_cancel={
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="Bullet Enemy"
 2d_physics/layer_5="Bullet Player"
-
-[rendering]
-
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
