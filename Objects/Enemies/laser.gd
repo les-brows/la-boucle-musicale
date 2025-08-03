@@ -77,13 +77,41 @@ func _on_beat_launched(num_beat: int) -> void:
 
 func shoot_laser():
 	var laser_projectile: Projectile = laser_projectile_preload.instantiate()
+	laser_projectile.set_position(position)
+	laser_projectile.rotation = $Preshot.rotation 
+	
+	var laser_rotation=laser_projectile.rotation_degrees 
+	# Compute Size Laser until wall
+	var vertical_lenght_until_wall
+	
+	
+	laser_rotation = laser_rotation- int(laser_rotation/ 360)*360
+
+
+	if(laser_rotation<180 ):
+		vertical_lenght_until_wall= Globals.BOUNDARY_UP -position.y +45
+	else :
+		vertical_lenght_until_wall=position.y 
+		
+	var size_laser_y : float =0
+	if(laser_rotation==0):
+		size_laser_y=10
+	else :
+		if(laser_rotation==PI):
+			size_laser_y=vertical_lenght_until_wall
+		else :
+			size_laser_y= abs(vertical_lenght_until_wall/ sin (deg_to_rad(laser_rotation)))
+	
 	var sprite_bullet =laser_projectile.find_child("Sprite2D")
 	sprite_bullet.scale.x= Globals.BULLET_SIZE_MULT_ENEMY
-	var collision_shape_bullet =laser_projectile.find_child("CollisionShape2D")
-	collision_shape_bullet.scale.x= Globals.BULLET_SIZE_MULT_ENEMY
+	sprite_bullet.scale.y= size_laser_y/250
 	
-	laser_projectile.set_position(position)
-	laser_projectile.rotation = $Preshot.rotation
+	var collision_shape_bullet =laser_projectile.find_child("CollisionShape2D")
+	collision_shape_bullet.scale.y= Globals.BULLET_SIZE_MULT_ENEMY
+	collision_shape_bullet.scale.y= size_laser_y/250
+	
+
+	
 	# May be used when ennemies move
 	laser_projectile.set_velocity(Vector2.from_angle($Preshot.rotation) * 0.0001)
 	get_parent().add_child(laser_projectile)
