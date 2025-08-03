@@ -40,7 +40,17 @@ func _ready():
 	Globals.LOOP_COUNT = Globals.INITIAL_LOOP_COUNT
 	Globals.CAMERA_SPEED = Globals.CAMERA_SPEED_INTIAL
 	
-	
+	Globals.DMG_BULLET = 1.0
+	Globals.MOVE_SPEED_MULT_PLAYER = 1.0
+	Globals.MOVE_SPEED_MULT_ENEMY = 1.0
+	Globals.BULLET_TRAVEL_MULT_PLAYER = 1.0
+	Globals.BULLET_TRAVEL_MULT_ENEMY = 1.0
+	Globals.CURRENT_HP_PLAYER = Globals.MAX_HP
+	Globals.BULLET_SIZE_MULT_PLAYER = 1.0
+	Globals.BULLET_SIZE_MULT_ENEMY = 1.0
+	Globals.NB_BULLET_PLAYER = 1
+	Globals.MELODY_LEVEL = 0
+	Globals.LUCK_DODGE = 0
 
 func _on_middle_level_reached() -> void:
 	currently_moving_level_end = false
