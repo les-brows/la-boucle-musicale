@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://b221e60ap4jq7"]
 
-[ext_resource type="Script" uid="uid://cwtcx1brv0mfl" path="res://Objects/Player/player.gd" id="1_we6tp"]
-[ext_resource type="Texture2D" uid="uid://bjvp7l5yd6dp1" path="res://Assets/main_char.png" id="2_b0me6"]
+[ext_resource type="Script" uid="uid://pub6xnfjkrv4" path="res://Objects/Player/player.gd" id="1_we6tp"]
+[ext_resource type="Texture2D" uid="uid://bviwwlime62ad" path="res://Assets/main_char.png" id="2_b0me6"]
 [ext_resource type="PackedScene" uid="uid://xsysjhvgb06h" path="res://Objects/Player/ShootPlayerManager.tscn" id="3_b0me6"]
 [ext_resource type="PackedScene" uid="uid://dj2odukkrva8h" path="res://Objects/InputManager.tscn" id="3_cac6a"]
-[ext_resource type="AudioStream" uid="uid://dsswhthtoxi41" path="res://Assets/Sfx/Whoosh 1_2.wav" id="5_1qpp8"]
-[ext_resource type="Script" uid="uid://cveubk8ainva8" path="res://Objects/Player/player_damage_sfx.gd" id="6_nd6ml"]
+[ext_resource type="AudioStream" uid="uid://bwafnxpru14nd" path="res://Assets/Sfx/Whoosh 1_2.wav" id="5_1qpp8"]
+[ext_resource type="Script" uid="uid://chlyfo2qef3c7" path="res://Objects/Player/player_damage_sfx.gd" id="6_nd6ml"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cac6a"]
 size = Vector2(39, 39)

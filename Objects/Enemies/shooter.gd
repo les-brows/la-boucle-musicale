@@ -53,14 +53,14 @@ func choose_movement_pattern():
 	match random_num:
 		EnemyMovementPattern.HORIZONTAL:
 			movement_pattern = EnemyMovementPattern.HORIZONTAL
-			spriteEnemy = $HorizontalPath/PathFollow2D/Sprite2D
+			spriteEnemy = $HorizontalPath/PathFollow2D/Subgroup/Sprite2D
 			path_follow = horizontal_path
 			
 			vertical_path.queue_free()
 			diamond_path.queue_free()
 		EnemyMovementPattern.VERTICAL:
 			movement_pattern = EnemyMovementPattern.VERTICAL
-			spriteEnemy = $VerticalPath/PathFollow2D/Sprite2D
+			spriteEnemy = $VerticalPath/PathFollow2D/Subgroup/Sprite2D
 			path_follow = vertical_path
 			position.y = 300
 			
@@ -68,7 +68,7 @@ func choose_movement_pattern():
 			diamond_path.queue_free()
 		EnemyMovementPattern.DIAMOND:
 			movement_pattern = EnemyMovementPattern.DIAMOND
-			spriteEnemy = $DiamondPath/PathFollow2D/Sprite2D
+			spriteEnemy = $DiamondPath/PathFollow2D/Subgroup/Sprite2D
 			path_follow = diamond_path
 			position.y = clamp(position.y, 300, 400)
 			
@@ -84,13 +84,13 @@ func _process(delta: float) -> void:
 
 	if(boing_state > 0):
 		if(boing_state < NB_SECONDS_BOING_RECOVER):
-			scale -= Vector2.ONE * delta / NB_SECONDS_BOING_RECOVER * MAX_HEIGHT_BOING
+			spriteEnemy.get_parent().scale -= Vector2.ONE * delta / NB_SECONDS_BOING_RECOVER * MAX_HEIGHT_BOING
 			pass
 		else:
-			scale += Vector2.ONE * delta / NB_SECONDS_BOING_JUMP * MAX_HEIGHT_BOING
+			spriteEnemy.get_parent().scale += Vector2.ONE * delta / NB_SECONDS_BOING_JUMP * MAX_HEIGHT_BOING
 			pass
 	else:
-		scale =  Vector2.ONE
+		spriteEnemy.get_parent().scale =  Vector2.ONE
 	boing_state -= delta
 
 

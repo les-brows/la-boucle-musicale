@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://b5w0jynn6mkxk"]
 
-[ext_resource type="Script" uid="uid://83fb1cip5bqp" path="res://Objects/Enemies/shooter.gd" id="1_8c5hv"]
-[ext_resource type="Texture2D" uid="uid://cp85vq3wxfloq" path="res://Assets/base_enemy.png" id="2_qpsbd"]
+[ext_resource type="Script" uid="uid://biu7hkvefgm4s" path="res://Objects/Enemies/shooter.gd" id="1_8c5hv"]
+[ext_resource type="Texture2D" uid="uid://d3dq34i68t3iw" path="res://Assets/base_enemy.png" id="2_qpsbd"]
 [ext_resource type="AudioStream" uid="uid://c312tfe2javtd" path="res://Assets/Instruments/KSHMR_Bass_Pluck_02_A#.wav" id="3_qpsbd"]
 
 [sub_resource type="Curve2D" id="Curve2D_txwwr"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 400, 0, 0, 0, 0, 0, -400, 0, 0, 0, 0, 0, 0, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 290, 0, 0, 0, 0, 0, -290, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 4
 
@@ -36,29 +36,31 @@ pitch_scale = 0.49
 max_distance = 750.0
 attenuation = 0.460596
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(0.499999, 0.249996)
-scale = Vector2(6.25, 6.075)
-
 [node name="TimerBlink" type="Timer" parent="."]
 
 [node name="HorizontalPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_txwwr")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="HorizontalPath"]
-position = Vector2(400.035, 0)
+position = Vector2(179.683, 0)
 progress = 400.32
 rotates = false
 
-[node name="Sprite2D" type="Sprite2D" parent="HorizontalPath/PathFollow2D"]
+[node name="Subgroup" type="Node2D" parent="HorizontalPath/PathFollow2D"]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="HorizontalPath/PathFollow2D/Subgroup"]
+position = Vector2(-0.0347595, 1)
+scale = Vector2(6.25, 6.075)
+
+[node name="Sprite2D" type="Sprite2D" parent="HorizontalPath/PathFollow2D/Subgroup"]
 scale = Vector2(0.427586, 0.427586)
 texture = ExtResource("2_qpsbd")
 
-[node name="ShooterCollisionArea2D" type="Area2D" parent="HorizontalPath/PathFollow2D"]
+[node name="ShooterCollisionArea2D" type="Area2D" parent="HorizontalPath/PathFollow2D/Subgroup"]
 collision_layer = 4
 collision_mask = 16
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HorizontalPath/PathFollow2D/ShooterCollisionArea2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HorizontalPath/PathFollow2D/Subgroup/ShooterCollisionArea2D"]
 position = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_bweyu")
 
@@ -69,15 +71,21 @@ curve = SubResource("Curve2D_4u4qj")
 progress = 400.32
 rotates = false
 
-[node name="Sprite2D" type="Sprite2D" parent="VerticalPath/PathFollow2D"]
+[node name="Subgroup" type="Node2D" parent="VerticalPath/PathFollow2D"]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="VerticalPath/PathFollow2D/Subgroup"]
+position = Vector2(1, -1.5)
+scale = Vector2(6.4, 5.85)
+
+[node name="Sprite2D" type="Sprite2D" parent="VerticalPath/PathFollow2D/Subgroup"]
 scale = Vector2(0.427586, 0.427586)
 texture = ExtResource("2_qpsbd")
 
-[node name="ShooterCollisionArea2D" type="Area2D" parent="VerticalPath/PathFollow2D"]
+[node name="ShooterCollisionArea2D" type="Area2D" parent="VerticalPath/PathFollow2D/Subgroup"]
 collision_layer = 4
 collision_mask = 16
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="VerticalPath/PathFollow2D/ShooterCollisionArea2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VerticalPath/PathFollow2D/Subgroup/ShooterCollisionArea2D"]
 position = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_bweyu")
 
@@ -89,21 +97,31 @@ position = Vector2(116.932, 83.0683)
 progress = 400.32
 rotates = false
 
-[node name="Sprite2D" type="Sprite2D" parent="DiamondPath/PathFollow2D"]
+[node name="Subgroup" type="Node2D" parent="DiamondPath/PathFollow2D"]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="DiamondPath/PathFollow2D/Subgroup"]
+position = Vector2(-1.43171, 0.431705)
+scale = Vector2(6.35, 6.15)
+
+[node name="Sprite2D" type="Sprite2D" parent="DiamondPath/PathFollow2D/Subgroup"]
 scale = Vector2(0.427586, 0.427586)
 texture = ExtResource("2_qpsbd")
 
-[node name="ShooterCollisionArea2D" type="Area2D" parent="DiamondPath/PathFollow2D"]
+[node name="ShooterCollisionArea2D" type="Area2D" parent="DiamondPath/PathFollow2D/Subgroup"]
 collision_layer = 4
 collision_mask = 16
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DiamondPath/PathFollow2D/ShooterCollisionArea2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DiamondPath/PathFollow2D/Subgroup/ShooterCollisionArea2D"]
 position = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_bweyu")
 
-[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="TimerBlink" to="." method="_on_timer_blink_timeout"]
-[connection signal="area_entered" from="HorizontalPath/PathFollow2D/ShooterCollisionArea2D" to="." method="_on_shooter_collision_area_2d_area_entered"]
-[connection signal="area_entered" from="VerticalPath/PathFollow2D/ShooterCollisionArea2D" to="." method="_on_shooter_collision_area_2d_area_entered"]
-[connection signal="area_entered" from="DiamondPath/PathFollow2D/ShooterCollisionArea2D" to="." method="_on_shooter_collision_area_2d_area_entered"]
+[connection signal="screen_entered" from="HorizontalPath/PathFollow2D/Subgroup/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="HorizontalPath/PathFollow2D/Subgroup/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="area_entered" from="HorizontalPath/PathFollow2D/Subgroup/ShooterCollisionArea2D" to="." method="_on_shooter_collision_area_2d_area_entered"]
+[connection signal="screen_entered" from="VerticalPath/PathFollow2D/Subgroup/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VerticalPath/PathFollow2D/Subgroup/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="area_entered" from="VerticalPath/PathFollow2D/Subgroup/ShooterCollisionArea2D" to="." method="_on_shooter_collision_area_2d_area_entered"]
+[connection signal="screen_entered" from="DiamondPath/PathFollow2D/Subgroup/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="DiamondPath/PathFollow2D/Subgroup/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="area_entered" from="DiamondPath/PathFollow2D/Subgroup/ShooterCollisionArea2D" to="." method="_on_shooter_collision_area_2d_area_entered"]
