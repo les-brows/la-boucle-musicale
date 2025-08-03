@@ -65,10 +65,29 @@ func enemy_generation(player: Player, loop: int):
 						  EnemyType.TURRET, EnemyMovementPattern.UNMOVABLE, 0, player, loop)
 			pass
 		_:
-			for index in range(500):
-				add_enemy(Vector2(randi_range(500, 4500), randi_range(Globals.BOUNDARY_LOW + 60, Globals.BOUNDARY_UP - 60)), 
-							EnemyType.SHOOTER, EnemyMovementPattern.UNMOVABLE, 0, player, loop)
-				print("NOT IMPLEMENTED GET DUNKED ON")
+			var infinite_count: int = loop % 3
+			match infinite_count:
+				2:
+					var subdiv: float = 10.0
+					for index in range(subdiv):
+						add_enemy(Vector2(randi_range(60, Globals.LEVEL_SIZE / (subdiv + 1) - 60) + index * Globals.LEVEL_SIZE / (subdiv + 1), 
+										  randi_range(Globals.BOUNDARY_LOW + 60, Globals.BOUNDARY_LOW + 60 + 100)), 
+								  EnemyType.LASER, EnemyMovementPattern.UNMOVABLE, 0, player, loop)
+						add_enemy(Vector2(randi_range(60, Globals.LEVEL_SIZE / (subdiv + 1) - 60) + index * Globals.LEVEL_SIZE / (subdiv + 1), 
+										  randi_range(Globals.BOUNDARY_UP - 60, Globals.BOUNDARY_UP - 60 - 100)), 
+								  EnemyType.LASER, EnemyMovementPattern.UNMOVABLE, 1, player, loop)
+					
+					subdiv = 4.0
+					for index in range(subdiv):
+						add_enemy(Vector2(randi_range(60, Globals.LEVEL_SIZE / ((subdiv + 1 ) + 1) - 60) + (index + 1) * Globals.LEVEL_SIZE / ((subdiv + 1) + 1), 
+										  (Globals.BOUNDARY_LOW + Globals.BOUNDARY_UP + 60) / 2), 
+								  EnemyType.TURRET, EnemyMovementPattern.UNMOVABLE, 0, player, loop)
+					
+				_:
+					for index in range(500):
+						add_enemy(Vector2(randi_range(500, 4500), randi_range(Globals.BOUNDARY_LOW + 60, Globals.BOUNDARY_UP - 60)), 
+									EnemyType.SHOOTER, EnemyMovementPattern.UNMOVABLE, 0, player, loop)
+						print("NOT IMPLEMENTED GET DUNKED ON")
 
 
 func add_enemy(pos: Vector2, enemy_type: int, movement_type: int, pattern_variant: int, player: Player, loop: int):
