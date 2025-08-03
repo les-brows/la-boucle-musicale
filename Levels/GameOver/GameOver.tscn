@@ -1,34 +1,24 @@
 [gd_scene load_steps=3 format=3 uid="uid://kqev23ha0sgh"]
 
-[ext_resource type="Script" uid="uid://bxq0syvt2nhly" path="res://Levels/GameOver/game_over.gd" id="1_ldpij"]
-[ext_resource type="FontFile" uid="uid://b2x0u6lilgwm3" path="res://Assets/ThaleahFat.ttf" id="2_jbvyr"]
+[ext_resource type="Script" uid="uid://dnmjwharo4wo7" path="res://Levels/GameOver/game_over.gd" id="1_ldpij"]
+[ext_resource type="FontFile" uid="uid://dutr1gb421wvd" path="res://Assets/ThaleahFat.ttf" id="2_jbvyr"]
 
-[node name="GameOver" type="Control"]
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="GameOver" type="CanvasLayer"]
 script = ExtResource("1_ldpij")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
-layout_mode = 1
+[node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0, 0, 0, 0.419608)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-layout_mode = 2
-
-[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer"]
-layout_mode = 2
+[node name="Label" type="Label" parent="."]
+offset_left = 144.0
+offset_top = 232.0
+offset_right = 1007.0
+offset_bottom = 416.0
 theme_override_constants/outline_size = 50
 theme_override_fonts/font = ExtResource("2_jbvyr")
 theme_override_font_sizes/font_size = 200
