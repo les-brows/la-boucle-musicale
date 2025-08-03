@@ -29,7 +29,8 @@ var ENEMY_MOVEMENT_SPEED: float = 0.0005
 var INVINCIBILITY_TIMER: float = 1
 var MAX_HP: int = 10
  
-var LOOP_COUNT: int = 0
+const INITIAL_LOOP_COUNT: int = 0
+var LOOP_COUNT: int = INITIAL_LOOP_COUNT
 
 var COOLDOWN_DASH=2
 var DASH_TIME=0.4

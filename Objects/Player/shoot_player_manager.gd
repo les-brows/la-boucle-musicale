@@ -32,9 +32,7 @@ func _on_player_direction_shoot (shoot_x:float , shoot_y:float):
 
 func _init() -> void:
 	Globals.beat_launched.connect(_on_beat_launched)
-	var list_notes: Array[Note] = [Note.new(0, 0, 3),Note.new(4, 0, -2)]
-	nb_shoot= list_notes.size()
-	shoot_partition = Partition.new(8, 8, list_notes)
+	generate_partition(Globals.LOOP_COUNT)
 
 func generate_partition(loop_count: int):
 	match loop_count:

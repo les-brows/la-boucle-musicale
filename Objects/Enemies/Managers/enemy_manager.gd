@@ -10,13 +10,13 @@ var player: Player = null
 
 func _init() -> void:
 	var curr_enemy_level_portion: EnemyLevelPortion = enemy_level_portion_preload.instantiate()
-	curr_enemy_level_portion.enemy_generation(player, 0)
+	curr_enemy_level_portion.enemy_generation(player, Globals.LOOP_COUNT)
 	curr_enemy_level_portion.position = Vector2(-Globals.LEVEL_SIZE, 0)
 	list_enemy_level_portions.append(curr_enemy_level_portion)
 	call_deferred("add_child", curr_enemy_level_portion)
 	
 	var next_enemy_level_portion: EnemyLevelPortion = enemy_level_portion_preload.instantiate()
-	next_enemy_level_portion.enemy_generation(player, 0)
+	next_enemy_level_portion.enemy_generation(player,  Globals.LOOP_COUNT )
 	list_enemy_level_portions.append(next_enemy_level_portion)
 	call_deferred("add_child", next_enemy_level_portion)
 	

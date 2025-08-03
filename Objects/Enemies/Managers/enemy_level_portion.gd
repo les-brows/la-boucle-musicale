@@ -6,12 +6,6 @@ var shooter_preload = preload("res://Objects/Enemies/Shooter.tscn");
 var laser_preload = preload("res://Objects/Enemies/Laser.tscn");
 var turret_preload = preload("res://Objects/Enemies/Turret.tscn");
 
-var loop: int = 0
-
-
-func set_loop(_loop: int):
-	loop = _loop
- 
 func set_player(player: Player):
 	for enemy in get_children():
 		if enemy is Enemy:
@@ -42,11 +36,11 @@ func enemy_generation(player: Player, loop: int):
 				#add_enemy(Vector2(Globals.LEVEL_SIZE / 20.0 + ((index + 1) * 2) * Globals.LEVEL_SIZE / 10.0, 
 								 #Globals.BOUNDARY_LOW + 60), EnemyType.LASER, player, loop)
 				add_enemy(Vector2(Globals.LEVEL_SIZE / 20.0 + (index * 2) * Globals.LEVEL_SIZE / 10.0, 
-								  Globals.BOUNDARY_UP - 60), EnemyType.SHOOTER, EnemyMovementPattern.UNMOVABLE, 0, player, loop)
+								  Globals.BOUNDARY_UP - 60), EnemyType.SHOOTER, EnemyMovementPattern.UNMOVABLE, 1, player, loop)
 		2:
 			for index in range(10):
 				add_enemy(Vector2(Globals.LEVEL_SIZE / 20.0 + index * Globals.LEVEL_SIZE / 10.0, 
-								 (Globals.BOUNDARY_LOW + Globals.BOUNDARY_UP + 60)  / 2), EnemyType.LASER, EnemyMovementPattern.UNMOVABLE, index % 2, player, loop)
+								 (Globals.BOUNDARY_LOW + Globals.BOUNDARY_UP + 60)  / 2.0), EnemyType.LASER, EnemyMovementPattern.UNMOVABLE, index % 2, player, loop)
 		3:
 			#Cut the map in ten, with at least one enemy in each trunk
 			for index in range(10):
