@@ -37,6 +37,10 @@ func _init() -> void:
 func generate_partition(loop_count: int):
 	match loop_count:
 		0:
+			var list_notes: Array[Note] = [Note.new(0, 0, 3),Note.new(4, 0, -2)]
+			nb_shoot= list_notes.size()
+			shoot_partition = Partition.new(8, 8, list_notes)
+		1:
 			var list_notes: Array[Note] = [Note.new(0, 0, 3),Note.new(4, 0, -2), 
 										   Note.new(7, 0, -2)]
 			nb_shoot= list_notes.size()

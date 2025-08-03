@@ -29,8 +29,8 @@ func _init() -> void:
 
 func generate_partition(loop_count: int, _pattern_variant: int):
 	match loop_count:
-		0, 2:
-			var list_notes: Array[Note] = [Note.new(0, 0, 3), Note.new(3, 0, -2), Note.new(4, 0, 3)]
+		0:
+			var list_notes: Array[Note] = [Note.new(0, 0, 3), Note.new(4, 0, 3)]
 			shoot_partition = Partition.new(8, 8, list_notes)
 		1:
 			match _pattern_variant:
@@ -159,6 +159,3 @@ func take_hit():
 	var health_percent: float = hp_enemy as float / hp_max_enemy as float
 	health_percent *= 100
 	health_bar_tween.tween_property(health_bar, "value", health_percent, Globals.HEALTHBAR_TWEEN_TIMEOUT)
-	print(health_percent)
-	print(hp_enemy)
-	print(hp_max_enemy)

@@ -1,7 +1,7 @@
 extends Enemy
 
 var shooter_projectile_preload = preload("res://Objects/Projectiles/TurretProjectile.tscn");
-var shooter_projectile_speed: float = 1000
+var shooter_projectile_speed: float = 500
 
 var rotationBullet=0;
 var turret_angular_speed=15;
@@ -23,7 +23,10 @@ func _init() -> void:
 
 func generate_partition(loop_count: int, _pattern_variant: int):
 	match loop_count:
-		0, 1, 2:
+		0:
+			var list_notes: Array[Note] = [Note.new(10, 0, 1), Note.new(11, 0, 1), Note.new(14, 0, -2) ]
+			shoot_partition = Partition.new(4, 16, list_notes)
+		1, 2:
 			var list_notes: Array[Note] = [Note.new(0, 0, 3), Note.new(3, 0, -2), Note.new(4, 0, 3)]
 			shoot_partition = Partition.new(8, 8, list_notes)
 		_:
@@ -61,7 +64,8 @@ func _on_beat_launched(num_beat: int) -> void:
 	if(num_beat == shoot_partition.get_next_beat(num_beat)):
 		boing_state = NB_SECONDS_BOING_RECOVER + NB_SECONDS_BOING_JUMP
 		var note = shoot_partition.get_curr_note()
-		
+		$InstrumentPlayer.pitch_scale = pow(2, note.pitch/12.0)
+		$InstrumentPlayer.play()
 		shoot_multiple_projectiles()
 		
 		
@@ -71,7 +75,7 @@ func shoot_multiple_projectiles():
 	if hasRotationBullet:
 		rotationshoot=rotationBullet
 	for i in range(0,nb_projectile_shoot,1):
-		var angle =i*(360/nb_projectile_shoot)+90 +rotationshoot
+		var angle = i*(360.0/nb_projectile_shoot) + 90 + rotationshoot
 		var rotation_radians = deg_to_rad(angle)
 		var direction = Vector2(cos(rotation_radians), sin(rotation_radians))
 		
