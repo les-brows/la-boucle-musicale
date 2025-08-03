@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://kf8tcogy2w07"]
 
-[ext_resource type="Script" uid="uid://dr6n8rbr47fk3" path="res://Levels/MainMenu/main_menu.gd" id="1_g6pvw"]
+[ext_resource type="Script" uid="uid://ltx2w5l1itk1" path="res://Levels/MainMenu/main_menu.gd" id="1_g6pvw"]
 [ext_resource type="PackedScene" uid="uid://dwk14x0nx2c3o" path="res://Levels/MainMenu/SceneTransition.tscn" id="2_mp53d"]
-[ext_resource type="FontFile" uid="uid://b00ycn6e22ofq" path="res://Assets/ThaleahFat.ttf" id="3_h15vq"]
+[ext_resource type="FontFile" uid="uid://b2x0u6lilgwm3" path="res://Assets/ThaleahFat.ttf" id="3_h15vq"]
 
 [node name="MainMenu" type="MarginContainer"]
 anchors_preset = 15
@@ -33,8 +33,8 @@ layout_mode = 2
 theme_override_constants/outline_size = 50
 theme_override_fonts/font = ExtResource("3_h15vq")
 theme_override_font_sizes/font_size = 200
-text = "La boucle
-musicale"
+text = "Sisyphus
+Orchestra"
 horizontal_alignment = 1
 
 [node name="CenterContainer2" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
