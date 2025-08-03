@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b85vsuasrtwxk"]
 
-[ext_resource type="Script" uid="uid://disjqfqx0ug27" path="res://Objects/Enemies/Managers/enemy_level_portion.gd" id="1_cpdip"]
+[ext_resource type="Script" uid="uid://dl1imy1s11ni6" path="res://Objects/Enemies/Managers/enemy_level_portion.gd" id="1_cpdip"]
 
 [node name="EnemyLevelPortion" type="Node2D"]
 script = ExtResource("1_cpdip")
