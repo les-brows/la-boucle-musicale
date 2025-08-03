@@ -12,6 +12,7 @@ var targetDir : Vector2 = Vector2(0, 0)
 @export var spritePlayer  :Sprite2D 
 @export var ShootManagerNode  :Node
 
+@onready var shield_sfx = $ShieldSfx
  
 #Slow
 var mult_slow=1
@@ -129,6 +130,7 @@ func take_hit():
 			#$/root/GameRoom/EnemyHurtSound.play()
 			pass
 	else :
+		shield_sfx.play()
 		print("Dodgee")
 
 func _on_detection_dmg_area_entered(area: Area2D) -> void:

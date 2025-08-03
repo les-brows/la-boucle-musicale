@@ -1,12 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://b221e60ap4jq7"]
+[gd_scene load_steps=11 format=3 uid="uid://b221e60ap4jq7"]
 
-[ext_resource type="Script" uid="uid://dm1pr1a0sq6kn" path="res://Objects/Player/player.gd" id="1_we6tp"]
-[ext_resource type="Texture2D" uid="uid://5mowyujdfm66" path="res://Assets/main_char.png" id="2_b0me6"]
+[ext_resource type="Script" uid="uid://baai41fx676ef" path="res://Objects/Player/player.gd" id="1_we6tp"]
+[ext_resource type="Texture2D" uid="uid://cpyauc2edbyjc" path="res://Assets/main_char.png" id="2_b0me6"]
 [ext_resource type="PackedScene" uid="uid://xsysjhvgb06h" path="res://Objects/Player/ShootPlayerManager.tscn" id="3_b0me6"]
 [ext_resource type="PackedScene" uid="uid://dj2odukkrva8h" path="res://Objects/InputManager.tscn" id="3_cac6a"]
-[ext_resource type="AudioStream" uid="uid://c13i5wcu0jixe" path="res://Assets/Sfx/Whoosh 1_2.wav" id="5_1qpp8"]
-[ext_resource type="Script" uid="uid://bfoubgiwf1a8p" path="res://Objects/Player/player_damage_sfx.gd" id="6_nd6ml"]
-[ext_resource type="Texture2D" uid="uid://dsbdbbmxythtm" path="res://Assets/bullet_circle.png" id="7_nd6ml"]
+[ext_resource type="AudioStream" uid="uid://drp8jy0q8cgmr" path="res://Assets/Sfx/Whoosh 1_2.wav" id="5_1qpp8"]
+[ext_resource type="Script" uid="uid://b7saje2xgrhbh" path="res://Objects/Player/player_damage_sfx.gd" id="6_nd6ml"]
+[ext_resource type="Texture2D" uid="uid://b31qssxpp5u80" path="res://Assets/bullet_circle.png" id="7_nd6ml"]
+[ext_resource type="AudioStream" uid="uid://d1kgeu75bb7f5" path="res://Assets/Sfx/Shield Metal 3_1.wav" id="7_y01d7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cac6a"]
 size = Vector2(39, 39)
@@ -54,6 +55,10 @@ shape = SubResource("CircleShape2D_y01d7")
 stream = ExtResource("5_1qpp8")
 volume_db = -11.243
 script = ExtResource("6_nd6ml")
+
+[node name="ShieldSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_y01d7")
+volume_db = -6.0
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.498039)
