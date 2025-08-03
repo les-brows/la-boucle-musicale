@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://cisvl2m5qemr"]
 
-[ext_resource type="Script" uid="uid://bqmpbbki1xqwm" path="res://Objects/Enemies/laser.gd" id="1_e1rkk"]
-[ext_resource type="Texture2D" uid="uid://dc0pyo34mx3jj" path="res://Assets/base_enemy_LASER.png" id="1_nvvy2"]
-[ext_resource type="AudioStream" uid="uid://np1hpikolrj7" path="res://Assets/Instruments/KSHMR_Thump_Kick_05.wav" id="3_0wytt"]
+[ext_resource type="Script" uid="uid://14hwsshw6gpk" path="res://Objects/Enemies/laser.gd" id="1_e1rkk"]
+[ext_resource type="Texture2D" uid="uid://bubf283u72qhe" path="res://Assets/base_enemy_LASER.png" id="1_nvvy2"]
+[ext_resource type="AudioStream" uid="uid://cu6xd02r7p38t" path="res://Assets/Instruments/KSHMR_Thump_Kick_05.wav" id="3_0wytt"]
 
 [sub_resource type="Gradient" id="Gradient_0wytt"]
 colors = PackedColorArray(0.777595, 0.104468, 0.58986, 1, 0.921569, 0.403922, 0.776471, 0.376471)
