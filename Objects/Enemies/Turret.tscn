@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cyhbsirm3ltwq"]
+[gd_scene load_steps=5 format=3 uid="uid://cyhbsirm3ltwq"]
 
-[ext_resource type="Texture2D" uid="uid://d1uy7ql7mt64k" path="res://Assets/base_enemy.png" id="1_pgenn"]
-[ext_resource type="Script" uid="uid://bmn423uybwrw6" path="res://Objects/Enemies/turret.gd" id="1_xwayi"]
+[ext_resource type="Texture2D" uid="uid://d3dq34i68t3iw" path="res://Assets/base_enemy.png" id="1_pgenn"]
+[ext_resource type="Script" uid="uid://dpfurw8tdk1b0" path="res://Objects/Enemies/turret.gd" id="1_xwayi"]
+[ext_resource type="AudioStream" uid="uid://dmheiluxma71e" path="res://Assets/Instruments/NotePianoC#5.wav" id="3_7j0e1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xwayi"]
 size = Vector2(276, 276)
@@ -29,6 +30,10 @@ collision_mask = 18
 position = Vector2(0, -4)
 scale = Vector2(1.03467, 1.09143)
 shape = SubResource("RectangleShape2D_xwayi")
+
+[node name="InstrumentPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_7j0e1")
+volume_db = -4.952
 
 [connection signal="timeout" from="TimerBlinkTurret" to="." method="_on_timer_blink_turrettimeout"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

@@ -24,8 +24,8 @@ func enemy_generation(player: Player, loop: int):
 				add_enemy(Vector2(Globals.LEVEL_SIZE / 20.0 + ((index + 1) * 2 + 1)* Globals.LEVEL_SIZE / 10.0, 
 								  Globals.BOUNDARY_LOW + 60), 
 								  EnemyType.SHOOTER, EnemyMovementPattern.VERTICAL, 0, player, loop)
-			add_enemy(Vector2(Globals.LEVEL_SIZE / 20.0 + ((1+ 1) * 2 + 1)* Globals.LEVEL_SIZE / 10.0, 
-								  Globals.BOUNDARY_LOW + 60), 
+			add_enemy(Vector2(Globals.LEVEL_SIZE / 20.0 + 4 * Globals.LEVEL_SIZE / 10.0, 
+								  (Globals.BOUNDARY_LOW + Globals.BOUNDARY_UP + 60)  / 2.0), 
 								  EnemyType.TURRET, EnemyMovementPattern.VERTICAL, 0, player, loop)
 		1:
 			#For the first map, let at least 400 px free
