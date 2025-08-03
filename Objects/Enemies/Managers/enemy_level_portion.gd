@@ -30,7 +30,7 @@ func enemy_generation(player: Player, loop: int):
 				add_enemy(Vector2(Globals.LEVEL_SIZE / 20.0 + ((index + 1) * 2 + 1)* Globals.LEVEL_SIZE / 10.0, 
 								  Globals.BOUNDARY_LOW + 60), 
 								  EnemyType.SHOOTER, EnemyMovementPattern.VERTICAL, 0, player, loop)
-			add_enemy(Vector2(Globals.LEVEL_SIZE / 20.0 + ((3 + 1) * 2 + 1)* Globals.LEVEL_SIZE / 10.0, 
+			add_enemy(Vector2(Globals.LEVEL_SIZE / 20.0 + ((1+ 1) * 2 + 1)* Globals.LEVEL_SIZE / 10.0, 
 								  Globals.BOUNDARY_LOW + 60), 
 								  EnemyType.TURRET, EnemyMovementPattern.VERTICAL, 0, player, loop)
 		1:
@@ -77,7 +77,6 @@ func add_enemy(pos: Vector2, enemy_type: int, movement_type: int, pattern_varian
 		EnemyType.LASER:
 			curr_enemy = laser_preload.instantiate()
 		EnemyType.TURRET:
-			print("TUURET CREATED")
 			curr_enemy = turret_preload.instantiate()
 	
 	curr_enemy.position = pos
