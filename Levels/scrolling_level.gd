@@ -34,6 +34,7 @@ func _ready():
 	
 	level_portion_previous.position = -Vector2(Globals.LEVEL_SIZE, 0)
 	Globals.LOOP_COUNT = Globals.INITIAL_LOOP_COUNT
+	Globals.CAMERA_SPEED = Globals.CAMERA_SPEED_INTIAL
 	
 	
 
@@ -67,6 +68,7 @@ func _on_end_level_reached() -> void:
 		
 	currently_moving_level_end = true
 	
+	Globals.CAMERA_SPEED += Globals.CAMERA_SPEED_INCREMENT
 	# Increment loop counter
 	Globals.LOOP_COUNT += 1
 	
