@@ -27,6 +27,10 @@ func generate_partition(loop_count: int, pattern_variant: int):
 					var list_notes: Array[Note] = [Note.new(0, 0, 3), Note.new(4, 0, 3)]
 					shoot_partition = Partition.new(8, 8, list_notes)
 					laser_angular_speed = 4
+		3:
+			var list_notes: Array[Note] = [Note.new(0, 0, 3), Note.new(3, 0, -2), Note.new(5, 0, 3)]
+			shoot_partition = Partition.new(8, 8, list_notes)
+			laser_angular_speed = 4
 		_:
 			var list_notes: Array[Note] = [Note.new(0, 0, 0), Note.new(2, 0, 0), Note.new(5, 0, 0),
 										   Note.new(8, 0, 0), Note.new(16, 0, 0), Note.new(18, 0, 0),

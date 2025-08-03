@@ -6,6 +6,7 @@ func _ready() -> void:
 	
 func _on_player_death():
 	Globals.LOOP_COUNT = Globals.INITIAL_LOOP_COUNT
+	Globals.CAMERA_SPEED = Globals.CAMERA_SPEED_INTIAL
 	print("displaying error")
 	var main_menu = load("res://Levels/MainMenu/MainMenu.tscn")
 	visible = true
