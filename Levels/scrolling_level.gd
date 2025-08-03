@@ -98,7 +98,7 @@ func _on_end_level_reached() -> void:
 	
 func _on_augment_selected() -> void:
 	# Unpause the enemies and their projectiles
-	enemy_manager_node.process_mode = PROCESS_MODE_DISABLED
+	enemy_manager_node.process_mode = Node.PROCESS_MODE_INHERIT
 	
 	# Unpause camera
 	in_augment_menu = false

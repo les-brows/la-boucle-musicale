@@ -1,7 +1,8 @@
 extends CanvasLayer
 
-var currently_selected_augment = 1
-var is_in_augment_menu = false
+var currently_selected_augment: int = 2
+var is_in_augment_menu: bool = false
+var can_pass_end_level: bool = false
 
 @onready var augment_1_texture = $Augments/VBoxContainer/HBoxContainer/Augment_1
 @onready var augment_2_texture = $Augments/VBoxContainer/HBoxContainer/Augment_2
@@ -42,17 +43,24 @@ enum Augment {
 	
 
 func _ready():
-	_on_end_level_reached()
 	Globals.end_level_reached.connect(_on_end_level_reached)
+	Globals.middle_level_reached.connect(_on_middle_level_reached)
 	
 	var shader = load("res://Objects/GameUI/AugmentUI.gdshader")
 	shader_material.shader = shader
 	
+func _on_middle_level_reached() -> void:
+	can_pass_end_level = true
+	
 func _on_end_level_reached() -> void:
+	if not can_pass_end_level:
+		return
+		
+	can_pass_end_level = false
 	generate_augments()
+	update_augment_display(currently_selected_augment)
 	visible = true
 	is_in_augment_menu = true
-	pass
 	
 func _process(_delta: float) -> void:
 	if not is_in_augment_menu:
@@ -60,20 +68,47 @@ func _process(_delta: float) -> void:
 		
 	var new_currently_selected_augment = currently_selected_augment
 		
-	if Input.is_action_pressed("player1_left"):
-		new_currently_selected_augment = clamp(currently_selected_augment, 0, currently_selected_augment - 1)
-	if Input.is_action_pressed("player1_right"):
-		new_currently_selected_augment = clamp(currently_selected_augment, currently_selected_augment + 1, 2)
-	if Input.is_action_pressed("ui_accept"):
+	if Input.is_action_just_pressed("player1_left"):
+		new_currently_selected_augment = max(1, currently_selected_augment - 1)
+	if Input.is_action_just_pressed("player1_right"):
+		new_currently_selected_augment = min(currently_selected_augment + 1, 3)
+	if Input.is_action_just_pressed("ui_accept"):
 		select_augment(currently_selected_augment)
+		# TODO play sound effect
+		visible = false
+		is_in_augment_menu = false
+		Globals.augment_selected.emit()
+		return
 		
 	if new_currently_selected_augment != currently_selected_augment:
+		print(new_currently_selected_augment)
 		currently_selected_augment = new_currently_selected_augment
 		update_augment_display(currently_selected_augment)
 		
 		
 func select_augment(augment_selected) -> void:
-	pass
+	if augment_selected == Augment.ENEMY_BULLET_SIZE:
+		Globals.BULLET_SIZE_MULT_ENEMY *= 0.9
+	if augment_selected == Augment.PLAYER_BULLET_SIZE:
+		Globals.BULLET_SIZE_MULT_PLAYER += 0.1
+	if augment_selected == Augment.ENEMY_BULLET_SPEED:
+		Globals.BULLET_TRAVEL_MULT_ENEMY *= 0.9
+	if augment_selected == Augment.PLAYER_BULLET_SPEED:
+		Globals.BULLET_TRAVEL_MULT_PLAYER += 0.1
+	if augment_selected == Augment.ENEMY_MOVEMENT_SPEED:
+		Globals.MOVE_SPEED_MULT_ENEMY *= 0.9
+	if augment_selected == Augment.PLAYER_MOVEMENT_SPEED:
+		Globals.MOVE_SPEED_MULT_PLAYER += 0.1
+	if augment_selected == Augment.PLAYER_HEAL:
+		Globals.CURRENT_HP_PLAYER = Globals.MAX_HP
+	if augment_selected == Augment.PLAYER_MELODY:
+		Globals.MELODY_LEVEL += 1
+	if augment_selected == Augment.PLAYER_STRENGTH:
+		Globals.DMG_BULLET += 1
+	if augment_selected == Augment.PLAYER_DODGE:
+		Globals.LUCK_DODGE += 10
+	if augment_selected == Augment.PLAYER_BULLET_SPREAD:
+		Globals.NB_BULLET_PLAYER += 1
 	
 func generate_augments() -> void:
 	var valid_augments: bool = false
@@ -91,6 +126,7 @@ func generate_augments() -> void:
 	set_augment_texture(augment_3_texture, augment_3)
 	
 func set_augment_texture(augment_texture, augment) -> void:
+	# TODO set text here
 	if augment == Augment.ENEMY_BULLET_SIZE:
 		augment_texture.texture = ENEMY_BULLET_SIZE_TEXTURE
 	if augment == Augment.PLAYER_BULLET_SIZE:

@@ -25,6 +25,7 @@ position = Vector2(580, 320)
 [node name="GameUI" parent="Camera2D" instance=ExtResource("4_ppgid")]
 
 [node name="AugmentUI" parent="Camera2D" instance=ExtResource("5_87ybl")]
+visible = false
 
 [node name="GameOver" parent="Camera2D" instance=ExtResource("3_6wcv4")]
 visible = false

@@ -33,6 +33,7 @@ var ENEMY_MOVEMENT_SPEED: float = 0.0005
 
 var INVINCIBILITY_TIMER: float = 1
 var MAX_HP: int = 10
+
 const DODGE_MAX_PERCENT = 50
 const MELODY_MAX_LEVEL = 2
 const BULLET_SPREAD_MAX_LEVEL = 2
@@ -57,4 +58,4 @@ var BULLET_SIZE_MULT_PLAYER :float =1
 var BULLET_SIZE_MULT_ENEMY :float =1
 var NB_BULLET_PLAYER = 2
 var MELODY_LEVEL = 1
-var LUCK_DODGE :int = 50
+var LUCK_DODGE :int = 0

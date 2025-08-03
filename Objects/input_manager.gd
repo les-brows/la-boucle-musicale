@@ -8,6 +8,8 @@ signal shoot_direction_update(shoot_x:float,shoot_y:float)
 static var move_directions_x:float = 0
 static var move_directions_y:float = 0
 static var player_dead: bool = false
+static var game_paused: bool = false
+static var can_pass_end_level: bool = false
 
 static var shoot_directions_x:float = 0
 static var shoot_directions_y:float = 0
@@ -21,16 +23,32 @@ func _process(_delta: float) -> void:
 	
 func _init() -> void:
 	Globals.player_death.connect(_on_player_death)
+	Globals.end_level_reached.connect(_on_end_level_reached)
+	Globals.middle_level_reached.connect(_on_middle_level_reached)
+	Globals.augment_selected.connect(_on_augment_selected)
 	player_dead = false
+	game_paused = false
 	
 func _on_player_death():
 	player_dead = true
+	
+func _on_end_level_reached():
+	if not can_pass_end_level:
+		return
+	can_pass_end_level = false
+	game_paused = true
+
+func _on_middle_level_reached() -> void:
+	can_pass_end_level = true
+	
+func _on_augment_selected():
+	game_paused = false
 	
 	
 
 func update_input():
 	# Block inputs if player is dead
-	if player_dead:
+	if player_dead or game_paused:
 		move_update.emit(0, 0)
 		return
 		
