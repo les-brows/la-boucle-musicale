@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://kf8tcogy2w07"]
 
-[ext_resource type="Script" uid="uid://cgc6c0dch1v56" path="res://Levels/MainMenu/main_menu.gd" id="1_g6pvw"]
+[ext_resource type="Script" uid="uid://dxbci7arb8e8m" path="res://Levels/MainMenu/main_menu.gd" id="1_g6pvw"]
 [ext_resource type="PackedScene" uid="uid://dwk14x0nx2c3o" path="res://Levels/MainMenu/SceneTransition.tscn" id="2_mp53d"]
-[ext_resource type="FontFile" uid="uid://chkuyq2bleli5" path="res://Assets/ThaleahFat.ttf" id="3_h15vq"]
+[ext_resource type="FontFile" uid="uid://dutr1gb421wvd" path="res://Assets/ThaleahFat.ttf" id="3_h15vq"]
 
 [node name="MainMenu" type="MarginContainer"]
 anchors_preset = 15
@@ -77,6 +77,26 @@ theme_override_font_sizes/font_size = 50
 text = "> "
 
 [node name="Option" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 30
+theme_override_fonts/font = ExtResource("3_h15vq")
+theme_override_font_sizes/font_size = 50
+text = "Controls"
+
+[node name="CenterContainer3" type="CenterContainer" parent="CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer3"]
+layout_mode = 2
+
+[node name="Selector" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer3/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 30
+theme_override_fonts/font = ExtResource("3_h15vq")
+theme_override_font_sizes/font_size = 50
+text = "> "
+
+[node name="Option" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer3/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/outline_size = 30
 theme_override_fonts/font = ExtResource("3_h15vq")

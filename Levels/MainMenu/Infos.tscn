@@ -1,0 +1,105 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgdpmp1gh6en6"]
+
+[ext_resource type="Script" uid="uid://c7g0mxq6ergwr" path="res://Levels/MainMenu/infos.gd" id="1_7dbdi"]
+[ext_resource type="FontFile" uid="uid://dutr1gb421wvd" path="res://Assets/ThaleahFat.ttf" id="2_7dbdi"]
+
+[node name="Infos" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7dbdi")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0.333333, 0.266667, 0.4, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Infos" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer/Infos"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 40
+theme_override_fonts/font = ExtResource("2_7dbdi")
+theme_override_font_sizes/font_size = 100
+text = "Infos"
+
+[node name="Controls" type="Label" parent="CenterContainer/VBoxContainer/Infos"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("2_7dbdi")
+theme_override_font_sizes/font_size = 40
+text = "The goal of the game is to do as much loops as possible. Your
+projectiles and those of the enemy are synchronized with the
+melody."
+
+[node name="Controls" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer/Controls"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 40
+theme_override_fonts/font = ExtResource("2_7dbdi")
+theme_override_font_sizes/font_size = 100
+text = "Controls"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/Controls"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 200
+
+[node name="Controller" type="VBoxContainer" parent="CenterContainer/VBoxContainer/Controls/HBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer/Controls/HBoxContainer/Controller"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 30
+theme_override_fonts/font = ExtResource("2_7dbdi")
+theme_override_font_sizes/font_size = 70
+text = "Controller"
+
+[node name="Controller" type="Label" parent="CenterContainer/VBoxContainer/Controls/HBoxContainer/Controller"]
+layout_mode = 2
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("2_7dbdi")
+theme_override_font_sizes/font_size = 40
+text = "movement : Left joystick
+shoot : Right joystick
+dash : A
+Exit menu : B"
+
+[node name="Keyboard" type="VBoxContainer" parent="CenterContainer/VBoxContainer/Controls/HBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer/Controls/HBoxContainer/Keyboard"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 30
+theme_override_fonts/font = ExtResource("2_7dbdi")
+theme_override_font_sizes/font_size = 70
+text = "KEYBOARD"
+
+[node name="Keyboard" type="Label" parent="CenterContainer/VBoxContainer/Controls/HBoxContainer/Keyboard"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("2_7dbdi")
+theme_override_font_sizes/font_size = 40
+text = "movement : WASD
+shoot : Arrows
+Dash : SHIFT
+Exit menu : ESC"
