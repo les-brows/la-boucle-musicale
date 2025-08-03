@@ -59,3 +59,5 @@ var BULLET_SIZE_MULT_ENEMY :float =1
 var NB_BULLET_PLAYER = 2
 var MELODY_LEVEL = 1
 var LUCK_DODGE :int = 0
+
+const NB_LEVEL_INFINITE = 2

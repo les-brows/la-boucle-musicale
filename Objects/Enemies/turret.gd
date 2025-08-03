@@ -7,8 +7,8 @@ var rotationBullet=0;
 var turret_angular_speed=15;
 var hasRotationBullet=true
 
-const NB_SECONDS_BOING_JUMP: float = 0.05
-const NB_SECONDS_BOING_RECOVER: float = 0.15
+const NB_SECONDS_BOING_JUMP: float = 0.02
+const NB_SECONDS_BOING_RECOVER: float = 0.05
 const MAX_HEIGHT_BOING: float = 0.1
 
 var boing_state: float = 0
@@ -60,9 +60,34 @@ func generate_partition(loop_count: int, _pattern_variant: int):
 			shoot_partition = Partition.new(4, 64, list_notes)
 			shoot_partition.remove_random_notes(0.5 )
 		_:
-			var infinite_count: int = loop_count % 3
+			var infinite_count: int = loop_count % Globals.NB_LEVEL_INFINITE
 			match infinite_count:
-				2:
+				0:
+					var list_notes: Array[Note] = [Note.new(0, 0, 0), Note.new(4, 0, 7), Note.new(8, 0, 2),
+												   Note.new(12, 0, 7), Note.new(16, 0, 3), Note.new(20, 0, 5),
+												   Note.new(22, 0, 7), Note.new(24, 0, 5), Note.new(28, 0, 9),
+												   Note.new(32 + 0, 0, 12), Note.new(32 + 2, 0, 7), Note.new(32 + 4, 0, 14),
+												   Note.new(32 + 6, 0, 15), Note.new(32 + 8, 0, 14), Note.new(32 + 10, 0, 15),
+												   Note.new(32 + 11, 0, 14), Note.new(32 + 12, 0, 12), Note.new(32 + 14, 0, 10),
+												   Note.new(32 + 16, 0, 7), Note.new(32 + 18, 0, 10), Note.new(32 + 20, 0, 5),
+												   Note.new(32 + 22, 0, 7), Note.new(32 + 24, 0, 3), Note.new(32 + 26, 0, 3),
+												   Note.new(32 + 28, 0, 3), Note.new(32 + 30, 0, 3),
+												   Note.new(64 + 0, 0, 0), Note.new(64 +4, 0, 7), Note.new(64 +8, 0, 2),
+												   Note.new(64 + 12, 0, 7), Note.new(64 +16, 0, 3), Note.new(64 +20, 0, 5),
+												   Note.new(64 + 22, 0, 7), Note.new(64 +24, 0, 5), Note.new(64 +28, 0, 9),
+												   Note.new(64 + 32 + 0, 0, 12), Note.new(64 +32 + 2, 0, 7), Note.new(64 +32 + 4, 0, 14),
+												   Note.new(64 + 32 + 6, 0, 15), Note.new(64 +32 + 8, 0, 14), Note.new(64 +32 + 10, 0, 15),
+												   Note.new(64 + 32 + 11, 0, 14), Note.new(64 +32 + 12, 0, 12), Note.new(64 +32 + 14, 0, 10),
+												   Note.new(64 + 32 + 16, 0, 12), Note.new(64 + 32 + 16 + 2, 0, 12), Note.new(64 + 32 + 16 + 4, 0, 12),
+												   Note.new(64 + 32 + 16 + 6, 0, 12), Note.new(64 + 32 + 16 + 8, 0, 12), Note.new(64 + 32 + 16 + 12, 0, 12),]
+					shoot_partition = Partition.new(2, 128, list_notes)
+					turret_angular_speed = 40
+					nb_projectile_shoot = 10
+					shooter_projectile_speed = 500
+					shoot_partition.remove_random_notes(0.4)
+					
+					
+				1:
 					var list_notes: Array[Note] = [Note.new(0, 0, 0), Note.new(2, 0, 7), Note.new(4, 0, 5),
 												   Note.new(7, 0, 3), Note.new(9, 0, 2), Note.new(11, 0, 0),
 												   Note.new(12, 0, -2), Note.new(14, 0, 2), Note.new(16, 0, 0),
