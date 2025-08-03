@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://kqev23ha0sgh"]
 
-[ext_resource type="Script" uid="uid://bxq0syvt2nhly" path="res://Levels/GameOver/game_over.gd" id="1_ldpij"]
-[ext_resource type="FontFile" uid="uid://b2x0u6lilgwm3" path="res://Assets/ThaleahFat.ttf" id="2_jbvyr"]
+[ext_resource type="Script" uid="uid://dnmjwharo4wo7" path="res://Levels/GameOver/game_over.gd" id="1_ldpij"]
+[ext_resource type="FontFile" uid="uid://dutr1gb421wvd" path="res://Assets/ThaleahFat.ttf" id="2_jbvyr"]
 
 [node name="GameOver" type="CanvasLayer"]
 script = ExtResource("1_ldpij")

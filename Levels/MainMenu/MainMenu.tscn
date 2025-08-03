@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://kf8tcogy2w07"]
 
-[ext_resource type="Script" uid="uid://cgc6c0dch1v56" path="res://Levels/MainMenu/main_menu.gd" id="1_g6pvw"]
+[ext_resource type="Script" uid="uid://dxbci7arb8e8m" path="res://Levels/MainMenu/main_menu.gd" id="1_g6pvw"]
 [ext_resource type="PackedScene" uid="uid://dwk14x0nx2c3o" path="res://Levels/MainMenu/SceneTransition.tscn" id="2_mp53d"]
-[ext_resource type="FontFile" uid="uid://chkuyq2bleli5" path="res://Assets/ThaleahFat.ttf" id="3_h15vq"]
+[ext_resource type="FontFile" uid="uid://dutr1gb421wvd" path="res://Assets/ThaleahFat.ttf" id="3_h15vq"]
 
 [node name="MainMenu" type="MarginContainer"]
 anchors_preset = 15

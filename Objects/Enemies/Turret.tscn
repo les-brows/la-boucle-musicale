@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://cyhbsirm3ltwq"]
 
-[ext_resource type="Script" uid="uid://bmn423uybwrw6" path="res://Objects/Enemies/turret.gd" id="1_xwayi"]
-[ext_resource type="Texture2D" uid="uid://b8lb4f6pdegcs" path="res://Assets/base_enemy_immobile.png" id="2_ybqjd"]
-[ext_resource type="AudioStream" uid="uid://dybefw3fii3bf" path="res://Assets/Instruments/NotePianoC#5.wav" id="3_7j0e1"]
-[ext_resource type="Texture2D" uid="uid://dhvt7l0xppe3j" path="res://Assets/enemy_healthbar_empty.png" id="3_ybqjd"]
-[ext_resource type="Texture2D" uid="uid://dk7phmy5ntsn3" path="res://Assets/enemy_healthbar_full.png" id="4_p1aod"]
+[ext_resource type="Script" uid="uid://cwtn71qk07ipk" path="res://Objects/Enemies/turret.gd" id="1_xwayi"]
+[ext_resource type="Texture2D" uid="uid://cs5u5sqtc4yln" path="res://Assets/base_enemy_immobile.png" id="2_ybqjd"]
+[ext_resource type="AudioStream" uid="uid://cld7tsjl2yfww" path="res://Assets/Instruments/NotePianoC#5.wav" id="3_7j0e1"]
+[ext_resource type="Texture2D" uid="uid://bavgw6w2rrwg8" path="res://Assets/enemy_healthbar_empty.png" id="3_ybqjd"]
+[ext_resource type="Texture2D" uid="uid://dnjuqxg6ygjv0" path="res://Assets/enemy_healthbar_full.png" id="4_p1aod"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xwayi"]
 size = Vector2(115.979, 108.115)

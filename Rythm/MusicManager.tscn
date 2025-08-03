@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bne5gfgl17hng"]
 
-[ext_resource type="Script" uid="uid://b8r8cndyu1hxk" path="res://Rythm/music_manager.gd" id="1_npbc1"]
+[ext_resource type="Script" uid="uid://s0a6fm2brnx5" path="res://Rythm/music_manager.gd" id="1_npbc1"]
 [ext_resource type="PackedScene" uid="uid://sd570mjely02" path="res://Rythm/Metronome.tscn" id="2_aihqw"]
-[ext_resource type="AudioStream" uid="uid://dfps8fk00jtly" path="res://Assets/Instruments/LayerBase.wav" id="2_whquc"]
+[ext_resource type="AudioStream" uid="uid://cghfnx86udn4q" path="res://Assets/Instruments/LayerBase.wav" id="2_whquc"]
 
 [node name="MusicManager" type="Node"]
 script = ExtResource("1_npbc1")

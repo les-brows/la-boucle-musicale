@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://xsysjhvgb06h"]
 
-[ext_resource type="Script" uid="uid://cjj0jjsi6136e" path="res://Objects/Player/shoot_player_manager.gd" id="1_b4x0n"]
-[ext_resource type="AudioStream" uid="uid://btoeoik4qtx3p" path="res://Assets/Instruments/KSHMR_Tight_Snare_02_A.wav" id="2_rfvtx"]
+[ext_resource type="Script" uid="uid://dsxnlu3l80v2o" path="res://Objects/Player/shoot_player_manager.gd" id="1_b4x0n"]
+[ext_resource type="AudioStream" uid="uid://c87emupf2x2sv" path="res://Assets/Instruments/KSHMR_Tight_Snare_02_A.wav" id="2_rfvtx"]
 
 [node name="ShootPlayerManager" type="Node2D"]
 script = ExtResource("1_b4x0n")
