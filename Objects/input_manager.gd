@@ -3,6 +3,8 @@ extends Node
 signal move_update(move_x : Array, move_y : Array)
 signal shoot_update()
 signal dash_update()
+signal slow_end_update()
+signal slow_begin_update()
 signal shoot_direction_update(shoot_x:float,shoot_y:float)
 
 static var move_directions_x:float = 0
@@ -20,6 +22,8 @@ func _process(_delta: float) -> void:
 	update_shoot_input()
 	update_shoot_direction()
 	update_dash_input()
+	update_slow_input()
+	
 	
 func _init() -> void:
 	Globals.player_death.connect(_on_player_death)
@@ -84,7 +88,14 @@ func update_dash_input() -> void:
 	if Input.is_action_just_pressed("player1_dash"):
 		dash_update.emit()
 		
-		
+func update_slow_input() -> void:
+	if Input.is_action_just_pressed("player1_slow"):
+		slow_begin_update.emit()
+	if Input.is_action_just_released("player1_slow"):
+		slow_end_update.emit()
+
+	
+
 func update_shoot_direction():
 	# Horizontal input
 	if Input.is_action_pressed("player1_shoot_left"):
