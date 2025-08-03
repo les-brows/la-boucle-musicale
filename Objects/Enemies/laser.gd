@@ -32,9 +32,9 @@ func generate_partition(loop_count: int, pattern_variant: int):
 			shoot_partition = Partition.new(8, 8, list_notes)
 			laser_angular_speed = 4
 		_:
-			var infinite_count: int = loop_count % 3
+			var infinite_count: int = loop_count % Globals.NB_LEVEL_INFINITE
 			match infinite_count:
-				2:
+				1:
 					var list_notes: Array[Note] = [Note.new(0, 0, 0), Note.new(2, 0, 12), Note.new(4, 0, 0),
 												   Note.new(5, 0, 0), Note.new(6, 0, 12), Note.new(8, 0, 0),
 												   Note.new(9, 0, 0), Note.new(10, 0, 12), Note.new(11, 0, 0),

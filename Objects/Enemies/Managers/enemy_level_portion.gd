@@ -65,9 +65,20 @@ func enemy_generation(player: Player, loop: int):
 						  EnemyType.TURRET, EnemyMovementPattern.UNMOVABLE, 0, player, loop)
 			pass
 		_:
-			var infinite_count: int = loop % 3
+			var infinite_count: int = loop % Globals.NB_LEVEL_INFINITE
 			match infinite_count:
-				2:
+				0:
+					var subdiv: float = 10.0
+					for index in range(subdiv):
+						add_enemy(Vector2(randi_range(60, Globals.LEVEL_SIZE / ((subdiv + 1 ) + 1) - 60) + (index + 1) * Globals.LEVEL_SIZE / ((subdiv + 1) + 1), 
+										  randi_range((Globals.BOUNDARY_LOW + Globals.BOUNDARY_UP ) / 2 - 100, (Globals.BOUNDARY_LOW + Globals.BOUNDARY_UP ) / 2 + 100)), 
+								  EnemyType.TURRET, EnemyMovementPattern.UNMOVABLE, 0, player, loop)
+					subdiv = 5.0
+					for index in range(subdiv):
+						add_enemy(Vector2(randi_range(60, Globals.LEVEL_SIZE / ((subdiv + 1 ) + 1) - 60) + (index + 1) * Globals.LEVEL_SIZE / ((subdiv + 1) + 1), 
+										  randi_range((Globals.BOUNDARY_LOW + Globals.BOUNDARY_UP ) / 2 - 100, (Globals.BOUNDARY_LOW + Globals.BOUNDARY_UP ) / 2 + 100)), 
+								  EnemyType.SHOOTER, EnemyMovementPattern.RANDOM, 0, player, loop)
+				1:
 					var subdiv: float = 10.0
 					for index in range(subdiv):
 						add_enemy(Vector2(randi_range(60, Globals.LEVEL_SIZE / (subdiv + 1) - 60) + index * Globals.LEVEL_SIZE / (subdiv + 1), 

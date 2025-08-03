@@ -46,15 +46,33 @@ func generate_partition(loop_count: int, _pattern_variant: int):
 			shoot_partition = Partition.new(4, 16, list_notes)
 			shoot_partition.remove_random_notes(0.5)
 		_:
-			var list_notes: Array[Note] = [Note.new(0, 0, 3), Note.new(3, 0, -2), Note.new(5, 0, -2), 
-										   Note.new(7, 0, -2), Note.new(8, 0, 3), Note.new(11, 0, -2),
-										   Note.new(13, 0, -2), Note.new(14, 0, 4), Note.new(16, 0, 3),
-										   Note.new(16 + 3, 0, -2), Note.new(16 + 5, 0, -2), Note.new(16 + 7, 0, -2),
-										   Note.new(16 + 8, 0, 3), Note.new(16 + 11, 0, 6), Note.new(16 + 13, 0, 4),
-										   Note.new(16 + 14, 0, 1)]
-			shoot_partition = Partition.new(4, 32, list_notes)
-			shoot_partition.remove_random_notes(0.7)
-			pass
+			var infinite_count: int = loop_count %  Globals.NB_LEVEL_INFINITE
+			match infinite_count:
+				0:
+					var list_notes: Array[Note] = [Note.new(1, 0, -2), Note.new(3, 0, -2), Note.new(5, 0, -2), 
+												   Note.new(7, 0, -2), Note.new(9, 0, -2), Note.new(13, 0, -2),
+												   Note.new(15, 0, -2),
+												   Note.new(16 + 2, 0, -6), Note.new(16 + 4, 0, -6), Note.new(16 + 6, 0, -6),
+												   Note.new(16 + 8, 0, -6), Note.new(16 + 10, 0, -6), Note.new(16 + 12, 0, -6), 
+												   Note.new(32 + 1, 0, -2), Note.new(32 + 3, 0, -2), Note.new(32 + 5, 0, -2), 
+												   Note.new(32 + 7, 0, -2), Note.new(32 + 9, 0, -2), Note.new(32 + 13, 0, -2),
+												   Note.new(32 + 15, 0, -2),
+												   Note.new(32 + 16 + 2, 0, 3), Note.new(32 + 16 + 4, 0, 3), Note.new(32 + 16 + 6, 0, 3),
+												   Note.new(32 + 16 + 8, 0, 3), Note.new(32 + 16 + 10, 0, 3), Note.new(32 + 16 + 12, 0, 3),]
+					shoot_partition = Partition.new(4, 64, list_notes)
+					
+					pass
+				_:
+			
+					var list_notes: Array[Note] = [Note.new(0, 0, 3), Note.new(3, 0, -2), Note.new(5, 0, -2), 
+												   Note.new(7, 0, -2), Note.new(8, 0, 3), Note.new(11, 0, -2),
+												   Note.new(13, 0, -2), Note.new(14, 0, 4), Note.new(16, 0, 3),
+												   Note.new(16 + 3, 0, -2), Note.new(16 + 5, 0, -2), Note.new(16 + 7, 0, -2),
+												   Note.new(16 + 8, 0, 3), Note.new(16 + 11, 0, 6), Note.new(16 + 13, 0, 4),
+												   Note.new(16 + 14, 0, 1)]
+					shoot_partition = Partition.new(4, 32, list_notes)
+					shoot_partition.remove_random_notes(0.7)
+					pass
 
 	
 func choose_movement_pattern(pattern: int):
