@@ -41,7 +41,7 @@ func _ready() -> void:
 	$Preshot.rotation = randf_range(0, 2 * PI)
 
 func _process(delta: float) -> void:
-	$Preshot.rotation += delta * laser_angular_speed
+	$Preshot.rotation += delta * laser_angular_speed*Globals.BULLET_TRAVEL_MULT_ENEMY
 	if(charge_state > 0):
 		if(charge_state < NB_SECONDS_CHARGE_RECOVER):
 			$Preshot.self_modulate.a = (NB_SECONDS_CHARGE_RECOVER - charge_state) / NB_SECONDS_CHARGE_RECOVER
@@ -63,6 +63,11 @@ func _on_beat_launched(num_beat: int) -> void:
 
 func shoot_laser():
 	var laser_projectile: Projectile = laser_projectile_preload.instantiate()
+	var sprite_bullet =laser_projectile.find_child("Sprite2D")
+	sprite_bullet.scale.x= Globals.BULLET_SIZE_MULT_ENEMY
+	var collision_shape_bullet =laser_projectile.find_child("CollisionShape2D")
+	collision_shape_bullet.scale.x= Globals.BULLET_SIZE_MULT_ENEMY
+	
 	laser_projectile.set_position(position)
 	laser_projectile.rotation = $Preshot.rotation
 	# May be used when ennemies move

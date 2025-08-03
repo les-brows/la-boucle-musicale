@@ -31,7 +31,7 @@ var finito=false
 
 func take_hit():
 	Globals.enemy_damage.emit()
-	hp_enemy = max(0, hp_enemy - 1)
+	hp_enemy = max(0, hp_enemy - Globals.DMG_BULLET)
 	
 	if(spriteEnemy):
 		spriteEnemy.hide()

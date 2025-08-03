@@ -28,7 +28,7 @@ var push_force = 80.0
 var old_modulate :Color 
 
 var try_play_dash_sound: bool = false
-var curr_hp: float = Globals.MAX_HP
+
 
 func _ready():
 	Globals.beat_launched.connect(_on_beat_launched)
@@ -48,7 +48,7 @@ func _physics_process(delta):
 		TimeEndDash-=delta
 		
 	else:
-		velocity = targetDir * Globals.NORMAL_SPEED_PLAYER
+		velocity = targetDir * Globals.NORMAL_SPEED_PLAYER*Globals.MOVE_SPEED_MULT_PLAYER
 		
 	if velocity.length() > 0:
 		move_and_slide()
@@ -94,31 +94,34 @@ var alphaColor =0
 func take_hit():
 	if(finito):
 		return
-	curr_hp -= 1
-	Globals.player_damage.emit(curr_hp)
-	
-	if curr_hp <= 0:
-		if not finito:
-			finito = true
-			print("-----Player Dead---------")
-			spritePlayer.texture = load('res://Assets/main_char_damage.png')
-			ShootManagerNode.isDead=true
-			Globals.player_death.emit()
+	var alea= randf_range(0, 99)
+	if(alea>=Globals.LUCK_DODGE):
+		Globals.CURRENT_HP_PLAYER -= 1
+		Globals.player_damage.emit(Globals.CURRENT_HP_PLAYER)
+		
+		if Globals.CURRENT_HP_PLAYER <= 0:
+			if not finito:
+				finito = true
+				print("-----Player Dead---------")
+				spritePlayer.texture = load('res://Assets/main_char_damage.png')
+				ShootManagerNode.isDead=true
+				Globals.player_death.emit()
+		else :
+			
+			
+			invincible=true
+			old_modulate=spritePlayer.self_modulate
+			
+			TimerInvincibilityNode.set_one_shot (true)
+			TimerInvincibilityNode.start(Globals.INVINCIBILITY_TIMER)
+			spritePlayer.hide()
+			alphaColor =0.5
+			spritePlayer.self_modulate= Color (0.5,1,0,alphaColor)
+			TimerColorNode.start(0.05)
+			#$/root/GameRoom/EnemyHurtSound.play()
+			pass
 	else :
-		
-		
-		invincible=true
-		old_modulate=spritePlayer.self_modulate
-		
-		TimerInvincibilityNode.set_one_shot (true)
-		TimerInvincibilityNode.start(Globals.INVINCIBILITY_TIMER)
-		spritePlayer.hide()
-		alphaColor =0.5
-		spritePlayer.self_modulate= Color (0.5,1,0,alphaColor)
-		TimerColorNode.start(0.05)
-		#$/root/GameRoom/EnemyHurtSound.play()
-		pass
-	
+		print("Dodgee")
 
 func _on_detection_dmg_area_entered(area: Area2D) -> void:
 	var enemy= area.get_parent()
