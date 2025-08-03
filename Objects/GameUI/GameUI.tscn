@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://d3u223217q5fg"]
 
-[ext_resource type="Script" uid="uid://bw0lq556tmogx" path="res://Objects/GameUI/game_ui.gd" id="1_5qg2e"]
-[ext_resource type="FontFile" uid="uid://b2x0u6lilgwm3" path="res://Assets/ThaleahFat.ttf" id="1_ngox5"]
-[ext_resource type="Texture2D" uid="uid://c4pqmwm542ipl" path="res://Assets/heart.png" id="2_5qg2e"]
+[ext_resource type="Script" uid="uid://bet2jcogt251e" path="res://Objects/GameUI/game_ui.gd" id="1_5qg2e"]
+[ext_resource type="FontFile" uid="uid://dutr1gb421wvd" path="res://Assets/ThaleahFat.ttf" id="1_ngox5"]
+[ext_resource type="Texture2D" uid="uid://c2sbv225ge883" path="res://Assets/heart.png" id="2_5qg2e"]
 
 [node name="GameUI" type="CanvasLayer"]
 script = ExtResource("1_5qg2e")
