@@ -127,7 +127,7 @@ func select_augment(augment_selected) -> void:
 		Globals.MELODY_LEVEL += 1
 	if augment_selected == Augment.PLAYER_STRENGTH:
 		print("augmenting strength")
-		Globals.DMG_BULLET += 1
+		Globals.DMG_BULLET += 0.5
 	if augment_selected == Augment.PLAYER_DODGE:
 		print("augmenting dodge")
 		Globals.LUCK_DODGE += 10
@@ -177,7 +177,7 @@ func set_augment_texture(augment_texture, augment_label, augment) -> void:
 		augment_label.text = "Upgrade melody"
 	if augment == Augment.PLAYER_STRENGTH:
 		augment_texture.texture = PLAYER_STRENGTH_TEXTURE
-		augment_label.text = "Increase player\nstrength\n" + str(int((Globals.DMG_BULLET) * 100)) + "% -> " + str(int((Globals.DMG_BULLET + 0.1) * 100)) + "%"
+		augment_label.text = "Increase player\nstrength\n" + str(int((Globals.DMG_BULLET) * 100)) + "% -> " + str(int((Globals.DMG_BULLET + 0.5) * 100)) + "%"
 	if augment == Augment.PLAYER_DODGE:
 		augment_texture.texture = PLAYER_DODGE_TEXTURE
 		augment_label.text = "Increase player\nblock chance\n" + str(int((Globals.LUCK_DODGE) * 100)) + "% -> " + str(int((Globals.LUCK_DODGE + 0.1) * 100)) + "%"
