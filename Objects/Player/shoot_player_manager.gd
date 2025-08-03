@@ -32,7 +32,7 @@ func _on_player_direction_shoot (shoot_x:float , shoot_y:float):
 
 func _init() -> void:
 	Globals.beat_launched.connect(_on_beat_launched)
-	generate_partition(Globals.LOOP_COUNT)
+	generate_partition(0)
 
 func generate_partition(loop_count: int):
 	match loop_count:
@@ -41,10 +41,31 @@ func generate_partition(loop_count: int):
 			nb_shoot= list_notes.size()
 			shoot_partition = Partition.new(8, 8, list_notes)
 		1:
-			var list_notes: Array[Note] = [Note.new(0, 0, 3),Note.new(4, 0, -2), 
-										   Note.new(7, 0, -2)]
+			var list_notes: Array[Note] = [Note.new(2, 0, 3),Note.new(5, 0, 3), 
+										   Note.new(6, 0, -2)]
 			nb_shoot= list_notes.size()
 			shoot_partition = Partition.new(8, 8, list_notes)
+		2:
+			var list_notes: Array[Note] = [Note.new(1, 0, 3), Note.new(2, 0, 3), Note.new(4, 0, -2), 
+										   Note.new(5, 0, -3), Note.new(11, 0, 4), Note.new(14, 0, 3)]
+			nb_shoot= list_notes.size()
+			shoot_partition = Partition.new(4, 16, list_notes)
+		3:
+			var list_notes: Array[Note] = [Note.new(0, 0, 3), Note.new(6, 0, 3), Note.new(10, 0, 3), 
+										   Note.new(11, 0, 3), Note.new(12, 0, 3), Note.new(16, 0, 3),
+										   Note.new(24, 0, 3), Note.new(25, 0, 3), Note.new(26, 0, 3),
+										   Note.new(27, 0, 3), ]
+			nb_shoot= list_notes.size()
+			shoot_partition = Partition.new(2, 32, list_notes)
+		4:
+			var list_notes: Array[Note] = [Note.new(0, 0, 3), Note.new(2, 0, 3), Note.new(4, 0, 3), 
+										   Note.new(5, 0, 3), Note.new(6, 0, 3), Note.new(7, 0, 3),
+										   Note.new(8, 0, 3), Note.new(12, 0, 3), Note.new(14, 0, 3),
+										   Note.new(16, 0, 3), Note.new(17, 0, 3), Note.new(20, 0, 3),
+										   Note.new(24, 0, 3), Note.new(25, 0, 3), Note.new(27, 0, 3),
+										   Note.new(28, 0, 3), Note.new(29, 0, 3)]
+			nb_shoot= list_notes.size()
+			shoot_partition = Partition.new(1, 32, list_notes)
 		_:
 			var list_notes: Array[Note] = [Note.new(0, 0, 3),Note.new(4, 0, -2), 
 										   Note.new(7, 0, -2), Note.new(8, 0, 3)]

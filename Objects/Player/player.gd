@@ -34,6 +34,7 @@ var try_play_dash_sound: bool = false
 func _ready():
 	Globals.CURRENT_HP_PLAYER = Globals.MAX_HP
 	Globals.beat_launched.connect(_on_beat_launched)
+	Globals.melody_changed.connect(_on_update_melody_changed)
 	old_modulate= spritePlayer.self_modulate
 	size = $CollisionShape2D.shape.size
 	inputManagerNode.move_update.connect(_on_player_move)
@@ -188,9 +189,8 @@ func _on_beat_launched(_beat: int):
 		try_play_dash_sound = false
 		$PlayerDashSfx.play()
 
-func generate_partition(loop_count: int):
-	$ShootPlayerManager.generate_partition(loop_count)
-
+func _on_update_melody_changed():
+	$ShootPlayerManager.generate_partition(Globals.MELODY_LEVEL)
 
 func DashCooldownTimer_timeOut()->void:
 	dashCooldown=false
