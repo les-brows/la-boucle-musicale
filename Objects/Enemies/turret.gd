@@ -3,13 +3,17 @@ extends Enemy
 var shooter_projectile_preload = preload("res://Objects/Projectiles/TurretProjectile.tscn");
 var shooter_projectile_speed: float = 1000
 
+var rotationBullet=0;
+var turret_angular_speed=15;
+var hasRotationBullet=true
+
 const NB_SECONDS_BOING_JUMP: float = 0.05
 const NB_SECONDS_BOING_RECOVER: float = 0.15
 const MAX_HEIGHT_BOING: float = 0.1
 
 var boing_state: float = 0
 var shoot_partition: Partition
-var nb_projectile_shoot =9
+var nb_projectile_shoot =15
 
 var on_screen: bool = false
 func _init() -> void:
@@ -32,9 +36,13 @@ func generate_partition(loop_count: int, _pattern_variant: int):
 			shoot_partition = Partition.new(4, 32, list_notes)
 			shoot_partition.remove_random_notes(0.7)
 			pass
+func _ready() -> void:
+	rotationBullet = randf_range(0, 2 * PI)
 
+
+	
 func _process(delta: float) -> void:
-
+	rotationBullet += delta * turret_angular_speed
 	if(boing_state > 0):
 		if(boing_state < NB_SECONDS_BOING_RECOVER):
 			spriteEnemy.get_parent().scale -= Vector2.ONE * delta / NB_SECONDS_BOING_RECOVER * MAX_HEIGHT_BOING
@@ -59,12 +67,14 @@ func _on_beat_launched(num_beat: int) -> void:
 		
 
 func shoot_multiple_projectiles():
-	
+	var rotationshoot=0;
+	if hasRotationBullet:
+		rotationshoot=rotationBullet
 	for i in range(0,nb_projectile_shoot,1):
-		var angle =i*(360/nb_projectile_shoot)+90
+		var angle =i*(360/nb_projectile_shoot)+90 +rotationshoot
 		var rotation_radians = deg_to_rad(angle)
 		var direction = Vector2(cos(rotation_radians), sin(rotation_radians))
-	
+		
 		direction = direction.normalized()
 		
 		shoot_projectile(direction , direction)

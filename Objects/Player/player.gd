@@ -150,7 +150,7 @@ func _on_timerColor_timeout() -> void:
 		spritePlayer.hide()
 	
 	if !invincible :
-		spritePlayer.self_modulate=old_modulate
+		spritePlayer.self_modulate=Color (1,1,1,1)
 		if spritePlayer.visible==true:
 			TimerColorNode.stop()
 	else :  	
