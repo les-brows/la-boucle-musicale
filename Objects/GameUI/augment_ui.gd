@@ -4,6 +4,8 @@ var currently_selected_augment: int = 2
 var is_in_augment_menu: bool = false
 var can_pass_end_level: bool = false
 
+@onready var audio_player = $AudioStreamPlayer
+
 @onready var augment_1_texture = $Augments/VBoxContainer/HBoxContainer/Augment_1
 @onready var augment_2_texture = $Augments/VBoxContainer/HBoxContainer/Augment_2
 @onready var augment_3_texture = $Augments/VBoxContainer/HBoxContainer/Augment_3
@@ -89,6 +91,7 @@ func _process(_delta: float) -> void:
 		select_augment(augement_selected)
 		visible = false
 		is_in_augment_menu = false
+		audio_player.play()
 		Globals.augment_selected.emit()
 		return
 		
