@@ -15,6 +15,8 @@ var boing_state: float = 0
 var shoot_partition: Partition
 var nb_projectile_shoot =15
 
+@onready var health_bar: TextureProgressBar = $HealthBar
+
 var on_screen: bool = false
 func _init() -> void:
 	super()
@@ -174,6 +176,15 @@ func shoot_projectile(target_direction: Vector2 ,position_offset: Vector2 ):
 	get_parent().add_child(shooter_projectile)
 
 
+func take_hit():
+	super()
+	var health_bar_tween: Tween = create_tween()
+	var health_percent: float = hp_enemy as float / hp_max_enemy as float
+	health_percent *= 100
+	health_bar_tween.tween_property(health_bar, "value", health_percent, Globals.HEALTHBAR_TWEEN_TIMEOUT)
+
+
+
 func _on_timer_blink_turrettimeout() -> void:
 	if spriteEnemy.visible==false:
 		spriteEnemy.show()
@@ -182,11 +193,6 @@ func _on_timer_blink_turrettimeout() -> void:
 	nbBlink-=1
 	if nbBlink<=0:
 		TimerBlinkNode.stop()
-
-
-
-	
-
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 	on_screen = true
