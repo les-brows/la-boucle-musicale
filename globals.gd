@@ -21,6 +21,9 @@ signal player_death()
 signal player_damage()
 @warning_ignore("unused_signal")
 signal enemy_damage()
+@warning_ignore("unused_signal")
+signal augment_selected()
+
 
 var BOUNDARY_LOW: int = 45
 var BOUNDARY_UP: int = 600
@@ -30,6 +33,9 @@ var ENEMY_MOVEMENT_SPEED: float = 0.0005
 
 var INVINCIBILITY_TIMER: float = 1
 var MAX_HP: int = 10
+const DODGE_MAX_PERCENT = 50
+const MELODY_MAX_LEVEL = 2
+const BULLET_SPREAD_MAX_LEVEL = 2
  
 const INITIAL_LOOP_COUNT: int = 0
 var LOOP_COUNT: int = INITIAL_LOOP_COUNT
@@ -49,5 +55,6 @@ var BULLET_TRAVEL_MULT_ENEMY : float =1
 var CURRENT_HP_PLAYER : int =MAX_HP
 var BULLET_SIZE_MULT_PLAYER :float =1
 var BULLET_SIZE_MULT_ENEMY :float =1
-var NB_BULLET_PLAYER =2
+var NB_BULLET_PLAYER = 2
+var MELODY_LEVEL = 1
 var LUCK_DODGE :int = 50

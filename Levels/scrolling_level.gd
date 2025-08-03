@@ -5,9 +5,11 @@ extends Node2D
 @onready var level_portions = $LevelPortions
 @onready var level_portion_previous = $LevelPortions/LevelPortionPrevious
 @onready var level_portion_current = $LevelPortions/LevelPortionCurrent
+@onready var enemy_manager_node = $EnemyManager
 
 var currently_moving_level_middle: bool = false
 var currently_moving_level_end: bool = false
+var in_augment_menu: bool = false
 
 var LevelPortionScene = preload("res://Levels/LevelPortion.tscn")
 
@@ -23,7 +25,8 @@ func clamp_player_inside_camera():
 		camera.position.x + CAMERA_SIZE.x/2 - player.size.x/2)
 
 func _process(_delta):
-	move_camera()
+	if(not in_augment_menu):
+		move_camera()
 	clamp_player_inside_camera()
 	
 func _ready():
@@ -31,6 +34,7 @@ func _ready():
 	
 	Globals.middle_level_reached.connect(_on_middle_level_reached)
 	Globals.end_level_reached.connect(_on_end_level_reached)
+	Globals.augment_selected.connect(_on_augment_selected)
 	
 	level_portion_previous.position = -Vector2(Globals.LEVEL_SIZE, 0)
 	Globals.LOOP_COUNT = Globals.INITIAL_LOOP_COUNT
@@ -83,5 +87,19 @@ func _on_end_level_reached() -> void:
 		
 	# Shift camera to the left
 	camera.position = camera.position - Vector2(Globals.LEVEL_SIZE, 0)
+	
+	# Pause the enemies and their projectiles
+	enemy_manager_node.process_mode = PROCESS_MODE_DISABLED
+	
+	# Pause camera
+	in_augment_menu = true
 		
 	print("Player hit the end of the level !")
+	
+func _on_augment_selected() -> void:
+	# Unpause the enemies and their projectiles
+	enemy_manager_node.process_mode = PROCESS_MODE_DISABLED
+	
+	# Unpause camera
+	in_augment_menu = false
+	
