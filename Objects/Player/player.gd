@@ -31,6 +31,7 @@ var try_play_dash_sound: bool = false
 
 
 func _ready():
+	Globals.CURRENT_HP_PLAYER = Globals.MAX_HP
 	Globals.beat_launched.connect(_on_beat_launched)
 	old_modulate= spritePlayer.self_modulate
 	size = $CollisionShape2D.shape.size
