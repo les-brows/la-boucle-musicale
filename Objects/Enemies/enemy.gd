@@ -2,7 +2,8 @@ class_name Enemy
 extends Node2D
 
 var player: Player = null
-var hp_enemy:int= Globals.ENEMY_MAXHP
+var hp_enemy: int = Globals.ENEMY_MAXHP
+var hp_max_enemy: int = Globals.ENEMY_MAXHP
 
 @export var spriteEnemy :Node 
 @export var TimerBlinkNode : Node 
@@ -19,6 +20,8 @@ func set_player(_player: Player):
 	player = _player
 
 func _on_shooter_collision_area_2d_area_entered(area: Area2D) -> void:
+	if(finito):
+		return
 	var playerProjectile= area.get_parent()
 	if playerProjectile is Projectile   :
 		take_hit() 
@@ -28,18 +31,17 @@ var finito=false
 
 func take_hit():
 	Globals.enemy_damage.emit()
-	hp_enemy -= 1
+	hp_enemy = max(0, hp_enemy - 1)
+	
+	spriteEnemy.hide()
+	nbBlink=3
+	TimerBlinkNode.start(0.05)
+	
 	if hp_enemy <= 0:
-		if not finito:
-			finito = true
-			print("-----Enemey Dead---------")
-			queue_free()
-	else :
-		spriteEnemy.hide()
-		nbBlink=3
-		TimerBlinkNode.start(0.05)
-		#$/root/GameRoom/EnemyHurtSound.play()
-		pass
+		finito = true
+		print("-----Enemey Dead---------")
+		await get_tree().create_timer(0.5).timeout
+		queue_free()
 		
 func _on_timer_blink_timeout() -> void:
 	if spriteEnemy.visible==false:

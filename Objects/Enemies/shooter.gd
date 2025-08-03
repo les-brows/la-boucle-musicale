@@ -20,6 +20,8 @@ var path_follow: PathFollow2D
 @onready var vertical_path: PathFollow2D = $VerticalPath/PathFollow2D
 @onready var diamond_path: PathFollow2D = $DiamondPath/PathFollow2D
 
+var health_bar: TextureProgressBar
+
 
 func _init() -> void:
 	super()
@@ -54,6 +56,7 @@ func choose_movement_pattern():
 		EnemyMovementPattern.HORIZONTAL:
 			movement_pattern = EnemyMovementPattern.HORIZONTAL
 			spriteEnemy = $HorizontalPath/PathFollow2D/Subgroup/Sprite2D
+			health_bar = $HorizontalPath/PathFollow2D/HealthBar
 			path_follow = horizontal_path
 			
 			vertical_path.queue_free()
@@ -61,6 +64,7 @@ func choose_movement_pattern():
 		EnemyMovementPattern.VERTICAL:
 			movement_pattern = EnemyMovementPattern.VERTICAL
 			spriteEnemy = $VerticalPath/PathFollow2D/Subgroup/Sprite2D
+			health_bar = $VerticalPath/PathFollow2D/HealthBar
 			path_follow = vertical_path
 			position.y = 300
 			
@@ -69,6 +73,7 @@ func choose_movement_pattern():
 		EnemyMovementPattern.DIAMOND:
 			movement_pattern = EnemyMovementPattern.DIAMOND
 			spriteEnemy = $DiamondPath/PathFollow2D/Subgroup/Sprite2D
+			health_bar = $DiamondPath/PathFollow2D/HealthBar
 			path_follow = diamond_path
 			position.y = clamp(position.y, 300, 400)
 			
@@ -78,6 +83,8 @@ func choose_movement_pattern():
 	path_follow.progress_ratio = rng.randf_range(0, 1)
 
 func _process(delta: float) -> void:
+	if(finito):
+		return
 	path_follow.progress_ratio += Globals.ENEMY_MOVEMENT_SPEED
 	if(path_follow.progress_ratio >= 1):
 		path_follow.progress_ratio = 0
@@ -95,7 +102,7 @@ func _process(delta: float) -> void:
 
 
 func _on_beat_launched(num_beat: int) -> void:
-	if(!on_screen):
+	if(!on_screen or finito):
 		return
 	if(num_beat == shoot_partition.get_next_beat(num_beat)):
 		boing_state = NB_SECONDS_BOING_RECOVER + NB_SECONDS_BOING_JUMP
@@ -115,6 +122,7 @@ func shoot_projectile(target_direction: Vector2):
 	var linear_velocity = Vector2.ZERO 
 	shooter_projectile.set_velocity(linear_velocity + target_direction.normalized() * shooter_projectile_speed )
 	get_parent().add_child(shooter_projectile)
+	
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 	on_screen = true
@@ -122,3 +130,14 @@ func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	on_screen = false
+
+
+func take_hit():
+	super()
+	var health_bar_tween: Tween = create_tween()
+	var health_percent: float = hp_enemy as float / hp_max_enemy as float
+	health_percent *= 100
+	health_bar_tween.tween_property(health_bar, "value", health_percent, Globals.HEALTHBAR_TWEEN_TIMEOUT)
+	print(health_percent)
+	print(hp_enemy)
+	print(hp_max_enemy)

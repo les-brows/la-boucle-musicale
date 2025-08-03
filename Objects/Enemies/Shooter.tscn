@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b5w0jynn6mkxk"]
+[gd_scene load_steps=10 format=3 uid="uid://b5w0jynn6mkxk"]
 
-[ext_resource type="Script" uid="uid://biu7hkvefgm4s" path="res://Objects/Enemies/shooter.gd" id="1_8c5hv"]
-[ext_resource type="Texture2D" uid="uid://d3dq34i68t3iw" path="res://Assets/base_enemy.png" id="2_qpsbd"]
+[ext_resource type="Script" uid="uid://wcwhmnl5x0ji" path="res://Objects/Enemies/shooter.gd" id="1_8c5hv"]
+[ext_resource type="Texture2D" uid="uid://bavgw6w2rrwg8" path="res://Assets/enemy_healthbar_empty.png" id="2_4u4qj"]
+[ext_resource type="Texture2D" uid="uid://b6wcp2ui1plw6" path="res://Assets/base_enemy.png" id="2_qpsbd"]
+[ext_resource type="Texture2D" uid="uid://dnjuqxg6ygjv0" path="res://Assets/enemy_healthbar_full.png" id="3_2jfb1"]
 [ext_resource type="AudioStream" uid="uid://c312tfe2javtd" path="res://Assets/Instruments/KSHMR_Bass_Pluck_02_A#.wav" id="3_qpsbd"]
 
 [sub_resource type="Curve2D" id="Curve2D_txwwr"]
@@ -46,6 +48,15 @@ position = Vector2(179.683, 0)
 progress = 400.32
 rotates = false
 
+[node name="HealthBar" type="TextureProgressBar" parent="HorizontalPath/PathFollow2D"]
+offset_left = -24.0
+offset_top = 66.0
+offset_right = 26.0
+offset_bottom = 89.0
+value = 100.0
+texture_under = ExtResource("2_4u4qj")
+texture_progress = ExtResource("3_2jfb1")
+
 [node name="Subgroup" type="Node2D" parent="HorizontalPath/PathFollow2D"]
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="HorizontalPath/PathFollow2D/Subgroup"]
@@ -70,6 +81,15 @@ curve = SubResource("Curve2D_4u4qj")
 [node name="PathFollow2D" type="PathFollow2D" parent="VerticalPath"]
 progress = 400.32
 rotates = false
+
+[node name="HealthBar" type="TextureProgressBar" parent="VerticalPath/PathFollow2D"]
+offset_left = -25.0
+offset_top = 67.0
+offset_right = 25.0
+offset_bottom = 90.0
+value = 100.0
+texture_under = ExtResource("2_4u4qj")
+texture_progress = ExtResource("3_2jfb1")
 
 [node name="Subgroup" type="Node2D" parent="VerticalPath/PathFollow2D"]
 
@@ -96,6 +116,19 @@ curve = SubResource("Curve2D_qpsbd")
 position = Vector2(116.932, 83.0683)
 progress = 400.32
 rotates = false
+
+[node name="HealthBar" type="TextureProgressBar" parent="DiamondPath/PathFollow2D"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -23.0
+offset_top = 67.0
+offset_right = 27.0
+offset_bottom = 90.0
+grow_horizontal = 2
+value = 100.0
+texture_under = ExtResource("2_4u4qj")
+texture_progress = ExtResource("3_2jfb1")
 
 [node name="Subgroup" type="Node2D" parent="DiamondPath/PathFollow2D"]
 
