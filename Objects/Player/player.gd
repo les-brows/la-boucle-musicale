@@ -13,8 +13,9 @@ var targetDir : Vector2 = Vector2(0, 0)
 @export var ShootManagerNode  :Node
 
  
-
-
+#Slow
+var mult_slow=1
+var mult_slow_min=0.25
 # Dash
 var dashCooldown :bool= false 
 @export var DashCooldownTimer :Node
@@ -36,6 +37,8 @@ func _ready():
 	old_modulate= spritePlayer.self_modulate
 	size = $CollisionShape2D.shape.size
 	inputManagerNode.move_update.connect(_on_player_move)
+	inputManagerNode.slow_end_update.connect(_on_player_end_slow)
+	inputManagerNode.slow_begin_update.connect(_on_player_begin_slow)
 	inputManagerNode.dash_update.connect(_on_activate_dash)
 	inputManagerNode.shoot_update.connect(ShootManagerNode._on_player_shoot)
 	inputManagerNode.shoot_direction_update.connect(ShootManagerNode._on_player_direction_shoot)
@@ -49,7 +52,7 @@ func _physics_process(delta):
 		TimeEndDash-=delta
 		
 	else:
-		velocity = targetDir * Globals.NORMAL_SPEED_PLAYER*Globals.MOVE_SPEED_MULT_PLAYER
+		velocity = targetDir * Globals.NORMAL_SPEED_PLAYER*Globals.MOVE_SPEED_MULT_PLAYER*mult_slow
 		
 	if velocity.length() > 0:
 		move_and_slide()
@@ -76,9 +79,12 @@ func _on_player_move(move_x :float, move_y : float) -> void:
 		targetDir = targetDir.normalized()
 
 
+func _on_player_end_slow():
+	mult_slow =1.0
 
+func _on_player_begin_slow():
 
-
+	mult_slow =mult_slow_min
 
 func _process(_delta: float):
 	if insideEnemy >0 && !invincible  :
