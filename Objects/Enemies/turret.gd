@@ -58,16 +58,37 @@ func generate_partition(loop_count: int, _pattern_variant: int):
 										   Note.new(32 + 23, 0, 2), Note.new(32 + 25, 0, 3), Note.new(32 + 27, 0, 2),
 										   Note.new(32 + 28, 0, 0)]
 			shoot_partition = Partition.new(4, 64, list_notes)
+			shoot_partition.remove_random_notes(0.5 )
 		_:
-			var list_notes: Array[Note] = [Note.new(0, 0, 3), Note.new(3, 0, -2), Note.new(5, 0, -2), 
-										   Note.new(7, 0, -2), Note.new(8, 0, 3), Note.new(11, 0, -2),
-										   Note.new(13, 0, -2), Note.new(14, 0, 4), Note.new(16, 0, 3),
-										   Note.new(16 + 3, 0, -2), Note.new(16 + 5, 0, -2), Note.new(16 + 7, 0, -2),
-										   Note.new(16 + 8, 0, 3), Note.new(16 + 11, 0, 6), Note.new(16 + 13, 0, 4),
-										   Note.new(16 + 14, 0, 1)]
-			shoot_partition = Partition.new(4, 32, list_notes)
-			shoot_partition.remove_random_notes(0.7)
-			pass
+			var infinite_count: int = loop_count % 3
+			match infinite_count:
+				2:
+					var list_notes: Array[Note] = [Note.new(0, 0, 0), Note.new(2, 0, 7), Note.new(4, 0, 5),
+												   Note.new(7, 0, 3), Note.new(9, 0, 2), Note.new(11, 0, 0),
+												   Note.new(12, 0, -2), Note.new(14, 0, 2), Note.new(16, 0, 0),
+												   Note.new(18, 0, 7), Note.new(20, 0, 9), Note.new(21, 0, 5),
+												   Note.new(23, 0, 5), Note.new(25, 0, 9), Note.new(27, 0, 5),
+												   Note.new(28, 0, 7),
+												   Note.new(32, 0, 0), Note.new(32 + 2, 0, 7), Note.new(32 + 4, 0, 5),
+												   Note.new(32 + 7, 0, 3), Note.new(32 + 9, 0, 5), Note.new(32 + 11, 0, 3),
+												   Note.new(32 + 12, 0, 2), Note.new(32 + 14, 0, 0), Note.new(32 + 16, 0, 0),
+												   Note.new(32 + 18, 0, -5), Note.new(32 + 20, 0, -5), Note.new(32 + 21, 0, 0),
+												   Note.new(32 + 23, 0, 2), Note.new(32 + 25, 0, 3), Note.new(32 + 27, 0, 2),
+												   Note.new(32 + 28, 0, 0)]
+					shoot_partition = Partition.new(4, 64, list_notes)
+					turret_angular_speed = 40
+					nb_projectile_shoot = 4
+					shooter_projectile_speed = 200
+				_:
+					var list_notes: Array[Note] = [Note.new(0, 0, 3), Note.new(3, 0, -2), Note.new(5, 0, -2), 
+												   Note.new(7, 0, -2), Note.new(8, 0, 3), Note.new(11, 0, -2),
+												   Note.new(13, 0, -2), Note.new(14, 0, 4), Note.new(16, 0, 3),
+												   Note.new(16 + 3, 0, -2), Note.new(16 + 5, 0, -2), Note.new(16 + 7, 0, -2),
+												   Note.new(16 + 8, 0, 3), Note.new(16 + 11, 0, 6), Note.new(16 + 13, 0, 4),
+												   Note.new(16 + 14, 0, 1)]
+					shoot_partition = Partition.new(4, 32, list_notes)
+					shoot_partition.remove_random_notes(0.7)
+					pass
 func _ready() -> void:
 	rotationBullet = randf_range(0, 2 * PI)
 

@@ -32,14 +32,24 @@ func generate_partition(loop_count: int, pattern_variant: int):
 			shoot_partition = Partition.new(8, 8, list_notes)
 			laser_angular_speed = 4
 		_:
-			var list_notes: Array[Note] = [Note.new(0, 0, 0), Note.new(2, 0, 0), Note.new(5, 0, 0),
-										   Note.new(8, 0, 0), Note.new(16, 0, 0), Note.new(18, 0, 0),
-										   Note.new(21, 0, 0), Note.new(23, 0, 0), Note.new(24, 0, 0),
-										   Note.new(28, 0, 0)]
-			shoot_partition = Partition.new(4, 32, list_notes)
-			shoot_partition.remove_random_notes(0.6)
-			shoot_partition.force_minimal_time_between_notes(8)
-			pass
+			var infinite_count: int = loop_count % 3
+			match infinite_count:
+				2:
+					var list_notes: Array[Note] = [Note.new(0, 0, 0), Note.new(2, 0, 12), Note.new(4, 0, 0),
+												   Note.new(5, 0, 0), Note.new(6, 0, 12), Note.new(8, 0, 0),
+												   Note.new(9, 0, 0), Note.new(10, 0, 12), Note.new(11, 0, 0),
+												   Note.new(12, 0, 0), Note.new(13, 0, 0), Note.new(14, 0, 12) ]
+					shoot_partition = Partition.new(4, 16, list_notes)
+					shoot_partition.remove_random_notes(0.6)
+					shoot_partition.force_minimal_time_between_notes(4)
+				_:
+					var list_notes: Array[Note] = [Note.new(0, 0, 0), Note.new(2, 0, 0), Note.new(5, 0, 0),
+												   Note.new(8, 0, 0), Note.new(16, 0, 0), Note.new(18, 0, 0),
+												   Note.new(21, 0, 0), Note.new(23, 0, 0), Note.new(24, 0, 0),
+												   Note.new(28, 0, 0)]
+					shoot_partition = Partition.new(4, 32, list_notes)
+					shoot_partition.remove_random_notes(0.6)
+					shoot_partition.force_minimal_time_between_notes(4)
 
 func _ready() -> void:
 	$Preshot.rotation = randf_range(0, 2 * PI)
