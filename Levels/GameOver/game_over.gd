@@ -1,5 +1,4 @@
-extends Control
-
+extends CanvasLayer
 
 func _ready() -> void:
 	Globals.player_death.connect(_on_player_death)

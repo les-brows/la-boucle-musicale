@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://c0xi81rtw0j1x"]
 
-[ext_resource type="Script" uid="uid://bx25j7k87mjg6" path="res://Levels/scrolling_level.gd" id="1_fh0lb"]
+[ext_resource type="Script" uid="uid://bop6kqif43hsm" path="res://Levels/scrolling_level.gd" id="1_fh0lb"]
 [ext_resource type="PackedScene" uid="uid://b221e60ap4jq7" path="res://Objects/Player/Player.tscn" id="2_6wcv4"]
 [ext_resource type="PackedScene" uid="uid://do4qvuyj8k0m6" path="res://Objects/Enemies/Managers/EnemyManager.tscn" id="2_r8m34"]
 [ext_resource type="PackedScene" uid="uid://kqev23ha0sgh" path="res://Levels/GameOver/GameOver.tscn" id="3_6wcv4"]
@@ -24,6 +24,7 @@ position = Vector2(580, 320)
 [node name="GameUI" parent="Camera2D" instance=ExtResource("4_ppgid")]
 
 [node name="GameOver" parent="Camera2D" instance=ExtResource("3_6wcv4")]
+visible = false
 
 [node name="LevelPortions" type="Node2D" parent="."]
 
