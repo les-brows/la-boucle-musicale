@@ -33,7 +33,8 @@ func take_hit():
 	Globals.enemy_damage.emit()
 	hp_enemy = max(0, hp_enemy - 1)
 	
-	spriteEnemy.hide()
+	if(spriteEnemy):
+		spriteEnemy.hide()
 	nbBlink=3
 	TimerBlinkNode.start(0.05)
 	
@@ -44,11 +45,11 @@ func take_hit():
 		queue_free()
 		
 func _on_timer_blink_timeout() -> void:
-	
-	if spriteEnemy.visible==false:
-		spriteEnemy.show()
-	else :
-		spriteEnemy.hide()
+	if(spriteEnemy):
+		if spriteEnemy.visible==false:
+			spriteEnemy.show()
+		else :
+			spriteEnemy.hide()
 	nbBlink-=1
 	if nbBlink<=0:
 		TimerBlinkNode.stop()

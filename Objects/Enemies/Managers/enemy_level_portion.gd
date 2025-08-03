@@ -54,9 +54,8 @@ func enemy_generation(player: Player, loop: int):
 			pass
 		_:
 			for index in range(500):
-				var curr_shooter: Enemy = shooter_preload.instantiate()
-				curr_shooter.position = Vector2(randi_range(500, 4500), randi_range(Globals.BOUNDARY_LOW + 60, Globals.BOUNDARY_UP - 60))
-				add_child(curr_shooter)
+				add_enemy(Vector2(randi_range(500, 4500), randi_range(Globals.BOUNDARY_LOW + 60, Globals.BOUNDARY_UP - 60)), 
+							EnemyType.SHOOTER, EnemyMovementPattern.UNMOVABLE, 0, player, loop)
 				print("NOT IMPLEMENTED GET DUNKED ON")
 
 

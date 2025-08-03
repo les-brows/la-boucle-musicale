@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bgdpmp1gh6en6"]
 
-[ext_resource type="Script" uid="uid://c7g0mxq6ergwr" path="res://Levels/MainMenu/infos.gd" id="1_7dbdi"]
-[ext_resource type="FontFile" uid="uid://dutr1gb421wvd" path="res://Assets/ThaleahFat.ttf" id="2_7dbdi"]
+[ext_resource type="Script" uid="uid://bjvaxthoift3a" path="res://Levels/MainMenu/infos.gd" id="1_7dbdi"]
+[ext_resource type="FontFile" uid="uid://b2x0u6lilgwm3" path="res://Assets/ThaleahFat.ttf" id="2_7dbdi"]
 
 [node name="Infos" type="MarginContainer"]
 anchors_preset = 15
