@@ -107,10 +107,10 @@ func shoot_laser():
 	sprite_bullet.scale.y= size_laser_y/250
 	
 	var collision_shape_bullet =laser_projectile.find_child("CollisionShape2D")
-	collision_shape_bullet.scale.y= Globals.BULLET_SIZE_MULT_ENEMY
+	collision_shape_bullet.scale.x= Globals.BULLET_SIZE_MULT_ENEMY
 	collision_shape_bullet.scale.y= size_laser_y/250
+	collision_shape_bullet.position.x= ( size_laser_y-250)/2.0 +125+50
 	
-
 	
 	# May be used when ennemies move
 	laser_projectile.set_velocity(Vector2.from_angle($Preshot.rotation) * 0.0001)
