@@ -23,6 +23,10 @@ signal player_damage()
 signal enemy_damage()
 @warning_ignore("unused_signal")
 signal augment_selected()
+@warning_ignore("unused_signal")
+signal hp_changed()
+@warning_ignore("unused_signal")
+signal melody_changed()
 
 
 var BOUNDARY_LOW: int = 45
@@ -35,7 +39,7 @@ var INVINCIBILITY_TIMER: float = 1
 var MAX_HP: int = 10
 
 const DODGE_MAX_PERCENT = 50
-const MELODY_MAX_LEVEL = 2
+const MELODY_MAX_LEVEL = 4
 const BULLET_SPREAD_MAX_LEVEL = 2
  
 const INITIAL_LOOP_COUNT: int = 0
