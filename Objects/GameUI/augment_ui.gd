@@ -125,6 +125,7 @@ func select_augment(augment_selected) -> void:
 	if augment_selected == Augment.PLAYER_MELODY:
 		print("augmenting melody")
 		Globals.MELODY_LEVEL += 1
+		Globals.melody_changed.emit()
 	if augment_selected == Augment.PLAYER_STRENGTH:
 		print("augmenting strength")
 		Globals.DMG_BULLET += 0.5
