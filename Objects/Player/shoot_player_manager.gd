@@ -107,10 +107,20 @@ func shoot_projectile(target_direction: Vector2):
 		collision_shape_bullet.scale= Vector2(Globals.BULLET_SIZE_MULT_PLAYER,Globals.BULLET_SIZE_MULT_PLAYER)
 		
 		var decalage :Vector2 
-		if( i%2==0):
-			decalage=Vector2((i+1)/2*40,40*((i+1)/2))
-		else :
-			decalage=Vector2((i+1)/2*40,-40*((i+1)/2))
+		if(Globals.NB_BULLET_PLAYER%2==0):
+			if( i %2==0):
+				decalage=Vector2((i)/2*40+40,30*((i)/2)+30)
+			else :
+				decalage=Vector2((i)/2*40+40,-30*((i)/2)-30)
+		else:
+			if( i==0):
+				decalage=Vector2(0,0)
+			else :
+				if( i %2==0):
+					decalage=Vector2((i+1)/2*40,30*((i+1)/2))
+				else :
+					decalage=Vector2((i+1)/2*40,-30*((i+1)/2))
+		print(decalage)
 		var copyposition=get_parent().position + decalage
 		# May be used when ennemies move
 		var linear_velocity = Vector2.ZERO 
