@@ -43,14 +43,12 @@ func enemy_generation(player: Player, loop: int):
 								 (Globals.BOUNDARY_LOW + Globals.BOUNDARY_UP + 60)  / 2.0), EnemyType.LASER, EnemyMovementPattern.UNMOVABLE, index % 2, player, loop)
 		3:
 			#Cut the map in ten, with at least one enemy in each trunk
-			for index in range(10):
-				add_enemy(Vector2(randi_range(60, Globals.LEVEL_SIZE / 10.0 - 60) + index * Globals.LEVEL_SIZE / 10.0,
+			var subdiv: float = 4.0
+			for index in range(4):
+				add_enemy(Vector2(randi_range(60, Globals.LEVEL_SIZE / subdiv - 60) + index * Globals.LEVEL_SIZE / subdiv,
 								  randi_range(Globals.BOUNDARY_LOW + 60, Globals.BOUNDARY_UP - 60)), 
-						  EnemyType.SHOOTER, EnemyMovementPattern.UNMOVABLE, 0, player, loop)
-				add_enemy(Vector2(randi_range(60, Globals.LEVEL_SIZE / 10.0 - 60) + index * Globals.LEVEL_SIZE / 10.0, 
-								  randi_range(Globals.BOUNDARY_LOW + 200, Globals.BOUNDARY_UP - 200)), 
-						  EnemyType.LASER, EnemyMovementPattern.UNMOVABLE, 0, player, loop)
-				add_enemy(Vector2(randi_range(60, Globals.LEVEL_SIZE / 10.0 - 60) + index * Globals.LEVEL_SIZE / 10.0, 
+						  EnemyType.SHOOTER, EnemyMovementPattern.DIAMOND, 0, player, loop)
+				add_enemy(Vector2(randi_range(60, Globals.LEVEL_SIZE / subdiv - 60) + index * Globals.LEVEL_SIZE / subdiv, 
 								  randi_range(Globals.BOUNDARY_LOW + 200, Globals.BOUNDARY_UP - 200)), 
 						  EnemyType.TURRET, EnemyMovementPattern.UNMOVABLE, 0, player, loop)
 			pass

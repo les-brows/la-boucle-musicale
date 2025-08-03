@@ -26,9 +26,20 @@ func generate_partition(loop_count: int, _pattern_variant: int):
 		0:
 			var list_notes: Array[Note] = [Note.new(10, 0, 1), Note.new(11, 0, 1), Note.new(14, 0, -2) ]
 			shoot_partition = Partition.new(4, 16, list_notes)
-		1, 2:
-			var list_notes: Array[Note] = [Note.new(0, 0, 3), Note.new(3, 0, -2), Note.new(4, 0, 3)]
-			shoot_partition = Partition.new(8, 8, list_notes)
+		3:
+			var list_notes: Array[Note] = [Note.new(0, 0, 0), Note.new(2, 0, 7), Note.new(4, 0, 5),
+										   Note.new(7, 0, 3), Note.new(9, 0, 2), Note.new(11, 0, 0),
+										   Note.new(12, 0, -2), Note.new(14, 0, 2), Note.new(16, 0, 0),
+										   Note.new(18, 0, 7), Note.new(20, 0, 9), Note.new(21, 0, 5),
+										   Note.new(23, 0, 5), Note.new(25, 0, 9), Note.new(27, 0, 5),
+										   Note.new(28, 0, 7),
+										   Note.new(32, 0, 0), Note.new(32 + 2, 0, 7), Note.new(32 + 4, 0, 5),
+										   Note.new(32 + 7, 0, 3), Note.new(32 + 9, 0, 5), Note.new(32 + 11, 0, 3),
+										   Note.new(32 + 12, 0, 2), Note.new(32 + 14, 0, 0), Note.new(32 + 16, 0, 0),
+										   Note.new(32 + 18, 0, -5), Note.new(32 + 20, 0, -5), Note.new(32 + 21, 0, 0),
+										   Note.new(32 + 23, 0, 2), Note.new(32 + 25, 0, 3), Note.new(32 + 27, 0, 2),
+										   Note.new(32 + 28, 0, 0)]
+			shoot_partition = Partition.new(4, 64, list_notes)
 		_:
 			var list_notes: Array[Note] = [Note.new(0, 0, 3), Note.new(3, 0, -2), Note.new(5, 0, -2), 
 										   Note.new(7, 0, -2), Note.new(8, 0, 3), Note.new(11, 0, -2),

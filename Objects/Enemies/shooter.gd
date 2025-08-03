@@ -40,6 +40,11 @@ func generate_partition(loop_count: int, _pattern_variant: int):
 				1:
 					var list_notes: Array[Note] = [Note.new(3, 0, -2)]
 					shoot_partition = Partition.new(8, 8, list_notes)
+		3:
+			var list_notes: Array[Note] = [Note.new(0, 0, 3), Note.new(3, 0, -2), Note.new(5, 0, -2), 
+										   Note.new(7, 0, -2), Note.new(8, 0, 3)]
+			shoot_partition = Partition.new(4, 16, list_notes)
+			shoot_partition.remove_random_notes(0.5)
 		_:
 			var list_notes: Array[Note] = [Note.new(0, 0, 3), Note.new(3, 0, -2), Note.new(5, 0, -2), 
 										   Note.new(7, 0, -2), Note.new(8, 0, 3), Note.new(11, 0, -2),
